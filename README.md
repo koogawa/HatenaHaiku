@@ -1,4 +1,4 @@
 HatenaHaiku
 ===========
 
-Hatena Haiku Client for iOS
+Hatena Haiku Client for iOS（ドキュメント整備中です）
