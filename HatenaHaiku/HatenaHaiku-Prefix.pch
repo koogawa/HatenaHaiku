@@ -1,0 +1,54 @@
+//
+// Prefix header for all source files of the 'HatenaHaiku' target in the 'HatenaHaiku' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "AuthConfig.h"
+    #import "SVProgressHUD.h"
+    #import "KOUtil.h"
+    #import "NSString+URLEncoding.h"
+#endif
+
+typedef enum {
+	UITabNameEntry = 0,
+	UITabNameAlbum,
+	UITabNameKeyword,
+	UITabNameMyPage
+} UITabName;
+
+#define CACHE_RETENTION_DAY     30
+#define CACHE_REMOVED_KEY       @"CACHE_REMOVED"
+
+#define APP_SOURCE              @"はてなハイクアプリ for iPhone"
+
+#define NO_LOGIN_MESSAGE        @"ログインが確認できませんでした。ログインしてから再度お試しください。"
+
+#define STATUS_BAR_HEIGHT       20.0f
+#define NAVI_VAR_HEIGHT         44.0f
+#define TAB_BAR_HEIGHT          49.0f
+#define TABLE_CELL_HEIGHT       44.0f
+
+#define MAX_IMAGE_SIZE          800.0f
+
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0f \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0f \
+blue:((float)(rgbValue & 0xFF))/255.0f alpha:1.0f]
+
+#define THEME_COLOR             UIColorFromRGB(0xc5827d)
+
+#ifdef DEBUG
+# define LOG(...) NSLog(__VA_ARGS__)
+# define LOG_CURRENT_METHOD NSLog(@"%s", __func__)
+#else
+# define LOG(...) ;
+# define LOG_CURRENT_METHOD ;
+#endif
