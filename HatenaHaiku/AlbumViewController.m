@@ -9,7 +9,6 @@
 #import "AlbumViewController.h"
 #import "DetailViewController.h"
 #import "AlbumCollectionCell.h"
-#import "HttpClient.h"
 
 @interface AlbumViewController ()
 
@@ -18,7 +17,6 @@
 @implementation AlbumViewController
 
 #define MORE_FOOTER_HEIGHT          52.0f
-#define FETCH_ALBUM_NOTIFICATION    @"fetchAlbumFromAlbumTab"
 
 - (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
 {
@@ -49,7 +47,10 @@
     
     // contentViewにcellのクラスを登録
     [self.collectionView registerClass:[AlbumCollectionCell class] forCellWithReuseIdentifier:@"MY_CELL"];
-    
+
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
+
     [self fetchAlbum];
 }
 
@@ -74,21 +75,11 @@
 - (void)fetchAlbum
 {
     LOG_CURRENT_METHOD;
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/album.json?count=40&page=%d&body_formats=api", self.page];
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    HttpClient *client = [[HttpClient alloc] init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(fetchAlbumDidFinish:)
-                                                 name:FETCH_ALBUM_NOTIFICATION
-                                               object:client];
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    [client sendRequestWithURL:url method:@"GET" name:FETCH_ALBUM_NOTIFICATION];
+
+    [[HaikuManager sharedManager] fetchAlbumWithPage:self.page];
 }
 
 #pragma mark - Override method
@@ -100,10 +91,10 @@
     [self fetchAlbum];
 }
 
-#pragma mark - API Callback
+#pragma mark - HaikuManager delegate
 
 // アルバムリストが取れた
-- (void)fetchAlbumDidFinish:(NSNotification *)notification
+- (void)haikuManager:(HaikuManager *)manager didFetchAlbumWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     
@@ -118,17 +109,9 @@
         [self stopMoreLoading];
     }
 	
-    HttpClient *client = (HttpClient *)[notification object];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:FETCH_ALBUM_NOTIFICATION
-                                                  object:client];
-    
-    if (client.error == nil)
+    if (error == nil)
     {
-        NSData *jsonData = client.data;
-        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-        //LOG(@"jsonArray %@", jsonArray);
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
         if ([jsonArray count] == 0)
         {
@@ -202,16 +185,6 @@
 // セルのサイズを画像ごとに調整
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSString *urlString = [[self.statuses objectAtIndex:indexPath.item] objectForKey:@"text"];
-//    urlString = [[urlString componentsSeparatedByString:@"="] lastObject];
-//    urlString = [[urlString componentsSeparatedByString:@"\n"] objectAtIndex:0];
-//
-//    AsyncImageView *imageView = [[AsyncImageView alloc] init];
-//    [imageView loadImageUrl:[NSURL URLWithString:urlString] async:YES];
-
-    // サイズが大きいので縮小してる
-    //    return CGSizeMake(imageView.image.size.width / 5, imageView.image.size.height / 5);
-    
     return CGSizeMake(79, 79);
 }
 

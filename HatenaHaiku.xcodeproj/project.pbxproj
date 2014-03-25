@@ -11,7 +11,6 @@
 		210EF53917DB88C400353EC6 /* KOUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 210EF53817DB88C400353EC6 /* KOUtil.m */; };
 		214ED9D6166EF7220032AB74 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9D5166EF7220032AB74 /* StatusViewController.m */; };
 		214ED9DF166EFA980032AB74 /* MoreLoadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */; };
-		214ED9E2166F9E640032AB74 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9E1166F9E640032AB74 /* HttpClient.m */; };
 		214ED9E71670EA610032AB74 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 214ED9E41670EA610032AB74 /* SVProgressHUD.bundle */; };
 		214ED9E81670EA610032AB74 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9E61670EA610032AB74 /* SVProgressHUD.m */; };
 		214ED9EA1670EB3E0032AB74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214ED9E91670EB3E0032AB74 /* QuartzCore.framework */; };
@@ -83,6 +82,7 @@
 		21907DA716D01A83003C25A7 /* MoreLoadCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21907DA616D01A83003C25A7 /* MoreLoadCollectionViewController.m */; };
 		219429B116FA0788005FD0AA /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 219429B016FA0788005FD0AA /* ReplyViewController.m */; };
 		219E794616F613BF008CE262 /* MyKeywordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E794516F613BF008CE262 /* MyKeywordViewController.m */; };
+		21B27C80187041A000174703 /* HaikuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B27C7F187041A000174703 /* HaikuManager.m */; };
 		21D0427816F583D10019C0E8 /* MyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0427716F583D00019C0E8 /* MyFriendViewController.m */; };
 		21D0427B16F5A8060019C0E8 /* MyFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0427A16F5A8050019C0E8 /* MyFollowerViewController.m */; };
 		21EFC12A167BB90F0012EB34 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EFC128167BB90F0012EB34 /* star@2x.png */; };
@@ -98,8 +98,6 @@
 		214ED9D5166EF7220032AB74 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreLoadTableViewController.m; path = Lib/MoreLoadTableViewController.m; sourceTree = "<group>"; };
 		214ED9DE166EFA980032AB74 /* MoreLoadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreLoadTableViewController.h; path = Lib/MoreLoadTableViewController.h; sourceTree = "<group>"; };
-		214ED9E0166F9E640032AB74 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpClient.h; path = Lib/HttpClient.h; sourceTree = "<group>"; };
-		214ED9E1166F9E640032AB74 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HttpClient.m; path = Lib/HttpClient.m; sourceTree = "<group>"; };
 		214ED9E41670EA610032AB74 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		214ED9E51670EA610032AB74 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		214ED9E61670EA610032AB74 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
@@ -216,6 +214,8 @@
 		219429B016FA0788005FD0AA /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
 		219E794416F613BF008CE262 /* MyKeywordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyKeywordViewController.h; sourceTree = "<group>"; };
 		219E794516F613BF008CE262 /* MyKeywordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyKeywordViewController.m; sourceTree = "<group>"; };
+		21B27C7E187041A000174703 /* HaikuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaikuManager.h; sourceTree = "<group>"; };
+		21B27C7F187041A000174703 /* HaikuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaikuManager.m; sourceTree = "<group>"; };
 		21D0427616F583D00019C0E8 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendViewController.h; sourceTree = "<group>"; };
 		21D0427716F583D00019C0E8 /* MyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendViewController.m; sourceTree = "<group>"; };
 		21D0427916F5A8040019C0E8 /* MyFollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFollowerViewController.h; sourceTree = "<group>"; };
@@ -223,7 +223,6 @@
 		21EBC65916A29769000F0C97 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21EFC128167BB90F0012EB34 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "image/star@2x.png"; sourceTree = "<group>"; };
 		21EFC129167BB90F0012EB34 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = image/star.png; sourceTree = "<group>"; };
-		DC95FD1818E121C4007088D0 /* AuthConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,8 +246,6 @@
 			children = (
 				214EDA14167446B60032AB74 /* OAuth */,
 				214ED9E31670EA610032AB74 /* SVProgressHUD */,
-				214EDA5C16744BF80032AB74 /* AuthManager.h */,
-				214EDA5D16744BF90032AB74 /* AuthManager.m */,
 				210EF53717DB88C400353EC6 /* KOUtil.h */,
 				210EF53817DB88C400353EC6 /* KOUtil.m */,
 				214EDA5916744B630032AB74 /* LoginViewController.h */,
@@ -257,8 +254,6 @@
 				21907DA616D01A83003C25A7 /* MoreLoadCollectionViewController.m */,
 				214ED9DE166EFA980032AB74 /* MoreLoadTableViewController.h */,
 				214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */,
-				214ED9E0166F9E640032AB74 /* HttpClient.h */,
-				214ED9E1166F9E640032AB74 /* HttpClient.m */,
 				214ED9EB167253550032AB74 /* WebViewController.h */,
 				214ED9EC167253550032AB74 /* WebViewController.m */,
 			);
@@ -397,7 +392,6 @@
 				2183E57116646D95003C35E0 /* HatenaHaiku-Info.plist */,
 				2183E57216646D95003C35E0 /* InfoPlist.strings */,
 				2183E57516646D95003C35E0 /* main.m */,
-				DC95FD1818E121C4007088D0 /* AuthConfig.h */,
 				2183E57716646D95003C35E0 /* HatenaHaiku-Prefix.pch */,
 				218F84E6166D114D0098B54D /* icon.png */,
 				218F84E8166D115C0098B54D /* icon@2x.png */,
@@ -412,6 +406,10 @@
 		2183E59D1664DB45003C35E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				214EDA5C16744BF80032AB74 /* AuthManager.h */,
+				214EDA5D16744BF90032AB74 /* AuthManager.m */,
+				21B27C7E187041A000174703 /* HaikuManager.h */,
+				21B27C7F187041A000174703 /* HaikuManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -523,6 +521,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Kosuke Ogawa";
+				TargetAttributes = {
+					2183E56416646D95003C35E0 = {
+						DevelopmentTeam = 4SA8237VUA;
+					};
+				};
 			};
 			buildConfigurationList = 2183E55F16646D95003C35E0 /* Build configuration list for PBXProject "HatenaHaiku" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -591,7 +594,6 @@
 				2183E5A61664DD5F003C35E0 /* AsyncImageView.m in Sources */,
 				214ED9D6166EF7220032AB74 /* StatusViewController.m in Sources */,
 				214ED9DF166EFA980032AB74 /* MoreLoadTableViewController.m in Sources */,
-				214ED9E2166F9E640032AB74 /* HttpClient.m in Sources */,
 				214ED9E81670EA610032AB74 /* SVProgressHUD.m in Sources */,
 				214ED9ED167253550032AB74 /* WebViewController.m in Sources */,
 				214EDA001673185F0032AB74 /* DetailViewController.m in Sources */,
@@ -602,6 +604,7 @@
 				214EDA0C16742DFA0032AB74 /* MyPageViewController.m in Sources */,
 				214EDA0F167436060032AB74 /* AntennaViewController.m in Sources */,
 				214EDA3D167446B60032AB74 /* NSMutableURLRequest+Parameters.m in Sources */,
+				21B27C80187041A000174703 /* HaikuManager.m in Sources */,
 				214EDA3E167446B60032AB74 /* NSString+URLEncoding.m in Sources */,
 				214EDA3F167446B60032AB74 /* NSURL+Base.m in Sources */,
 				214EDA40167446B60032AB74 /* Base64Transcoder.c in Sources */,
@@ -708,11 +711,14 @@
 		2183E59816646D96003C35E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
 				INFOPLIST_FILE = "HatenaHaiku/HatenaHaiku-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -720,12 +726,15 @@
 		2183E59916646D96003C35E0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
 				INFOPLIST_FILE = "HatenaHaiku/HatenaHaiku-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EA307324-F33B-480D-9A5B-E0BC1E2F372F";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

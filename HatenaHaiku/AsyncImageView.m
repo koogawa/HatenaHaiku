@@ -9,10 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AsyncImageView.h"
 
-
 @implementation AsyncImageView
-
-#define INDICATOR_TAG 101
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -24,13 +21,10 @@
         self.clipsToBounds = YES;
         
         // インジケータ追加
-        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        indicator.frame = self.bounds;
-        indicator.tag = INDICATOR_TAG;
-        indicator.hidesWhenStopped = YES;
-        //        indicator.contentMode = UIViewContentModeCenter;
-        //        [indicator startAnimating];
-        [self addSubview:indicator];
+        indicator_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        indicator_.frame = self.bounds;
+        indicator_.hidesWhenStopped = YES;
+        [self addSubview:indicator_];
     }
     return self;
 }
@@ -54,21 +48,16 @@
 	if ([[NSFileManager defaultManager] fileExistsAtPath:tempPath])
     {
 		NSData *data = [NSData dataWithContentsOfFile:tempPath];
-//        self.contentMode = UIViewContentModeScaleAspectFill;
-//        self.clipsToBounds = YES;
-		self.image = [UIImage imageWithData:data];
+        [self showImageWithAnimation:[UIImage imageWithData:data]];
 		return;
 	}
 	
-//	self.contentMode = UIViewContentModeScaleAspectFill;
-//    self.clipsToBounds = YES;
-	self.image = (self.defaultImage != nil) ? self.defaultImage : [UIImage imageNamed:@"none.gif"];
-//	self.backgroundColor = [UIColor clearColor];
-    
+	UIImage *image = (self.defaultImage != nil) ? self.defaultImage : [UIImage imageNamed:@"none.gif"];
+    [self showImageWithAnimation:image];
+
     if (self.indicatorVisible)
     {
-        UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[self viewWithTag:INDICATOR_TAG];
-        [indicator startAnimating];
+        [indicator_ startAnimating];
     }
     
 	data_ = [[NSMutableData alloc] initWithCapacity:0];
@@ -78,7 +67,7 @@
                                      timeoutInterval:30.0];
 	conn_ = [[NSURLConnection alloc] initWithRequest:req delegate:self];
 }
-
+/* 使ってない？
 -(void)loadImageUrl:(NSURL *)url async:(BOOL)async
 {
 	self.url = url;
@@ -108,27 +97,34 @@
 	NSData *pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(self.image)];
 	[pngData writeToFile:[self getTempPath] atomically:YES];
 }
+*/
+- (void)showImageWithAnimation:(UIImage *)image
+{
+//    self.contentMode = UIViewContentModeScaleAspectFit;
+    self.alpha = 0.0;
+    self.image = image;
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    self.alpha = 1.0;
+    [UIView commitAnimations];
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-//	NSLog(@"connection didRecieveResponse");
 	[data_ setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)nsdata
 {
-//	NSLog(@"connection didReceiveData len=%d", [nsdata length]);
-	[data_ appendData:nsdata];	
+	[data_ appendData:nsdata];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	NSLog(@"connection didFailWithError - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-
     if (self.indicatorVisible)
     {
-        UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[self viewWithTag:INDICATOR_TAG];
-        [indicator stopAnimating];
+        [indicator_ stopAnimating];
     }
 
 	[self abort];
@@ -136,18 +132,16 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-//	self.contentMode = UIViewContentModeScaleAspectFill;
-//    self.clipsToBounds = YES;
-	self.image = [UIImage imageWithData:data_];
+	UIImage *image = [UIImage imageWithData:data_];
+    [self showImageWithAnimation:image];
 	
     if (self.indicatorVisible)
     {
-        UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[self viewWithTag:INDICATOR_TAG];
-        [indicator stopAnimating];
+        [indicator_ stopAnimating];
     }
     
 	// キャッシュに書き込む
-	NSData *pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(self.image)];
+	NSData *pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(image)];
 	[pngData writeToFile:[self getTempPath] atomically:YES];
 	
 	[self abort];

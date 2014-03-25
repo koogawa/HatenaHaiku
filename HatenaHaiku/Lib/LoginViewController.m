@@ -11,8 +11,6 @@
 
 @implementation LoginViewController
 
-#define USER_INFO_NOTIFICATION    @"loadUserInfoFromSearchTab"
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

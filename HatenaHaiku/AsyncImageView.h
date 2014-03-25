@@ -11,8 +11,9 @@
 
 @interface AsyncImageView : UIImageView
 {
-	NSURLConnection	*conn_;
-	NSMutableData	*data_;
+	NSURLConnection         *conn_;
+	NSMutableData           *data_;
+    UIActivityIndicatorView *indicator_;
 }
 
 @property (nonatomic, assign) BOOL      indicatorVisible;

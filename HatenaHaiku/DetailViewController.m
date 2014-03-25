@@ -20,8 +20,6 @@
 
 @implementation DetailViewController
 
-#define FETCH_DETAIL_NOTIFICATION    @"fetchDetail"
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -50,6 +48,9 @@
                                     action:@selector(starButtonAction)];
 
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:replyButton, starButton, nil];
+
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
 
     [self fetchStatusDetail];
 }
@@ -161,27 +162,15 @@
 {
     LOG_CURRENT_METHOD;
     
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/show/%@.json?body_formats=html_mobile", self.statusId];
-    
-	LOG(@"urlString = %@", urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    HttpClient *client = [[HttpClient alloc] init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(fetchDetailDidFinish:)
-                                                 name:FETCH_DETAIL_NOTIFICATION
-                                               object:client];
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    [client sendRequestWithURL:url method:@"GET" name:FETCH_DETAIL_NOTIFICATION];
+
+    [[HaikuManager sharedManager] fetchStatusDetailWithEid:self.statusId];
 }
 
-#pragma mark - API Callback
+#pragma mark - HaikuManager delegate
 
-- (void)fetchDetailDidFinish:(NSNotification *)notification
+- (void)haikuManager:(HaikuManager *)manager didFetchStatusDetailWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     
@@ -190,15 +179,9 @@
     
     [self.refreshControl endRefreshing];
 	
-    HttpClient *client = (HttpClient *)[notification object];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:FETCH_DETAIL_NOTIFICATION
-                                                  object:client];
-    
-    if (client.error == nil)
+    if (error == nil)
     {
-        NSData *jsonData = client.data;
+        NSData *jsonData = data;
         
         // 結果取得
         NSDictionary *statusDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];

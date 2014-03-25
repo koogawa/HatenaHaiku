@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StatusViewController.h"
+#import "HaikuManager.h"
 
 @interface RecentViewController : StatusViewController
 

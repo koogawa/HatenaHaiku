@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MoreLoadCollectionViewController.h"
+#import "HaikuManager.h"
 
-@interface AlbumViewController : MoreLoadCollectionViewController
+@interface AlbumViewController : MoreLoadCollectionViewController <HaikuManagerDelegate>
+{
+    HaikuManager *_haikuManager;
+}
 
 @property (nonatomic, assign) NSInteger         page;
 @property (nonatomic, strong) NSMutableArray    *statuses;

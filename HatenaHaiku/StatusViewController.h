@@ -10,9 +10,13 @@
 #import "MoreLoadTableViewController.h"
 #import "WebViewController.h"
 #import "StatusTableViewCell.h"
-#import "HttpClient.h"
+#import "HaikuManager.h"
 
-@interface StatusViewController : MoreLoadTableViewController <StatusTableViewCellDelegate, UIActionSheetDelegate>
+// TODO:StatusViewControllerとMoreLoadTableViewControllerを統合して BaseTableViewController
+@interface StatusViewController : MoreLoadTableViewController <UIActionSheetDelegate, StatusTableViewCellDelegate, HaikuManagerDelegate>
+{
+    HaikuManager *_haikuManager;
+}
 
 @property (nonatomic, assign) NSInteger         page;
 @property (nonatomic, retain) NSMutableArray    *statuses;

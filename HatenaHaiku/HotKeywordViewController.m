@@ -11,16 +11,12 @@
 #import "KeywordViewController.h"
 #import "PostViewController.h"
 #import "AuthManager.h"
-#import "HttpClient.h"
 
 @interface HotKeywordViewController ()
 
 @end
 
 @implementation HotKeywordViewController
-
-#define FETCH_HOT_KEYWORD_NOTIFICATION    @"fetchHotKeywordFromKeywordTab"
-#define FETCH_SEARCH_KEYWORD_NOTIFICATION @"searchKeywordFromKeywordTab"
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -66,7 +62,10 @@
     self.searchDisplay.searchResultsDataSource = self;
     self.searchDisplay.searchResultsDelegate = self;
 
-    [self fetchKeywordList];
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
+
+    [self fetchHotKeywords];
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,62 +106,36 @@
 {
     LOG_CURRENT_METHOD;
     
-    [self fetchKeywordList];
+    [self fetchHotKeywords];
 }
 
 // ホットキーワード一覧を取得
-- (void)fetchKeywordList
+- (void)fetchHotKeywords
 {
     LOG_CURRENT_METHOD;
-    
-    // みんなの最新エントリーを取得
-    NSString *urlString = @"http://h.hatena.ne.jp/api/keywords/hot.json?without_related_keywords=1";
-    
-	LOG(@"urlString = %@", urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    HttpClient *client = [[HttpClient alloc] init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(fetchKeywordListDidFinish:)
-                                                 name:FETCH_HOT_KEYWORD_NOTIFICATION
-                                               object:client];
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    [client sendRequestWithURL:url method:@"GET" name:FETCH_HOT_KEYWORD_NOTIFICATION];
+
+    [[HaikuManager sharedManager] fetchHotKeywords];
 }
 
 // キーワード検索
-- (void)searchKeywordList:(NSString *)keyword
+- (void)searchKeywordsWithKeyword:(NSString *)keyword
 {
     LOG_CURRENT_METHOD;
-    
-    // みんなの最新エントリーを取得
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/keywords/list.json?word=%@&without_related_keywords=1", [keyword encodedURLParameterString]];
-    
-	LOG(@"urlString = %@", urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    HttpClient *client = [[HttpClient alloc] init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(searchKeywordListDidFinish:)
-                                                 name:FETCH_SEARCH_KEYWORD_NOTIFICATION
-                                               object:client];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
     
-    [client sendRequestWithURL:url method:@"GET" name:FETCH_SEARCH_KEYWORD_NOTIFICATION];
+    [[HaikuManager sharedManager] searchKeywordsWithKeyword:keyword];
 }
 
 
-#pragma mark - API Callback
+#pragma mark - HaikuManager delegate
 
-// エントリーが取れた
-- (void)fetchKeywordListDidFinish:(NSNotification *)notification
+// ホットキーワードが取得できた
+- (void)haikuManager:(HaikuManager *)manager didFetchHotKeywordsWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     
@@ -170,18 +143,10 @@
     [SVProgressHUD dismiss];
     
     [self.refreshControl endRefreshing];
-	
-    HttpClient *client = (HttpClient *)[notification object];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:FETCH_HOT_KEYWORD_NOTIFICATION
-                                                  object:client];
-    
-    if (client.error == nil)
+
+    if (error == nil)
     {
-        NSData *jsonData = client.data;
-        
-        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
         // 結果取得
         [self.keywords removeAllObjects];
@@ -200,8 +165,8 @@
     }
 }
 
-// キーワードが取れた
-- (void)searchKeywordListDidFinish:(NSNotification *)notification
+// 検索したキーワードが取得できた
+- (void)haikuManager:(HaikuManager *)manager didSearchKeywordsWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     
@@ -210,15 +175,9 @@
     
     [self.refreshControl endRefreshing];
 	
-    HttpClient *client = (HttpClient *)[notification object];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:FETCH_SEARCH_KEYWORD_NOTIFICATION
-                                                  object:client];
-    
-    if (client.error == nil)
+    if (error == nil)
     {
-        NSData *jsonData = client.data;
+        NSData *jsonData = data;
         
         NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         
@@ -279,44 +238,6 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -343,7 +264,7 @@
     }
     
     // 検索
-    [self searchKeywordList:searchBar.text];
+    [self searchKeywordsWithKeyword:searchBar.text];
 }
 
 #pragma mark - UISearchDisplayController Delegate
@@ -378,7 +299,7 @@
     }
     
     // 2秒後に検索
-    [self performSelector:@selector(searchKeywordList:) withObject:searchString afterDelay:2.0];
+    [self performSelector:@selector(searchKeywordsWithKeyword:) withObject:searchString afterDelay:2.0];
     
     return NO;
 }

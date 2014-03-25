@@ -14,8 +14,6 @@
 
 @implementation UserViewController
 
-#define FETCH_TIMELINE_NOTIFICATION    @"fetchTimelineWithUserName"
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,6 +28,10 @@
     [super viewDidLoad];
     
     self.title = [self.userName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
+
     [self fetchTimeline];
 }
 
@@ -50,27 +52,15 @@
     [self fetchTimeline];
 }
 
-// キーワードのエントリーを取得
+// ユーザのエントリーを取得
 - (void)fetchTimeline
 {
     LOG_CURRENT_METHOD;
     
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline/%@.json?count=%d&page=%d&body_formats=html_mobile", self.userId, [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], self.page];
-    
-	LOG(@"urlString = %@", urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    HttpClient *client = [[HttpClient alloc] init];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(fetchTimelineDidFinish:)
-                                                 name:FETCH_TIMELINE_NOTIFICATION
-                                               object:client];
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    [client sendRequestWithURL:url method:@"GET" name:FETCH_TIMELINE_NOTIFICATION];
+
+    [[HaikuManager sharedManager] fetchUserTimelineWithUrlName:self.userId page:self.page];
 }
 
 
@@ -84,10 +74,10 @@
 }
 
 
-#pragma mark - API Callback
+#pragma mark - HaikuManager delegate
 
-// エントリーが取れた
-- (void)fetchTimelineDidFinish:(NSNotification *)notification
+// ユーザのエントリーが取れた
+- (void)haikuManager:(HaikuManager *)manager didFetchUserTimelineWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     
@@ -101,18 +91,10 @@
     else {
         [self stopMoreLoading];
     }
-	
-    HttpClient *client = (HttpClient *)[notification object];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:FETCH_TIMELINE_NOTIFICATION
-                                                  object:client];
-    
-    if (client.error == nil)
+
+    if (error == nil)
     {
-        NSData *jsonData = client.data;
-        
-        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
         if ([jsonArray count] == 0)
         {

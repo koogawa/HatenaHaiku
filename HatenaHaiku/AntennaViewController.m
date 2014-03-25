@@ -19,8 +19,6 @@
 
 @implementation AntennaViewController
 
-#define FETCH_TIMELINE_NOTIFICATION    @"fetchTimelineFromAntenna"
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
