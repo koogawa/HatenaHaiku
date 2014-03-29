@@ -21,7 +21,6 @@
 @property (nonatomic, strong) UIImage   *defaultImage;
 
 -(void)loadImageUrl:(NSURL *)url;
--(void)loadImageUrl:(NSURL *)url async:(BOOL)async;
 -(void)abort;
 
 @end

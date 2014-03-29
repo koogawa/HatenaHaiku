@@ -67,37 +67,7 @@
                                      timeoutInterval:30.0];
 	conn_ = [[NSURLConnection alloc] initWithRequest:req delegate:self];
 }
-/* 使ってない？
--(void)loadImageUrl:(NSURL *)url async:(BOOL)async
-{
-	self.url = url;
-    
-    if (async)
-    {
-        [self loadImageUrl:url];
-        return;
-    }
-    
-	// キャッシュされてるならそれ使う
-	NSString *tempPath = [self getTempPath];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:tempPath]) {
-		NSData *data = [NSData dataWithContentsOfFile:tempPath];
-//        self.contentMode = UIViewContentModeScaleAspectFill;
-//        self.clipsToBounds = YES;
-		self.image = [UIImage imageWithData:data];
-		return;
-	}
-	
-    NSData *data = [NSData dataWithContentsOfURL:url];
-//	self.contentMode = UIViewContentModeScaleAspectFill;
-//    self.clipsToBounds = YES;
-    self.image = [UIImage imageWithData:data];
-	
-	// キャッシュに書き込む
-	NSData *pngData = [[NSData alloc] initWithData:UIImagePNGRepresentation(self.image)];
-	[pngData writeToFile:[self getTempPath] atomically:YES];
-}
-*/
+
 - (void)showImageWithAnimation:(UIImage *)image
 {
 //    self.contentMode = UIViewContentModeScaleAspectFit;
