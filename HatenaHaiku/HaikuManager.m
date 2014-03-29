@@ -7,6 +7,7 @@
 //
 
 #import "HaikuManager.h"
+#import "AuthManager.h"
 #import "OAConsumer.h"
 #import "OADataFetcher.h"
 #import "OAMutableURLRequest.h"
@@ -192,6 +193,67 @@
                   didFailSelector:@selector(ticket:didFailToFetchUserTimelineWithError:)];
 }
 
+// 新たに投稿する
+- (void)updateStatusWithKeyword:(NSString *)keyword
+                         status:(NSString *)status
+                      inReplyTo:(NSString *)statusId
+                          image:(UIImage *)image
+{
+    LOG_CURRENT_METHOD;
+
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                    secret:OAUTH_CONSUMER_SECRET];
+
+    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
+
+    NSURL *url = [NSURL URLWithString:@"http://h.hatena.ne.jp/api/statuses/update.json"];
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:accessToken
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"POST"];
+
+    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"status" value:status];
+    OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"source" value:APP_SOURCE];
+
+    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, nil];
+
+    // キーワードあれば追加
+    if ([keyword length] > 0)
+    {
+        OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"keyword" value:keyword];
+        [params addObject:p3];
+    }
+
+    // 返信先あれば追加
+    if ([statusId length] > 0)
+    {
+        OARequestParameter *p4 = [[OARequestParameter alloc] initWithName:@"in_reply_to_status_id" value:statusId];
+        [params addObject:p4];
+    }
+
+    [request setParameters:params];
+
+    // 画像あれば追加
+    if (image != nil)
+    {
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        [request attachFileWithName:@"file" filename:@"image.jpg" contentType:@"image/jpeg" data:imageData];
+    }
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [SVProgressHUD show];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didUpdateStatusWithData:)
+                  didFailSelector:@selector(ticket:didFailToUpdateStatusWithError:)];
+}
+
 
 #pragma mark - API Callback
 
@@ -332,6 +394,26 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchUserTimelineWithData:error:)]) {
         [self.delegate haikuManager:self didFetchUserTimelineWithData:nil error:error];
+    }
+}
+
+// 新たに投稿できた
+- (void)ticket:(OAServiceTicket *)ticket didUpdateStatusWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didUpdateStatusWithData:error:)]) {
+        [self.delegate haikuManager:self didUpdateStatusWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToUpdateStatusWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didUpdateStatusWithData:error:)]) {
+        [self.delegate haikuManager:self didUpdateStatusWithData:nil error:error];
     }
 }
 

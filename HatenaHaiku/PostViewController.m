@@ -18,6 +18,9 @@
 @end
 
 @implementation PostViewController
+{
+    HaikuManager *_haikuManager;
+}
 
 #define CANCEL_ALERT_TAG    101
 #define POST_ALERT_TAG      102
@@ -36,7 +39,6 @@
 {
     [super viewDidLoad];
 
-//    self.title = @"新規投稿";
     self.navigationController.navigationBar.tintColor = THEME_COLOR;
 
     // キャンセルボタン
@@ -66,7 +68,10 @@
                                     action:@selector(sendButtonAction)];
     
     self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:sendButton, cameraButton, mapButton, nil];
-    
+
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
+
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager setDelegate:self];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
@@ -201,65 +206,20 @@
 - (void)post
 {
     LOG_CURRENT_METHOD;
-    
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-                                                    secret:OAUTH_CONSUMER_SECRET];
-    
-    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
-                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
-    
-    NSURL *url = [NSURL URLWithString:@"http://h.hatena.ne.jp/api/statuses/update.json"];
-    
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
-                                                                      token:accessToken
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"POST"];
-    
-    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"status" value:self.bodyView.text];
-    OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"source" value:APP_SOURCE];
-    
-    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, nil];
-    
-    // キーワードあれば追加
-    if ([self.keywordField.text length] > 0)
-    {
-        OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"keyword" value:self.keywordField.text];
-        [params addObject:p3];
-    }
-    
-    // 返信先あれば追加
-    if ([self.replyToField.text length] > 0)
-    {
-        OARequestParameter *p4 = [[OARequestParameter alloc] initWithName:@"in_reply_to_status_id" value:[self.option objectForKey:@"in_reply_to_status_id"]];
-        [params addObject:p4];
-    }
-    
-    [request setParameters:params];
-    
-    // 画像あれば追加
-    if (self.attachedImageView.image != nil)
-    {
-        UIImage *image = self.attachedImageView.image;
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-        [request attachFileWithName:@"file" filename:@"image.jpg" contentType:@"image/jpeg" data:imageData];
-    }
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
     
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFinishWithData:)
-                  didFailSelector:@selector(ticket:didFailWithError:)];
+    [[HaikuManager sharedManager] updateStatusWithKeyword:self.keywordField.text
+                                                   status:self.bodyView.text
+                                                inReplyTo:self.replyToField.text
+                                                    image:self.attachedImageView.image];
 }
 
 
-#pragma mark - API Callback
+#pragma mark - HaikuManager delegate
 
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)haikuManager:(HaikuManager *)manager didUpdateStatusWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -276,28 +236,20 @@
         
         return;
     }
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showSuccessWithStatus:@"投稿しました"];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+    if (error == nil)
+    {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showSuccessWithStatus:@"投稿しました"];
+
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showErrorWithStatus:@"投稿できませんでした"];
+    }
 }
 
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showErrorWithStatus:@"投稿できませんでした"];
-    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
-//                                                    message:@"投稿できませんでした"
-//                                                   delegate:nil
-//                                          cancelButtonTitle:nil
-//                                          otherButtonTitles:@"OK", nil];
-//    [alert show];
-}
 
 #pragma mark - Table view data source
 

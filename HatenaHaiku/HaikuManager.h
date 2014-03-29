@@ -19,6 +19,7 @@
 - (void)haikuManager:(HaikuManager *)manager didFetchStatusDetailWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didFetchKeywordTimelineWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didFetchUserTimelineWithData:(NSData *)data error:(NSError *)error;
+- (void)haikuManager:(HaikuManager *)manager didUpdateStatusWithData:(NSData *)data error:(NSError *)error;
 @end
 
 @interface HaikuManager : NSObject
@@ -54,6 +55,6 @@
 - (void)updateStatusWithKeyword:(NSString *)keyword
                          status:(NSString *)status
                       inReplyTo:(NSString *)statusId
-                           file:(NSData *)file;
+                          image:(UIImage *)image;
 
 @end

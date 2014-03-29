@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "HaikuManager.h"
 
-@interface PostViewController : UITableViewController <UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate>
+@interface PostViewController : UITableViewController <UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, HaikuManagerDelegate>
 
 @property (nonatomic, retain) NSDictionary  *option;
 @property (nonatomic, retain) UITextField   *keywordField;
