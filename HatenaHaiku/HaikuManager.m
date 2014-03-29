@@ -288,6 +288,35 @@
                   didFailSelector:@selector(ticket:didFailToUpdateStatusWithError:)];
 }
 
+// スターを付ける
+- (void)createFavoritesWithStatusId:(NSString *)statusId
+{
+    LOG_CURRENT_METHOD;
+
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                    secret:OAUTH_CONSUMER_SECRET];
+
+    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
+
+    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/favorites/create/%@.json", statusId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    LOG(@"urlString = %@", urlString);
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:accessToken
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"POST"];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didCreateFavoritesWithData:)
+                  didFailSelector:@selector(ticket:didFailToCreateFavoritesWithError:)];
+}
+
 
 #pragma mark - API Callback
 
@@ -468,6 +497,26 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didUpdateStatusWithData:error:)]) {
         [self.delegate haikuManager:self didUpdateStatusWithData:nil error:error];
+    }
+}
+
+// スターを付けた
+- (void)ticket:(OAServiceTicket *)ticket didCreateFavoritesWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didCreateFavoritesWithData:error:)]) {
+        [self.delegate haikuManager:self didCreateFavoritesWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToCreateFavoritesWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didCreateFavoritesWithData:error:)]) {
+        [self.delegate haikuManager:self didCreateFavoritesWithData:nil error:error];
     }
 }
 

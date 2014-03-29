@@ -110,7 +110,8 @@
 - (void)starButtonAction
 {
     LOG_CURRENT_METHOD;
-    
+
+    // ログインされてない
     if (![[AuthManager sharedManager] isAuthenticated])
     {
         UIAlertView *alert =
@@ -122,7 +123,12 @@
         [alert show];
         return;
     }
-    
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [SVProgressHUD show];
+
+    [_haikuManager createFavoritesWithStatusId:self.statusId];
+    return;
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
                                                     secret:OAUTH_CONSUMER_SECRET];
     
@@ -206,7 +212,7 @@
     }
 }
 
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)haikuManager:(HaikuManager *)manager didCreateFavoritesWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -223,22 +229,22 @@
         
         return;
     }
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showSuccessWithStatus:@"スターをつけました"];
 
-    // ちょっと時間開けないとサクセスメッセージが出ない
-    [self performSelector:@selector(fetchStatusDetail) withObject:nil afterDelay:1.0];
+    if (error == nil)
+    {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showSuccessWithStatus:@"スターをつけました"];
+
+        // ちょっと時間開けないとサクセスメッセージが出ない
+        [self performSelector:@selector(fetchStatusDetail) withObject:nil afterDelay:1.0];
+    }
+    else {
+        LOG(@"error = %@", error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showErrorWithStatus:@"スター追加に失敗しました"];
+    }
 }
 
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showErrorWithStatus:@"スター追加に失敗しました"];
-}
 
 #pragma mark - Table view data source
 

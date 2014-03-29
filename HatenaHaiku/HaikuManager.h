@@ -21,6 +21,7 @@
 - (void)haikuManager:(HaikuManager *)manager didSearchKeywordsWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didFetchStatusDetailWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didUpdateStatusWithData:(NSData *)data error:(NSError *)error;
+- (void)haikuManager:(HaikuManager *)manager didCreateFavoritesWithData:(NSData *)data error:(NSError *)error;
 @end
 
 @interface HaikuManager : NSObject
@@ -62,5 +63,7 @@
                          status:(NSString *)status
                       inReplyTo:(NSString *)statusId
                           image:(UIImage *)image;
+// スターを付ける
+- (void)createFavoritesWithStatusId:(NSString *)statusId;
 
 @end
