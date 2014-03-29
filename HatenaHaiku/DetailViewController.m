@@ -128,32 +128,6 @@
     [SVProgressHUD show];
 
     [_haikuManager createFavoritesWithStatusId:self.statusId];
-    return;
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-                                                    secret:OAUTH_CONSUMER_SECRET];
-    
-    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
-                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/favorites/create/%@.json", self.statusId];
-    NSURL *url = [NSURL URLWithString:urlString];
-    LOG(@"urlString = %@", urlString);
-    
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
-                                                                      token:accessToken
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"POST"];
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
-    
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFinishWithData:)
-                  didFailSelector:@selector(ticket:didFailWithError:)];
 }
 
 - (void)refreshOccured:(id)sender
