@@ -8,6 +8,6 @@
 
 #import "StatusViewController.h"
 
-@interface AntennaViewController : StatusViewController
+@interface AntennaViewController : StatusViewController <HaikuManagerDelegate>
 
 @end

@@ -61,6 +61,87 @@
                   didFailSelector:@selector(ticket:didFailToFetchPublicTimelineWithError:)];
 }
 
+// キーワードのエントリーを取得
+- (void)fetchKeywordTimelineWithKeyword:(NSString *)keyword page:(NSInteger)page;
+{
+    LOG_CURRENT_METHOD;
+
+    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/keyword_timeline.json?count=%d&page=%d&body_formats=html_mobile&word=%@", [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page, keyword];
+	LOG(@"urlString = %@", urlString);
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
+                                                                   consumer:nil
+                                                                      token:nil
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didFetchKeywordTimelineWithData:)
+                  didFailSelector:@selector(ticket:didFailToFetchKeywordTimelineWithError:)];
+}
+
+// ユーザのエントリーを取得
+- (void)fetchUserTimelineWithUrlName:(NSString *)urlName page:(NSInteger)page;
+{
+    LOG_CURRENT_METHOD;
+
+    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline/%@.json?count=%d&page=%d&body_formats=html_mobile", urlName, [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page];
+	LOG(@"urlString = %@", urlString);
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
+                                                                   consumer:nil
+                                                                      token:nil
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didFetchUserTimelineWithData:)
+                  didFailSelector:@selector(ticket:didFailToFetchUserTimelineWithError:)];
+}
+
+// 自分のアンテナを取得
+- (void)fetchFriendsTimelineWithUrlName:(NSString *)urlName
+                                  count:(NSInteger)count
+                                   page:(NSInteger)page
+{
+    LOG_CURRENT_METHOD;
+
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                    secret:OAUTH_CONSUMER_SECRET];
+
+    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
+    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/friends_timeline.json"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:accessToken
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+
+    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"count" value:[NSString stringWithFormat:@"%d", count]];
+    OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%d", page]];
+    OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"body_formats" value:@"html_mobile"];
+
+    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, p3, nil];
+
+    [request setParameters:params];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didFetchFriendsTimelineWithData:)
+                  didFailSelector:@selector(ticket:didFailToFetchFriendsTimelineWithError:)];
+}
+
 // アルバムページを取得
 - (void)fetchAlbumWithPage:(NSInteger)page
 {
@@ -149,50 +230,6 @@
                   didFailSelector:@selector(ticket:didFailToFetchStatusDetailWithError:)];
 }
 
-// キーワードのエントリーを取得
-- (void)fetchKeywordTimelineWithKeyword:(NSString *)keyword page:(NSInteger)page;
-{
-    LOG_CURRENT_METHOD;
-
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/keyword_timeline.json?count=%d&page=%d&body_formats=html_mobile&word=%@", [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page, keyword];
-	LOG(@"urlString = %@", urlString);
-
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
-                                                                   consumer:nil
-                                                                      token:nil
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"GET"];
-
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchKeywordTimelineWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchKeywordTimelineWithError:)];
-}
-
-// ユーザのエントリーを取得
-- (void)fetchUserTimelineWithUrlName:(NSString *)urlName page:(NSInteger)page;
-{
-    LOG_CURRENT_METHOD;
-
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline/%@.json?count=%d&page=%d&body_formats=html_mobile", urlName, [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page];
-	LOG(@"urlString = %@", urlString);
-
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
-                                                                   consumer:nil
-                                                                      token:nil
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"GET"];
-
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchUserTimelineWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchUserTimelineWithError:)];
-}
-
 // 新たに投稿する
 - (void)updateStatusWithKeyword:(NSString *)keyword
                          status:(NSString *)status
@@ -244,9 +281,6 @@
         [request attachFileWithName:@"file" filename:@"image.jpg" contentType:@"image/jpeg" data:imageData];
     }
 
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
-
     OADataFetcher *fetcher = [[OADataFetcher alloc] init];
     [fetcher fetchDataWithRequest:request
                          delegate:self
@@ -274,6 +308,66 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchPublicTimelineWithData:error:)]) {
         [self.delegate haikuManager:self didFetchPublicTimelineWithData:nil error:error];
+    }
+}
+
+// キーワードのエントリーを取得できた
+- (void)ticket:(OAServiceTicket *)ticket didFetchKeywordTimelineWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchKeywordTimelineWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchKeywordTimelineWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToFetchKeywordTimelineWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchKeywordTimelineWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchKeywordTimelineWithData:nil error:error];
+    }
+}
+
+// ユーザのエントリーを取得できた
+- (void)ticket:(OAServiceTicket *)ticket didFetchUserTimelineWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchUserTimelineWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchUserTimelineWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToFetchUserTimelineWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchUserTimelineWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchUserTimelineWithData:nil error:error];
+    }
+}
+
+// 自分のアンテナを取得できた
+- (void)ticket:(OAServiceTicket *)ticket didFetchFriendsTimelineWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFriendsTimelineWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFriendsTimelineWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToFetchFriendsTimelineWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFetchFriendsTimelineWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFriendsTimelineWithData:nil error:error];
     }
 }
 
@@ -354,46 +448,6 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchStatusDetailWithData:error:)]) {
         [self.delegate haikuManager:self didFetchStatusDetailWithData:nil error:error];
-    }
-}
-
-// キーワードのエントリーを取得できた
-- (void)ticket:(OAServiceTicket *)ticket didFetchKeywordTimelineWithData:(NSData *)data
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-
-    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchKeywordTimelineWithData:error:)]) {
-        [self.delegate haikuManager:self didFetchKeywordTimelineWithData:data error:nil];
-    }
-}
-- (void)ticket:(OAServiceTicket *)ticket didFailToFetchKeywordTimelineWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-
-    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchKeywordTimelineWithData:error:)]) {
-        [self.delegate haikuManager:self didFetchKeywordTimelineWithData:nil error:error];
-    }
-}
-
-// ユーザのエントリーを取得できた
-- (void)ticket:(OAServiceTicket *)ticket didFetchUserTimelineWithData:(NSData *)data
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-
-    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchUserTimelineWithData:error:)]) {
-        [self.delegate haikuManager:self didFetchUserTimelineWithData:data error:nil];
-    }
-}
-- (void)ticket:(OAServiceTicket *)ticket didFailToFetchUserTimelineWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-
-    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchUserTimelineWithData:error:)]) {
-        [self.delegate haikuManager:self didFetchUserTimelineWithData:nil error:error];
     }
 }
 

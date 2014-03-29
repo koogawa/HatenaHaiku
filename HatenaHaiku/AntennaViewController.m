@@ -34,6 +34,9 @@
     
     self.title = @"アンテナ";
     
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
+
     [self fetchTimeline];
 }
 
@@ -54,42 +57,19 @@
     [self fetchTimeline];
 }
 
-// キーワードのエントリーを取得
+// アンテナのエントリーを取得
 - (void)fetchTimeline
 {
     LOG_CURRENT_METHOD;
-    
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-                                                    secret:OAUTH_CONSUMER_SECRET];
-    
-    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
-                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
-    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/friends_timeline.json"];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
-                                                                      token:accessToken
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"GET"];
-    
-    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"count" value:[NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"]]];
-    OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%d", self.page]];
-    OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"body_formats" value:@"html_mobile"];
-    
-    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, p3, nil];
-    
-    [request setParameters:params];
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFinishWithData:)
-                  didFailSelector:@selector(ticket:didFailWithError:)];
+
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"];
+
+    [_haikuManager fetchFriendsTimelineWithUrlName:nil
+                                             count:count
+                                              page:self.page];
 }
 
 
@@ -103,16 +83,15 @@
 }
 
 
-#pragma mark - API Callback
+#pragma mark - Haiku Manager Delegate
 
 // エントリーが取れた
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)haikuManager:(HaikuManager *)manager didFetchFriendsTimelineWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     //LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD dismiss];
     
     // トークン切れチェック
     NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -121,7 +100,6 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate showLoginView];
         
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [SVProgressHUD showSuccessWithStatus:@"ログイン期限が切れました"];
         
         return;
@@ -133,7 +111,6 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate showLoginView];
         
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         [SVProgressHUD showSuccessWithStatus:@"再ログインが必要です"];
         
         return;
@@ -146,7 +123,15 @@
     else {
         [self stopMoreLoading];
     }
-	
+
+    if (error != nil)
+    {
+        [SVProgressHUD showErrorWithStatus:@"取得できませんでした"];
+        return;
+    }
+
+    [SVProgressHUD dismiss];
+
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     //LOG(@"statuses %@", jsonArray);
     
@@ -175,15 +160,6 @@
     self.page++;
     
     [self.tableView reloadData];
-}
-
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showErrorWithStatus:@"取得できませんでした"];
 }
 
 @end
