@@ -230,6 +230,42 @@
                   didFailSelector:@selector(ticket:didFailToFetchStatusDetailWithError:)];
 }
 
+// お気に入りユーザ一覧を取得
+- (void)fetchFriendsWithPage:(NSInteger)page
+{
+    LOG_CURRENT_METHOD;
+
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                    secret:OAUTH_CONSUMER_SECRET];
+
+    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
+    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/friends.json"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:accessToken
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+
+    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%d", page]];
+
+    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, nil];
+
+    [request setParameters:params];
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [SVProgressHUD show];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didFetchFriendsWithData:)
+                  didFailSelector:@selector(ticket:didFailToFetchFriendsWithError:)];
+}
+
 // ファン一覧を取得
 - (void)fetchFollowersWithPage:(NSInteger)page
 {
@@ -511,6 +547,26 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchStatusDetailWithData:error:)]) {
         [self.delegate haikuManager:self didFetchStatusDetailWithData:nil error:error];
+    }
+}
+
+// お気に入りユーザ一覧が取得できた
+- (void)ticket:(OAServiceTicket *)ticket didFetchFriendsWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFriendsWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFriendsWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToFetchFriendsWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFriendsWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFriendsWithData:nil error:error];
     }
 }
 
