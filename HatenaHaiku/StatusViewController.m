@@ -158,31 +158,10 @@
         return;
     }
     
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-                                                    secret:OAUTH_CONSUMER_SECRET];
-    
-    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
-                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/favorites/create/%@.json", statusId];
-    NSURL *url = [NSURL URLWithString:urlString];
-    LOG(@"urlString = %@", urlString);
-    
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
-                                                                      token:accessToken
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"POST"];
-    
+    [_haikuManager createFavoritesWithStatusId:statusId];
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didAddStarWithData:)
-                  didFailSelector:@selector(ticket:didFailToAddStarWithError:)];
 }
 
 - (void)reply
@@ -302,7 +281,7 @@
 
 #pragma mark - API Callback
 
-- (void)ticket:(OAServiceTicket *)ticket didAddStarWithData:(NSData *)data
+- (void)haikuManager:(HaikuManager *)manager didCreateFavoritesWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -319,22 +298,22 @@
         
         return;
     }
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showSuccessWithStatus:@"スターをつけました"];
-    
-    // スターを反映させるために再読み込み
-    [self.tableView reloadData];
+
+    if (error == nil)
+    {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showSuccessWithStatus:@"スターをつけました"];
+
+        // スターを反映させるために再読み込み
+        [self.tableView reloadData];
+    }
+    else {
+        LOG(@"error = %@", error);
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showErrorWithStatus:@"スター追加に失敗しました"];
+    }
 }
 
-- (void)ticket:(OAServiceTicket *)ticket didFailToAddStarWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showErrorWithStatus:@"スター追加に失敗しました"];
-}
 
 #pragma mark - Table view data source
 
