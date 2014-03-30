@@ -343,6 +343,33 @@
                   didFailSelector:@selector(ticket:didFailToFetchKeywordsWithError:)];
 }
 
+// ユーザ情報を取得
+- (void)fetchFriendships
+{
+    LOG_CURRENT_METHOD;
+
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                    secret:OAUTH_CONSUMER_SECRET];
+
+    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
+    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/friendships/show.json"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:accessToken
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didFetchFriendshipsWithData:)
+                  didFailSelector:@selector(ticket:didFailToFetchFriendshipsWithError:)];
+}
+
 // 新たに投稿する
 - (void)updateStatusWithKeyword:(NSString *)keyword
                          status:(NSString *)status
@@ -650,6 +677,26 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchKeywordsWithData:error:)]) {
         [self.delegate haikuManager:self didFetchKeywordsWithData:nil error:error];
+    }
+}
+
+// ユーザ情報が取得できた
+- (void)ticket:(OAServiceTicket *)ticket didFetchFriendshipsWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFriendshipsWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFriendshipsWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToFetchFriendshipsWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFriendshipsWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFriendshipsWithData:nil error:error];
     }
 }
 

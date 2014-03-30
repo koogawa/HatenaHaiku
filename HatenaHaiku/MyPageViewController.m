@@ -65,6 +65,9 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshOccured:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
+
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -182,37 +185,17 @@
 - (void)fetchProfile
 {
     LOG_CURRENT_METHOD;
-    
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-                                                    secret:OAUTH_CONSUMER_SECRET];
-    
-    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
-                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
-    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/friendships/show.json"];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
-                                                                      token:accessToken
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"GET"];
-    
+
+    [_haikuManager fetchFriendships];
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFinishWithData:)
-                  didFailSelector:@selector(ticket:didFailWithError:)];
 }
 
 
-#pragma mark - API Callback
+#pragma mark - Haiku Manager delegate
 
-// エントリーが取れた
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)haikuManager:(HaikuManager *)manager didFetchFriendshipsWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -235,20 +218,20 @@
         // 何もせぇへん
         return;
     }
-    
+
+    if (error != nil)
+    {
+        LOG(@"error = %@", error);
+
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showErrorWithStatus:@"取得できませんでした"];
+        [self.refreshControl endRefreshing];
+        return;
+    }
+
     userInfo_ = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     
     [self makeHeaderView];
-}
-
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showErrorWithStatus:@"取得できませんでした"];
-    [self.refreshControl endRefreshing];
 }
 
 

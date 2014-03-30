@@ -23,6 +23,7 @@
 - (void)haikuManager:(HaikuManager *)manager didFetchFriendsWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didFetchFollowersWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didFetchKeywordsWithData:(NSData *)data error:(NSError *)error;
+- (void)haikuManager:(HaikuManager *)manager didFetchFriendshipsWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didUpdateStatusWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didCreateFavoritesWithData:(NSData *)data error:(NSError *)error;
 @end
@@ -70,6 +71,9 @@
 // お気に入りキーワード一覧を取得
 - (void)fetchKeywordsWithPage:(NSInteger)page
        withoutRelatedKeywords:(BOOL)withoutRelatedKeywords;
+
+// ユーザ情報を取得
+- (void)fetchFriendships;
 
 // 新たに投稿する
 - (void)updateStatusWithKeyword:(NSString *)keyword

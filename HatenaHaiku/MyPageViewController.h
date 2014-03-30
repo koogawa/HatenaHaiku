@@ -6,11 +6,13 @@
 //  Copyright (c) 2012年 Kosuke Ogawa. All rights reserved.
 //
 
-#import "StatusViewController.h"
+#import <UIKit/UIKit.h>
+#import "HaikuManager.h"
 
-@interface MyPageViewController : UITableViewController
+@interface MyPageViewController : UITableViewController <HaikuManagerDelegate>
 {
     NSDictionary *userInfo_;
+    HaikuManager *_haikuManager;
 }
 
 @end
