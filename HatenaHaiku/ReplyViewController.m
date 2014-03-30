@@ -95,13 +95,13 @@
             }
             
             // プロフィールアイコン
-            NSString *profileImageUrlString = [self.option objectForKey:@"profile_image_url"];
+            NSString *profileImageUrlString = (self.option)[@"profile_image_url"];
             [cell.profileImageView loadImageUrl:[NSURL URLWithString:profileImageUrlString]];
             
             // HTML生成
             NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
             NSURL *baseURL = [NSURL fileURLWithPath:bundlePath];
-            NSString *html = [self.option objectForKey:@"html"];
+            NSString *html = (self.option)[@"html"];
             [cell.bodyWebView loadHTMLString:html baseURL:baseURL];
             cell.bodyWebView.userInteractionEnabled = NO;
             
@@ -126,7 +126,7 @@
         case 0:
         {
             // TODO: このへん一箇所にまとめたいなぁ
-            NSString *html = [self.option objectForKey:@"html"];
+            NSString *html = (self.option)[@"html"];
             
             // <A>タグ除去
             NSRange r;

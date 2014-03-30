@@ -180,10 +180,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     
-    NSDictionary *statusDic = [self.statuses objectAtIndex:indexPath.row];
+    NSDictionary *statusDic = (self.statuses)[indexPath.row];
     
     // detailTextLabel に被らないように文字数調整
-    NSString *keyword = [statusDic objectForKey:@"title"];
+    NSString *keyword = statusDic[@"title"];
     NSInteger length = [keyword length];
     NSInteger minLength = 12;
     NSRange stringRange = {0, MIN(length, minLength)};
@@ -192,7 +192,7 @@
     if (length > minLength) keyword = [keyword stringByAppendingString:@"…"];
     
     cell.textLabel.text = keyword;
-    cell.detailTextLabel.text = [statusDic objectForKey:@"entry_count"];
+    cell.detailTextLabel.text = statusDic[@"entry_count"];
     
     return cell;
 }
@@ -207,7 +207,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KeywordViewController *viewController = [[KeywordViewController alloc] initWithStyle:UITableViewStylePlain];
-    viewController.keyword = [[[self.statuses objectAtIndex:indexPath.row] objectForKey:@"word"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    viewController.keyword = [(self.statuses)[indexPath.row][@"word"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     ;
     [self.navigationController pushViewController:viewController animated:YES];
 }

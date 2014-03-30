@@ -24,9 +24,7 @@
     
     // 初期値を設定
     NSUserDefaults *defaults  = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"10",     @"CONFIG_FETCH_COUNT",
-                                 nil];
+    NSDictionary *appDefaults = @{@"CONFIG_FETCH_COUNT": @"10"};
     [defaults registerDefaults:appDefaults];
     
     // Override point for customization after application launch.

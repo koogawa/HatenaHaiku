@@ -185,13 +185,13 @@
     
     // プロフィールアイコン
     AsyncImageView *profileImageView = (AsyncImageView *)[cell.contentView viewWithTag:101];
-    NSDictionary *statusDic = [self.statuses objectAtIndex:indexPath.row];
-    NSURL *profileImageURL = [NSURL URLWithString:[statusDic objectForKey:@"profile_image_url"]];
+    NSDictionary *statusDic = (self.statuses)[indexPath.row];
+    NSURL *profileImageURL = [NSURL URLWithString:statusDic[@"profile_image_url"]];
     [profileImageView loadImageUrl:profileImageURL];
     
     // 名前
-    cell.textLabel.text = [statusDic objectForKey:@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"id:%@", [statusDic objectForKey:@"id"]];
+    cell.textLabel.text = statusDic[@"name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"id:%@", statusDic[@"id"]];
     
     return cell;
 }
@@ -206,9 +206,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UserViewController *viewController = [[UserViewController alloc] initWithStyle:UITableViewStylePlain];
-    NSDictionary *statusDic = [self.statuses objectAtIndex:indexPath.row];
-    viewController.userId = [statusDic objectForKey:@"id"];
-    viewController.userName = [statusDic objectForKey:@"name"];
+    NSDictionary *statusDic = (self.statuses)[indexPath.row];
+    viewController.userId = statusDic[@"id"];
+    viewController.userName = statusDic[@"name"];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

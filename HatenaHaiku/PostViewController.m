@@ -67,7 +67,7 @@
                                     target:self
                                     action:@selector(sendButtonAction)];
     
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:sendButton, cameraButton, mapButton, nil];
+    self.navigationItem.rightBarButtonItems = @[sendButton, cameraButton, mapButton];
 
     _haikuManager = [HaikuManager sharedManager];
     _haikuManager.delegate = self;
@@ -266,12 +266,12 @@
     {
         case 0:
             // リプライなら非表示
-            return ([self.option objectForKey:@"in_reply_to"] > 0) ? 0 : 1;
+            return ((self.option)[@"in_reply_to"] > 0) ? 0 : 1;
             break;
             
         case 1:
             // リプライなら表示
-            return ([self.option objectForKey:@"in_reply_to"] > 0) ? 1 : 0;
+            return ((self.option)[@"in_reply_to"] > 0) ? 1 : 0;
             break;
             
         case 2:
@@ -316,7 +316,7 @@
                 [cell.contentView addSubview:self.keywordField];
                 
                 // デフォルト指定があれば
-                self.keywordField.text = [self.option objectForKey:@"keyword"];
+                self.keywordField.text = (self.option)[@"keyword"];
             }
             
             return cell;
@@ -346,7 +346,7 @@
                 [cell.contentView addSubview:self.replyToField];
                 
                 // デフォルト指定があれば
-                self.replyToField.text = [self.option objectForKey:@"in_reply_to"];
+                self.replyToField.text = (self.option)[@"in_reply_to"];
             }
             
             return cell;
@@ -582,7 +582,7 @@
     
     // オリジナル画像を取得する
     UIImage *originalImage;
-    originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    originalImage = info[UIImagePickerControllerOriginalImage];
     //LOG(@"size = %@", NSStringFromCGSize(originalImage.size));
     
     // 長辺をMAX_IMAGE_SIZEに縮小する

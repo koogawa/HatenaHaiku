@@ -170,9 +170,9 @@
 {
     AlbumCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
     
-    NSString *urlString = [[self.statuses objectAtIndex:indexPath.item] objectForKey:@"text"];
+    NSString *urlString = (self.statuses)[indexPath.item][@"text"];
     urlString = [[urlString componentsSeparatedByString:@"="] lastObject];
-    urlString = [[urlString componentsSeparatedByString:@"\n"] objectAtIndex:0];
+    urlString = [urlString componentsSeparatedByString:@"\n"][0];
     
     [cell.albumImageView loadImageUrl:[NSURL URLWithString:urlString]];
 //    [cell.albumImageView setFrame:CGRectMake(3, 3, cell.frame.size.width - 6, cell.frame.size.height - 6)];
@@ -214,7 +214,7 @@
     LOG_CURRENT_METHOD;
     
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStylePlain];
-    detailViewController.statusId = [[self.statuses objectAtIndex:indexPath.row] objectForKey:@"id"];
+    detailViewController.statusId = (self.statuses)[indexPath.row][@"id"];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 

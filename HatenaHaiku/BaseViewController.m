@@ -126,7 +126,7 @@
     if (((UILongPressGestureRecognizer *)gestureRecognizer).state == UIGestureRecognizerStateBegan)
     {
         // タップされたセルの情報を記憶
-        self.selectedStatusDic = (indexPath.section == 0) ? [self.statuses objectAtIndex:indexPath.row] : [self.replies objectAtIndex:indexPath.row];
+        self.selectedStatusDic = (indexPath.section == 0) ? (self.statuses)[indexPath.row] : (self.replies)[indexPath.row];
 
         UIActionSheet *sheet = [[UIActionSheet alloc] init];
         sheet.delegate = self;
@@ -180,16 +180,14 @@
         return;
     }
 
-    NSString *statusId = [self.selectedStatusDic objectForKey:@"id"];
-    NSString *userName = [[self.selectedStatusDic objectForKey:@"user"] objectForKey:@"name"];
+    NSString *statusId = (self.selectedStatusDic)[@"id"];
+    NSString *userName = (self.selectedStatusDic)[@"user"][@"name"];
     NSString *html = [self generateHtmlFromStatus:self.selectedStatusDic];
-    NSString *profileImageUrl = [[self.selectedStatusDic objectForKey:@"user"] objectForKey:@"profile_image_url"];
-    NSDictionary *option = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            statusId,           @"in_reply_to_status_id",
-                            userName,           @"in_reply_to",
-                            html,               @"html",
-                            profileImageUrl,    @"profile_image_url",
-                            nil];
+    NSString *profileImageUrl = (self.selectedStatusDic)[@"user"][@"profile_image_url"];
+    NSDictionary *option = @{@"in_reply_to_status_id": statusId,
+                            @"in_reply_to": userName,
+                            @"html": html,
+                            @"profile_image_url": profileImageUrl};
     
     ReplyViewController *viewController = [[ReplyViewController alloc] initWithStyle:UITableViewStylePlain];
     viewController.option = option;
@@ -209,9 +207,9 @@
 - (NSString *)generateHtmlFromStatus:(NSDictionary *)statusDic
 {
     // キーワード（リプライのレスポンスにはキーワードがないのでこういう実装になってる）
-    NSString *keyword = [statusDic objectForKey:@"keyword"];
+    NSString *keyword = statusDic[@"keyword"];
     if (keyword == nil) {
-        keyword = [[self.statuses objectAtIndex:0] objectForKey:@"keyword"];
+        keyword = (self.statuses)[0][@"keyword"];
     }
     
     // スター
@@ -225,7 +223,7 @@
 //        }
 //        starHtml = [starHtml stringByAppendingString:@"★"];
 //    }
-    NSString *link = [statusDic objectForKey:@"link"];
+    NSString *link = statusDic[@"link"];
     NSString *starHtml = [NSString stringWithFormat:@"<img src='http://s.st-hatena.com/entry.count.image?uri=%@'>", link];
 
     
@@ -234,24 +232,24 @@
     
     // 返信先
     NSString *replyToHtml = @"";
-    NSString *replyToStatus = [statusDic objectForKey:@"in_reply_to_status_id"];
-    NSString *replyToUser = [statusDic objectForKey:@"in_reply_to_user_id"];
+    NSString *replyToStatus = statusDic[@"in_reply_to_status_id"];
+    NSString *replyToUser = statusDic[@"in_reply_to_user_id"];
     if ([replyToStatus length] > 0) {
         replyToHtml = [NSString stringWithFormat:@"<a style='color:#b36b85' href='haiku://reply?%@'><img src='reply_to.gif'>%@</a><br>", replyToStatus, replyToUser];
     }
     
     // 本文
     //cell.detailTextLabel.text = [statusDic objectForKey:@"html_mobile"];
-    NSString *body = [statusDic objectForKey:@"html_mobile"];
+    NSString *body = statusDic[@"html_mobile"];
     NSString *bodyHtml = [NSString stringWithFormat:@"%@%@", replyToHtml, body];
     
     // 投稿者
-    NSString *userId = [[statusDic objectForKey:@"user"] objectForKey:@"id"];
-    NSString *userName = [[statusDic objectForKey:@"user"] objectForKey:@"name"];
+    NSString *userId = statusDic[@"user"][@"id"];
+    NSString *userName = statusDic[@"user"][@"name"];
     
     // 投稿日時
     //cell.dateTextLabel.text = [statusDic objectForKey:@"created_at"];
-    NSString *createdAt = [statusDic objectForKey:@"created_at"];
+    NSString *createdAt = statusDic[@"created_at"];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"US"]];
 	[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];//2012-12-03T10:01:18Z
@@ -260,13 +258,13 @@
 	createdAt = [dateFormatter stringFromDate:date];
     
     // ソース
-    NSString *source = [statusDic objectForKey:@"source"];
+    NSString *source = statusDic[@"source"];
     
     // リプライ
     NSString *replies = @"";
-    NSArray *replyArray = [statusDic objectForKey:@"replies"];
+    NSArray *replyArray = statusDic[@"replies"];
     for (NSDictionary *replyDic in replyArray) {
-        NSString *profileImageUrl = [[replyDic objectForKey:@"user"] objectForKey:@"profile_image_url"];
+        NSString *profileImageUrl = replyDic[@"user"][@"profile_image_url"];
         replies = [replies stringByAppendingFormat:@"<img src='%@' width='16' height='16'>", profileImageUrl];
     }
     
@@ -362,10 +360,10 @@
     }
     
     // セクションごとに表示する内容が異なる
-    NSDictionary *statusDic = (indexPath.section == 0) ? [self.statuses objectAtIndex:indexPath.row] : [self.replies objectAtIndex:indexPath.row];
+    NSDictionary *statusDic = (indexPath.section == 0) ? (self.statuses)[indexPath.row] : (self.replies)[indexPath.row];
     
     // プロフィールアイコン
-    NSString *profileImageUrlString = [[statusDic objectForKey:@"user"] objectForKey:@"profile_image_url"];
+    NSString *profileImageUrlString = statusDic[@"user"][@"profile_image_url"];
     [cell.profileImageView loadImageUrl:[NSURL URLWithString:profileImageUrlString]];
     
     // HTML生成
@@ -381,7 +379,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *statusDic = (indexPath.section == 0) ? [self.statuses objectAtIndex:indexPath.row] : [self.replies objectAtIndex:indexPath.row];
+    NSDictionary *statusDic = (indexPath.section == 0) ? (self.statuses)[indexPath.row] : (self.replies)[indexPath.row];
 
     NSString *html = [self generateHtmlFromStatus:statusDic];
     //NSString *html = [statusDic objectForKey:@"html_mobile"];
@@ -414,7 +412,7 @@
     DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // セクションごとに動きが異なる
-    detailViewController.statusId = (indexPath.section == 0) ? [[self.statuses objectAtIndex:indexPath.row] objectForKey:@"id"] : [[self.replies objectAtIndex:indexPath.row] objectForKey:@"id"];
+    detailViewController.statusId = (indexPath.section == 0) ? (self.statuses)[indexPath.row][@"id"] : (self.replies)[indexPath.row][@"id"];
     
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
@@ -465,7 +463,7 @@
     {
         case 0: // Add star
         {
-            [self addStarToStatusId:[self.selectedStatusDic objectForKey:@"id"]];
+            [self addStarToStatusId:(self.selectedStatusDic)[@"id"]];
             break;
         }
             
@@ -507,7 +505,7 @@
     }
     else if ([url.host isEqualToString:@"user"]) {
         UserViewController *viewController = [[UserViewController alloc] initWithStyle:UITableViewStylePlain];
-        viewController.userId = [[url.query componentsSeparatedByString:@"="] objectAtIndex:0];
+        viewController.userId = [url.query componentsSeparatedByString:@"="][0];
         viewController.userName = [[url.query componentsSeparatedByString:@"="] lastObject];
         [self.navigationController pushViewController:viewController animated:YES];
     }

@@ -46,8 +46,7 @@
 
 - (void)postButtonAction
 {
-    NSDictionary *option = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            self.title, @"keyword", nil];
+    NSDictionary *option = @{@"keyword": self.title};
     [self postButtonActionWithOption:option];
 }
 

@@ -45,8 +45,8 @@
 
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    [attributes setObject:[UIColor blueColor] forKey:NSBackgroundColorAttributeName];
-    [attributes setObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    attributes[NSBackgroundColorAttributeName] = [UIColor blueColor];
+    attributes[NSForegroundColorAttributeName] = [UIColor whiteColor];
     [refreshControl addTarget:self action:@selector(refreshOccured:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
@@ -224,7 +224,7 @@
     }
 
     // detailTextLabel に被らないように文字数調整
-    NSString *keyword = [[self.keywords objectAtIndex:indexPath.row] objectForKey:@"title"];
+    NSString *keyword = (self.keywords)[indexPath.row][@"title"];
     NSInteger length = [keyword length];
     NSInteger minLength = 12;
     NSRange stringRange = {0, MIN(length, minLength)};
@@ -233,7 +233,7 @@
     if (length > minLength) keyword = [keyword stringByAppendingString:@"…"];
     
     cell.textLabel.text = keyword;
-    cell.detailTextLabel.text = [[self.keywords objectAtIndex:indexPath.row] objectForKey:@"entry_count"];
+    cell.detailTextLabel.text = (self.keywords)[indexPath.row][@"entry_count"];
     
     return cell;
 }
@@ -244,7 +244,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KeywordViewController *viewController = [[KeywordViewController alloc] initWithStyle:UITableViewStylePlain];
-    viewController.keyword = [[[self.keywords objectAtIndex:indexPath.row] objectForKey:@"word"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    viewController.keyword = [(self.keywords)[indexPath.row][@"word"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 ;
     [self.navigationController pushViewController:viewController animated:YES];
 }

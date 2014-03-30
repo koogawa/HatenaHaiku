@@ -83,7 +83,7 @@
                                                   target:self
                                                   action:@selector(actionButtonAction)];
 	NSArray *buttons =
-    [NSArray arrayWithObjects:self.reloadButton, adjustment, self.backButton, adjustment, self.forwardButton, adjustment, actionButton, adjustment, closeButton, nil];
+    @[self.reloadButton, adjustment, self.backButton, adjustment, self.forwardButton, adjustment, actionButton, adjustment, closeButton];
 	[self setToolbarItems:buttons animated:YES];
 }
 
@@ -165,7 +165,7 @@
 		if (button.tag == tag)
         {
 			NSMutableArray *newItems = [NSMutableArray arrayWithArray:self.navigationController.toolbar.items];
-			[newItems replaceObjectAtIndex:index withObject:item];
+			newItems[index] = item;
 			self.navigationController.toolbar.items = newItems;
 			break;
 		}

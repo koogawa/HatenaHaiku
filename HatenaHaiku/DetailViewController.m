@@ -47,7 +47,7 @@
                                     target:self
                                     action:@selector(starButtonAction)];
 
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:replyButton, starButton, nil];
+    self.navigationItem.rightBarButtonItems = @[replyButton, starButton];
 
     _haikuManager = [HaikuManager sharedManager];
     _haikuManager.delegate = self;
@@ -65,10 +65,8 @@
 
 - (void)postButtonAction
 {
-    NSDictionary *option = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            self.statusId, @"in_reply_to_status_id",
-                            self.userName, @"in_reply_to",
-                            nil];
+    NSDictionary *option = @{@"in_reply_to_status_id": self.statusId,
+                            @"in_reply_to": self.userName};
     [self postButtonActionWithOption:option];
 }
 
@@ -88,17 +86,15 @@
         return;
     }
     
-    NSDictionary *status = [self.statuses objectAtIndex:0];
-    NSString *statusId = [status objectForKey:@"id"];
-    NSString *userName = [[status objectForKey:@"user"] objectForKey:@"name"];
+    NSDictionary *status = (self.statuses)[0];
+    NSString *statusId = status[@"id"];
+    NSString *userName = status[@"user"][@"name"];
     NSString *html = [self generateHtmlFromStatus:status];
-    NSString *profileImageUrl = [[status objectForKey:@"user"] objectForKey:@"profile_image_url"];
-    NSDictionary *option = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            statusId,           @"in_reply_to_status_id",
-                            userName,           @"in_reply_to",
-                            html,               @"html",
-                            profileImageUrl,    @"profile_image_url",
-                            nil];
+    NSString *profileImageUrl = status[@"user"][@"profile_image_url"];
+    NSDictionary *option = @{@"in_reply_to_status_id": statusId,
+                            @"in_reply_to": userName,
+                            @"html": html,
+                            @"profile_image_url": profileImageUrl};
     
     ReplyViewController *viewController = [[ReplyViewController alloc] initWithStyle:UITableViewStylePlain];
     viewController.option = option;
@@ -167,11 +163,11 @@
         NSDictionary *statusDic = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         [self.statuses removeAllObjects];
         [self.statuses addObject:statusDic];
-        self.replies = [statusDic objectForKey:@"replies"];
+        self.replies = statusDic[@"replies"];
         
-        self.title = [statusDic objectForKey:@"keyword"];
-        self.userId = [[statusDic objectForKey:@"user"] objectForKey:@"id"];
-        self.userName = [[statusDic objectForKey:@"user"] objectForKey:@"name"];
+        self.title = statusDic[@"keyword"];
+        self.userId = statusDic[@"user"][@"id"];
+        self.userName = statusDic[@"user"][@"name"];
         
         [self.tableView reloadData];
     }

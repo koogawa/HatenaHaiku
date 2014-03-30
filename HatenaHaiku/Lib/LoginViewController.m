@@ -152,8 +152,8 @@
     for (NSString *component in components)
     {
         NSArray *pair = [component componentsSeparatedByString:@"="];
-        NSString *key = [pair objectAtIndex:0];
-        NSString *val = [pair objectAtIndex:1];
+        NSString *key = pair[0];
+        NSString *val = pair[1];
         
         if ([key isEqualToString:@"oauth_verifier"])
         {
