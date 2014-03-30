@@ -20,6 +20,7 @@
 - (void)haikuManager:(HaikuManager *)manager didFetchHotKeywordsWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didSearchKeywordsWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didFetchStatusDetailWithData:(NSData *)data error:(NSError *)error;
+- (void)haikuManager:(HaikuManager *)manager didFetchFollowersWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didUpdateStatusWithData:(NSData *)data error:(NSError *)error;
 - (void)haikuManager:(HaikuManager *)manager didCreateFavoritesWithData:(NSData *)data error:(NSError *)error;
 @end
@@ -57,6 +58,9 @@
 
 // 投稿詳細を取得
 - (void)fetchStatusDetailWithEid:(NSString *)eid;
+
+// ファン一覧を取得
+- (void)fetchFollowersWithPage:(NSInteger)page;
 
 // 新たに投稿する
 - (void)updateStatusWithKeyword:(NSString *)keyword

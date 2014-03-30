@@ -230,6 +230,40 @@
                   didFailSelector:@selector(ticket:didFailToFetchStatusDetailWithError:)];
 }
 
+// ファン一覧を取得
+- (void)fetchFollowersWithPage:(NSInteger)page
+{
+    LOG_CURRENT_METHOD;
+
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                    secret:OAUTH_CONSUMER_SECRET];
+
+    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
+    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/followers.json"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:accessToken
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+
+    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"page"
+                                                                value:[NSString stringWithFormat:@"%d", page]];
+
+    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, nil];
+
+    [request setParameters:params];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didFetchFollowersWithData:)
+                  didFailSelector:@selector(ticket:didFailToFetchFollowersWithError:)];
+}
+
 // 新たに投稿する
 - (void)updateStatusWithKeyword:(NSString *)keyword
                          status:(NSString *)status
@@ -477,6 +511,26 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchStatusDetailWithData:error:)]) {
         [self.delegate haikuManager:self didFetchStatusDetailWithData:nil error:error];
+    }
+}
+
+// ファン一覧が取得できた
+- (void)ticket:(OAServiceTicket *)ticket didFetchFollowersWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFollowersWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFollowersWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToFetchFollowersWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFollowersWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchFollowersWithData:nil error:error];
     }
 }
 
