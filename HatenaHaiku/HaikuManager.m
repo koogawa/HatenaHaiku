@@ -300,6 +300,49 @@
                   didFailSelector:@selector(ticket:didFailToFetchFollowersWithError:)];
 }
 
+// お気に入りキーワード一覧を取得
+- (void)fetchKeywordsWithPage:(NSInteger)page
+       withoutRelatedKeywords:(BOOL)withoutRelatedKeywords
+{
+    LOG_CURRENT_METHOD;
+
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                    secret:OAUTH_CONSUMER_SECRET];
+
+    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
+    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/keywords.json"];
+    NSURL *url = [NSURL URLWithString:urlStr];
+
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                   consumer:consumer
+                                                                      token:accessToken
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+
+    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"page"
+                                                                value:[NSString stringWithFormat:@"%d", page]];
+
+    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, nil];
+
+    // キーワードあれば追加
+    if (withoutRelatedKeywords == YES)
+    {
+        OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"without_related_keywords"
+                                                                    value:@"1"];
+        [params addObject:p2];
+    }
+
+    [request setParameters:params];
+
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(ticket:didFetchKeywordsWithData:)
+                  didFailSelector:@selector(ticket:didFailToFetchKeywordsWithError:)];
+}
+
 // 新たに投稿する
 - (void)updateStatusWithKeyword:(NSString *)keyword
                          status:(NSString *)status
@@ -587,6 +630,26 @@
 
     if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchFollowersWithData:error:)]) {
         [self.delegate haikuManager:self didFetchFollowersWithData:nil error:error];
+    }
+}
+
+// お気に入りキーワード一覧が取得できた
+- (void)ticket:(OAServiceTicket *)ticket didFetchKeywordsWithData:(NSData *)data
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchKeywordsWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchKeywordsWithData:data error:nil];
+    }
+}
+- (void)ticket:(OAServiceTicket *)ticket didFailToFetchKeywordsWithError:(NSError *)error
+{
+    LOG_CURRENT_METHOD;
+    LOG(@"error = %@", error);
+
+    if ([self.delegate respondsToSelector:@selector(haikuManager:didFetchKeywordsWithData:error:)]) {
+        [self.delegate haikuManager:self didFetchKeywordsWithData:nil error:error];
     }
 }
 

@@ -34,8 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self fetchFriends];
+
+    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager.delegate = self;
+
+    [self fetchKeywords];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,43 +56,19 @@
     
     self.page = 1;
     
-    [self fetchFriends];
+    [self fetchKeywords];
 }
 
-// キーワードのエントリーを取得
-- (void)fetchFriends
+// お気に入りキーワード一覧を取得
+- (void)fetchKeywords
 {
     LOG_CURRENT_METHOD;
-    
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-                                                    secret:OAUTH_CONSUMER_SECRET];
-    
-    OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
-                                                 secret:[[AuthManager sharedManager] accessTokenSecret]];
-    NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/keywords.json"];
-    NSURL *url = [NSURL URLWithString:urlStr];
-    
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                   consumer:consumer
-                                                                      token:accessToken
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"GET"];
-    
-    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"without_related_keywords" value:@"1"];
-    
-    NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, nil];
-    
-    [request setParameters:params];
-    
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
-    
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFinishWithData:)
-                  didFailSelector:@selector(ticket:didFailWithError:)];
+
+    [_haikuManager fetchKeywordsWithPage:self.page
+                  withoutRelatedKeywords:YES];
 }
 
 
@@ -99,14 +78,14 @@
 {
     LOG_CURRENT_METHOD;
     
-    [self fetchFriends];
+    [self fetchKeywords];
 }
 
 
 #pragma mark - API Callback
 
-// エントリーが取れた
-- (void)ticket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+// お気に入りキーワード一覧が取れた
+- (void)haikuManager:(HaikuManager *)manager didFetchKeywordsWithData:(NSData *)data error:(NSError *)error
 {
     LOG_CURRENT_METHOD;
     LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
@@ -147,6 +126,15 @@
         [self stopMoreLoading];
     }
 	
+    if (error != nil)
+    {
+        LOG(@"error = %@", error);
+
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [SVProgressHUD showErrorWithStatus:@"取得できませんでした"];
+        return;
+    }
+
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     //LOG(@"statuses %@", jsonArray);
     
@@ -175,15 +163,6 @@
     self.page++;
     
     [self.tableView reloadData];
-}
-
-- (void)ticket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-    LOG_CURRENT_METHOD;
-    LOG(@"error = %@", error);
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showErrorWithStatus:@"取得できませんでした"];
 }
 
 
