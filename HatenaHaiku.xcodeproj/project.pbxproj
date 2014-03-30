@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		210E724316CA080C0016C9ED /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210E724216CA080C0016C9ED /* AlbumViewController.m */; };
-		214ED9D6166EF7220032AB74 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9D5166EF7220032AB74 /* StatusViewController.m */; };
+		214ED9D6166EF7220032AB74 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9D5166EF7220032AB74 /* BaseViewController.m */; };
 		214ED9DF166EFA980032AB74 /* MoreLoadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */; };
 		214ED9E71670EA610032AB74 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 214ED9E41670EA610032AB74 /* SVProgressHUD.bundle */; };
 		214ED9E81670EA610032AB74 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9E61670EA610032AB74 /* SVProgressHUD.m */; };
@@ -92,8 +92,8 @@
 /* Begin PBXFileReference section */
 		210E724116CA080C0016C9ED /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		210E724216CA080C0016C9ED /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
-		214ED9D4166EF7220032AB74 /* StatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
-		214ED9D5166EF7220032AB74 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
+		214ED9D4166EF7220032AB74 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BaseViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		214ED9D5166EF7220032AB74 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BaseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreLoadTableViewController.m; path = Lib/MoreLoadTableViewController.m; sourceTree = "<group>"; };
 		214ED9DE166EFA980032AB74 /* MoreLoadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreLoadTableViewController.h; path = Lib/MoreLoadTableViewController.h; sourceTree = "<group>"; };
 		214ED9E41670EA610032AB74 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
@@ -110,17 +110,17 @@
 		214ED9F31672FF1D0032AB74 /* mypage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mypage.png; path = image/mypage.png; sourceTree = "<group>"; };
 		214ED9F41672FF1D0032AB74 /* recent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recent@2x.png"; path = "image/recent@2x.png"; sourceTree = "<group>"; };
 		214ED9F51672FF1D0032AB74 /* recent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recent.png; path = image/recent.png; sourceTree = "<group>"; };
-		214ED9FE1673185F0032AB74 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		214ED9FE1673185F0032AB74 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DetailViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		214ED9FF1673185F0032AB74 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		214EDA01167385640032AB74 /* KeywordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeywordViewController.h; sourceTree = "<group>"; };
+		214EDA01167385640032AB74 /* KeywordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KeywordViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		214EDA02167385650032AB74 /* KeywordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeywordViewController.m; sourceTree = "<group>"; };
-		214EDA041673A5AD0032AB74 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		214EDA041673A5AD0032AB74 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = UserViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		214EDA051673A5AE0032AB74 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		214EDA071673B1730032AB74 /* HotKeywordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotKeywordViewController.h; sourceTree = "<group>"; };
 		214EDA081673B1730032AB74 /* HotKeywordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotKeywordViewController.m; sourceTree = "<group>"; };
 		214EDA0A16742DF80032AB74 /* MyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageViewController.h; sourceTree = "<group>"; };
 		214EDA0B16742DF90032AB74 /* MyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageViewController.m; sourceTree = "<group>"; };
-		214EDA0D167436040032AB74 /* AntennaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AntennaViewController.h; sourceTree = "<group>"; };
+		214EDA0D167436040032AB74 /* AntennaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AntennaViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		214EDA0E167436050032AB74 /* AntennaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AntennaViewController.m; sourceTree = "<group>"; };
 		214EDA16167446B60032AB74 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		214EDA17167446B60032AB74 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		2150D5AE16C29EE900F67D7B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		2150D5B016C39D0600F67D7B /* SettingsCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCountViewController.h; sourceTree = "<group>"; };
 		2150D5B116C39D0700F67D7B /* SettingsCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCountViewController.m; sourceTree = "<group>"; };
-		2164A41516B9643700BFA710 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		2164A41516B9643700BFA710 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2164A41616B9643700BFA710 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
 		2164A44816BCB4B400BFA710 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = lisence.html; path = html/lisence.html; sourceTree = "<group>"; };
 		216B6C4217E002AA004D6D63 /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		2183E57B16646D95003C35E0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2183E57D16646D95003C35E0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2183E57F16646D95003C35E0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		2183E59A16646E8F003C35E0 /* RecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentViewController.h; sourceTree = "<group>"; };
+		2183E59A16646E8F003C35E0 /* RecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = RecentViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2183E59B16646E8F003C35E0 /* RecentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentViewController.m; sourceTree = "<group>"; };
 		2183E5A11664DC63003C35E0 /* StatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusTableViewCell.h; sourceTree = "<group>"; };
 		2183E5A21664DC63003C35E0 /* StatusTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusTableViewCell.m; sourceTree = "<group>"; };
@@ -212,13 +212,13 @@
 		21907DA616D01A83003C25A7 /* MoreLoadCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreLoadCollectionViewController.m; path = Lib/MoreLoadCollectionViewController.m; sourceTree = "<group>"; };
 		219429AF16FA0788005FD0AA /* ReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
 		219429B016FA0788005FD0AA /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
-		219E794416F613BF008CE262 /* MyKeywordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyKeywordViewController.h; sourceTree = "<group>"; };
+		219E794416F613BF008CE262 /* MyKeywordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyKeywordViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		219E794516F613BF008CE262 /* MyKeywordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyKeywordViewController.m; sourceTree = "<group>"; };
 		21B27C7E187041A000174703 /* HaikuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaikuManager.h; sourceTree = "<group>"; };
 		21B27C7F187041A000174703 /* HaikuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaikuManager.m; sourceTree = "<group>"; };
-		21D0427616F583D00019C0E8 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFriendViewController.h; sourceTree = "<group>"; };
+		21D0427616F583D00019C0E8 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyFriendViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		21D0427716F583D00019C0E8 /* MyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFriendViewController.m; sourceTree = "<group>"; };
-		21D0427916F5A8040019C0E8 /* MyFollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFollowerViewController.h; sourceTree = "<group>"; };
+		21D0427916F5A8040019C0E8 /* MyFollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyFollowerViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		21D0427A16F5A8050019C0E8 /* MyFollowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFollowerViewController.m; sourceTree = "<group>"; };
 		21EBC65916A29769000F0C97 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21EFC128167BB90F0012EB34 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "image/star@2x.png"; sourceTree = "<group>"; };
@@ -430,8 +430,8 @@
 		2183E59F1664DB5D003C35E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				214ED9D4166EF7220032AB74 /* StatusViewController.h */,
-				214ED9D5166EF7220032AB74 /* StatusViewController.m */,
+				214ED9D4166EF7220032AB74 /* BaseViewController.h */,
+				214ED9D5166EF7220032AB74 /* BaseViewController.m */,
 				2183E59A16646E8F003C35E0 /* RecentViewController.h */,
 				2183E59B16646E8F003C35E0 /* RecentViewController.m */,
 				210E724116CA080C0016C9ED /* AlbumViewController.h */,
@@ -592,7 +592,7 @@
 				2183E59C16646E8F003C35E0 /* RecentViewController.m in Sources */,
 				2183E5A31664DC63003C35E0 /* StatusTableViewCell.m in Sources */,
 				2183E5A61664DD5F003C35E0 /* AsyncImageView.m in Sources */,
-				214ED9D6166EF7220032AB74 /* StatusViewController.m in Sources */,
+				214ED9D6166EF7220032AB74 /* BaseViewController.m in Sources */,
 				214ED9DF166EFA980032AB74 /* MoreLoadTableViewController.m in Sources */,
 				214ED9E81670EA610032AB74 /* SVProgressHUD.m in Sources */,
 				214ED9ED167253550032AB74 /* WebViewController.m in Sources */,

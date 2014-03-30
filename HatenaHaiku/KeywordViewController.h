@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 Kosuke Ogawa. All rights reserved.
 //
 
-#import "StatusViewController.h"
+#import "BaseViewController.h"
 
-@interface KeywordViewController : StatusViewController
+@interface KeywordViewController : BaseViewController
 
 @property (nonatomic, retain) NSString  *keyword;
 

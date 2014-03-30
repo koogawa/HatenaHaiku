@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StatusViewController.h"
+#import "BaseViewController.h"
 #import "HaikuManager.h"
 
-@interface RecentViewController : StatusViewController
+@interface RecentViewController : BaseViewController
 
 @property (nonatomic, retain) NSMutableDictionary   *heightDic;
 

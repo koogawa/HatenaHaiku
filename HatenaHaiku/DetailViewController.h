@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 Kosuke Ogawa. All rights reserved.
 //
 
-#import "StatusViewController.h"
+#import "BaseViewController.h"
 
-@interface DetailViewController : StatusViewController
+@interface DetailViewController : BaseViewController
 
 @property (nonatomic, retain) NSString  *statusId;
 @property (nonatomic, retain) NSString  *userId;

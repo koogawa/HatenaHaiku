@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 Kosuke Ogawa. All rights reserved.
 //
 
-#import "StatusViewController.h"
+#import "BaseViewController.h"
 
-@interface MyFollowerViewController : StatusViewController
+@interface MyFollowerViewController : BaseViewController
 
 @end

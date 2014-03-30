@@ -1,5 +1,5 @@
 //
-//  StatusViewController.h
+//  BaseViewController.h
 //  HatenaHaiku
 //
 //  Created by koogawa on 2012/12/05.
@@ -12,8 +12,8 @@
 #import "StatusTableViewCell.h"
 #import "HaikuManager.h"
 
-// TODO:StatusViewControllerとMoreLoadTableViewControllerを統合して BaseTableViewController
-@interface StatusViewController : MoreLoadTableViewController <UIActionSheetDelegate, StatusTableViewCellDelegate, HaikuManagerDelegate>
+// TODO:BaseViewControllerとMoreLoadTableViewControllerを統合して BaseTableViewController
+@interface BaseViewController : MoreLoadTableViewController <UIActionSheetDelegate, StatusTableViewCellDelegate, HaikuManagerDelegate>
 {
     HaikuManager *_haikuManager;
 }

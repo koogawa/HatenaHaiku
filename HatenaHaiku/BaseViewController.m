@@ -1,12 +1,12 @@
 //
-//  StatusViewController.m
+//  BaseViewController.m
 //  HatenaHaiku
 //
 //  Created by koogawa on 2012/12/05.
 //  Copyright (c) 2012年 Kosuke Ogawa. All rights reserved.
 //
 
-#import "StatusViewController.h"
+#import "BaseViewController.h"
 #import "RecentViewController.h"
 #import "KeywordViewController.h"
 #import "UserViewController.h"
@@ -19,11 +19,11 @@
 #import "OADataFetcher.h"
 #import "OAMutableURLRequest.h"
 
-@interface StatusViewController ()
+@interface BaseViewController ()
 
 @end
 
-@implementation StatusViewController
+@implementation BaseViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
