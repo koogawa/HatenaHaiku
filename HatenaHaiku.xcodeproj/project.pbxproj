@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		210E724316CA080C0016C9ED /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210E724216CA080C0016C9ED /* AlbumViewController.m */; };
-		210EF53917DB88C400353EC6 /* KOUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 210EF53817DB88C400353EC6 /* KOUtil.m */; };
 		214ED9D6166EF7220032AB74 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9D5166EF7220032AB74 /* StatusViewController.m */; };
 		214ED9DF166EFA980032AB74 /* MoreLoadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */; };
 		214ED9E71670EA610032AB74 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 214ED9E41670EA610032AB74 /* SVProgressHUD.bundle */; };
@@ -63,6 +62,7 @@
 		2164A44916BCB4B400BFA710 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 2164A44816BCB4B400BFA710 /* lisence.html */; };
 		216B6C4317E002AA004D6D63 /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B6C4217E002AA004D6D63 /* icon-60@2x.png */; };
 		2175AB4216CA893800C7C630 /* AlbumCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */; };
+		2182A73718E7D95800473C9B /* KGWUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2182A73618E7D95800473C9B /* KGWUtil.m */; };
 		2183E56A16646D95003C35E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56916646D95003C35E0 /* UIKit.framework */; };
 		2183E56C16646D95003C35E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56B16646D95003C35E0 /* Foundation.framework */; };
 		2183E56E16646D95003C35E0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56D16646D95003C35E0 /* CoreGraphics.framework */; };
@@ -92,8 +92,6 @@
 /* Begin PBXFileReference section */
 		210E724116CA080C0016C9ED /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		210E724216CA080C0016C9ED /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
-		210EF53717DB88C400353EC6 /* KOUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KOUtil.h; path = Lib/KOUtil.h; sourceTree = "<group>"; };
-		210EF53817DB88C400353EC6 /* KOUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KOUtil.m; path = Lib/KOUtil.m; sourceTree = "<group>"; };
 		214ED9D4166EF7220032AB74 /* StatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
 		214ED9D5166EF7220032AB74 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreLoadTableViewController.m; path = Lib/MoreLoadTableViewController.m; sourceTree = "<group>"; };
@@ -185,6 +183,8 @@
 		216B6C4217E002AA004D6D63 /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
 		2175AB4016CA893800C7C630 /* AlbumCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumCollectionCell.h; sourceTree = "<group>"; };
 		2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumCollectionCell.m; sourceTree = "<group>"; };
+		2182A73518E7D95800473C9B /* KGWUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGWUtil.h; path = Lib/KGWUtil.h; sourceTree = "<group>"; };
+		2182A73618E7D95800473C9B /* KGWUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGWUtil.m; path = Lib/KGWUtil.m; sourceTree = "<group>"; };
 		2183E56516646D95003C35E0 /* HatenaHaiku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HatenaHaiku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2183E56916646D95003C35E0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2183E56B16646D95003C35E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -246,8 +246,8 @@
 			children = (
 				214EDA14167446B60032AB74 /* OAuth */,
 				214ED9E31670EA610032AB74 /* SVProgressHUD */,
-				210EF53717DB88C400353EC6 /* KOUtil.h */,
-				210EF53817DB88C400353EC6 /* KOUtil.m */,
+				2182A73518E7D95800473C9B /* KGWUtil.h */,
+				2182A73618E7D95800473C9B /* KGWUtil.m */,
 				214EDA5916744B630032AB74 /* LoginViewController.h */,
 				214EDA5A16744B640032AB74 /* LoginViewController.m */,
 				21907DA516D01A83003C25A7 /* MoreLoadCollectionViewController.h */,
@@ -597,7 +597,6 @@
 				214ED9E81670EA610032AB74 /* SVProgressHUD.m in Sources */,
 				214ED9ED167253550032AB74 /* WebViewController.m in Sources */,
 				214EDA001673185F0032AB74 /* DetailViewController.m in Sources */,
-				210EF53917DB88C400353EC6 /* KOUtil.m in Sources */,
 				214EDA03167385650032AB74 /* KeywordViewController.m in Sources */,
 				214EDA061673A5AE0032AB74 /* UserViewController.m in Sources */,
 				214EDA091673B1730032AB74 /* HotKeywordViewController.m in Sources */,
@@ -632,6 +631,7 @@
 				2175AB4216CA893800C7C630 /* AlbumCollectionCell.m in Sources */,
 				21907DA716D01A83003C25A7 /* MoreLoadCollectionViewController.m in Sources */,
 				21D0427816F583D10019C0E8 /* MyFriendViewController.m in Sources */,
+				2182A73718E7D95800473C9B /* KGWUtil.m in Sources */,
 				21D0427B16F5A8060019C0E8 /* MyFollowerViewController.m in Sources */,
 				219E794616F613BF008CE262 /* MyKeywordViewController.m in Sources */,
 				219429B116FA0788005FD0AA /* ReplyViewController.m in Sources */,

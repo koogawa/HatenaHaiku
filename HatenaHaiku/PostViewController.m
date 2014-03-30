@@ -360,7 +360,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:BodyCellIdentifier];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
-                CGFloat height = [KOUtil isOverThisVersion:@"7.0"] ? TABLE_CELL_HEIGHT * 6 + STATUS_BAR_HEIGHT + NAVI_VAR_HEIGHT : TABLE_CELL_HEIGHT * 6;
+                CGFloat height = [KGWUtil isOverThisVersion:@"7.0"] ? TABLE_CELL_HEIGHT * 6 + STATUS_BAR_HEIGHT + NAVI_VAR_HEIGHT : TABLE_CELL_HEIGHT * 6;
                 CGRect rect = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height - height);
                 
                 self.bodyView = [[UITextView alloc] initWithFrame:rect];
@@ -399,7 +399,7 @@
             
         case 2:
         {
-            CGFloat height = [KOUtil isOverThisVersion:@"7.0"] ? TABLE_CELL_HEIGHT * 6 + STATUS_BAR_HEIGHT + NAVI_VAR_HEIGHT - 4 : TABLE_CELL_HEIGHT * 6 - 4;
+            CGFloat height = [KGWUtil isOverThisVersion:@"7.0"] ? TABLE_CELL_HEIGHT * 6 + STATUS_BAR_HEIGHT + NAVI_VAR_HEIGHT - 4 : TABLE_CELL_HEIGHT * 6 - 4;
             return self.tableView.frame.size.height - height;
             break;
         }

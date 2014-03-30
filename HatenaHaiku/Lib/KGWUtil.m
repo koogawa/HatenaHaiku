@@ -1,14 +1,14 @@
 //
-//  KOUtil.m
+//  KGWUtil.m
 //  HatenaHaiku
 //
-//  Created by koogawa on 2013/09/08.
-//  Copyright (c) 2013年 Kosuke Ogawa. All rights reserved.
+//  Created by koogawa on 2014/03/30.
+//  Copyright (c) 2014年 Kosuke Ogawa. All rights reserved.
 //
 
-#import "KOUtil.h"
+#import "KGWUtil.h"
 
-@implementation KOUtil
+@implementation KGWUtil
 
 + (BOOL)isOverThisVersion:(NSString *)version
 {

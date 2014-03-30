@@ -105,7 +105,7 @@
     if (!self.isLoading && self.tableView.dragging && indexPath.section == lastSec && indexPath.row == lastRow)
     {
         LOG(@"*********** more load! *************");
-        CGFloat height = [KOUtil isOverThisVersion:@"7.0"] ? MORE_FOOTER_HEIGHT + TAB_BAR_HEIGHT : MORE_FOOTER_HEIGHT;
+        CGFloat height = [KGWUtil isOverThisVersion:@"7.0"] ? MORE_FOOTER_HEIGHT + TAB_BAR_HEIGHT : MORE_FOOTER_HEIGHT;
         self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.contentInset.top, 0, height, 0);
         [self performSelector:@selector(startMoreLoading) withObject:nil afterDelay:0.0];
     }

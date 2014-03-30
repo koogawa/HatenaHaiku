@@ -50,7 +50,7 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.delegate = self;
-    if ([KOUtil isOverThisVersion:@"7.0"]) {
+    if ([KGWUtil isOverThisVersion:@"7.0"]) {
         self.tabBarController.tabBar.tintColor = THEME_COLOR;
     }
     self.tabBarController.viewControllers = @[navigationController1, navigationController22, navigationController2, navigationController3];

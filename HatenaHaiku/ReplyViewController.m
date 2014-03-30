@@ -156,7 +156,7 @@
             
         case 2:
         {
-            CGFloat height = [KOUtil isOverThisVersion:@"7.0"] ? TABLE_CELL_HEIGHT * 6 + STATUS_BAR_HEIGHT + NAVI_VAR_HEIGHT - 4 : TABLE_CELL_HEIGHT * 6 - 4;
+            CGFloat height = [KGWUtil isOverThisVersion:@"7.0"] ? TABLE_CELL_HEIGHT * 6 + STATUS_BAR_HEIGHT + NAVI_VAR_HEIGHT - 4 : TABLE_CELL_HEIGHT * 6 - 4;
             return self.tableView.frame.size.height - height;
             break;
         }
