@@ -88,15 +88,45 @@
 {
     LOG_CURRENT_METHOD;
 
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline/%@.json?count=%d&page=%d&body_formats=html_mobile", urlName, [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page];
-	LOG(@"urlString = %@", urlString);
+    OAMutableURLRequest *request = nil;
 
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
-                                                                   consumer:nil
-                                                                      token:nil
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"GET"];
+    // ユーザが指定されていない場合は自分のエントリを取得
+    if (urlName == nil)
+    {
+        OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+                                                        secret:OAUTH_CONSUMER_SECRET];
+
+        OAToken *accessToken = [[OAToken alloc] initWithKey:[[AuthManager sharedManager] accessToken]
+                                                     secret:[[AuthManager sharedManager] accessTokenSecret]];
+        NSString *urlStr = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline.json"];
+        NSURL *url = [NSURL URLWithString:urlStr];
+
+        request = [[OAMutableURLRequest alloc] initWithURL:url
+                                                  consumer:consumer
+                                                     token:accessToken
+                                                     realm:nil
+                                         signatureProvider:nil];
+        [request setHTTPMethod:@"GET"];
+
+        OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"count" value:[NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"]]];
+        OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%d", page]];
+        OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"body_formats" value:@"html_mobile"];
+
+        NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, p3, nil];
+        
+        [request setParameters:params];
+    }
+    else {
+        NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline/%@.json?count=%d&page=%d&body_formats=html_mobile", urlName, [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page];
+        LOG(@"urlString = %@", urlString);
+
+        request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
+                                                  consumer:nil
+                                                     token:nil
+                                                     realm:nil
+                                         signatureProvider:nil];
+        [request setHTTPMethod:@"GET"];
+    }
 
     OADataFetcher *fetcher = [[OADataFetcher alloc] init];
     [fetcher fetchDataWithRequest:request
