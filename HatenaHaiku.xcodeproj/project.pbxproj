@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		210E724316CA080C0016C9ED /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210E724216CA080C0016C9ED /* AlbumViewController.m */; };
+		213B400118E8EA7E0086A186 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B400018E8EA7E0086A186 /* Status.m */; };
 		214ED9D6166EF7220032AB74 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9D5166EF7220032AB74 /* BaseViewController.m */; };
 		214ED9DF166EFA980032AB74 /* MoreLoadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */; };
 		214ED9E71670EA610032AB74 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 214ED9E41670EA610032AB74 /* SVProgressHUD.bundle */; };
@@ -92,6 +93,8 @@
 /* Begin PBXFileReference section */
 		210E724116CA080C0016C9ED /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		210E724216CA080C0016C9ED /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
+		213B3FFF18E8EA7E0086A186 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		213B400018E8EA7E0086A186 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		214ED9D4166EF7220032AB74 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BaseViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		214ED9D5166EF7220032AB74 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BaseViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		214ED9DD166EFA980032AB74 /* MoreLoadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreLoadTableViewController.m; path = Lib/MoreLoadTableViewController.m; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				214EDA5D16744BF90032AB74 /* AuthManager.m */,
 				21B27C7E187041A000174703 /* HaikuManager.h */,
 				21B27C7F187041A000174703 /* HaikuManager.m */,
+				213B3FFF18E8EA7E0086A186 /* Status.h */,
+				213B400018E8EA7E0086A186 /* Status.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -607,6 +612,7 @@
 				214EDA3E167446B60032AB74 /* NSString+URLEncoding.m in Sources */,
 				214EDA3F167446B60032AB74 /* NSURL+Base.m in Sources */,
 				214EDA40167446B60032AB74 /* Base64Transcoder.c in Sources */,
+				213B400118E8EA7E0086A186 /* Status.m in Sources */,
 				214EDA41167446B60032AB74 /* hmac.c in Sources */,
 				214EDA42167446B60032AB74 /* sha1.c in Sources */,
 				214EDA43167446B60032AB74 /* OAAttachment.m in Sources */,
