@@ -31,7 +31,7 @@
     
     self.title = @"最新エントリー";
     
-    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
     [self fetchTimeline];
@@ -63,7 +63,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
 
-    [[HaikuManager sharedManager] fetchPublicTimelineWithPage:self.page];
+    [_haikuManager fetchPublicTimelineWithPage:self.page];
 }
 
 

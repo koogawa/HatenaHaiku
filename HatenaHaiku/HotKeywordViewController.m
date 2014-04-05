@@ -62,7 +62,7 @@
     self.searchDisplay.searchResultsDataSource = self;
     self.searchDisplay.searchResultsDelegate = self;
 
-    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
     [self fetchHotKeywords];
@@ -117,7 +117,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
 
-    [[HaikuManager sharedManager] fetchHotKeywords];
+    [_haikuManager fetchHotKeywords];
 }
 
 // キーワード検索
@@ -128,7 +128,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
     
-    [[HaikuManager sharedManager] searchKeywordsWithKeyword:keyword];
+    [_haikuManager searchKeywordsWithKeyword:keyword];
 }
 
 

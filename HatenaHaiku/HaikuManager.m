@@ -14,6 +14,7 @@
 
 @implementation HaikuManager
 
+// FIXME: delegateパターンの場合、シングルトンはダメ
 + (HaikuManager *)sharedManager
 {
     static HaikuManager *_instance = nil;

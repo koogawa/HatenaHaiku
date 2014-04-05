@@ -49,7 +49,7 @@
 
     self.navigationItem.rightBarButtonItems = @[replyButton, starButton];
 
-    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
     [self fetchStatusDetail];
@@ -141,7 +141,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
 
-    [[HaikuManager sharedManager] fetchStatusDetailWithEid:self.statusId];
+    [_haikuManager fetchStatusDetailWithEid:self.statusId];
 }
 
 #pragma mark - HaikuManager delegate

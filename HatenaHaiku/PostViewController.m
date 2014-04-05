@@ -69,7 +69,7 @@
     
     self.navigationItem.rightBarButtonItems = @[sendButton, cameraButton, mapButton];
 
-    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
     self.locationManager = [[CLLocationManager alloc] init];
@@ -210,7 +210,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
     
-    [[HaikuManager sharedManager] updateStatusWithKeyword:self.keywordField.text
+    [_haikuManager updateStatusWithKeyword:self.keywordField.text
                                                    status:self.bodyView.text
                                                 inReplyTo:self.replyToField.text
                                                     image:self.attachedImageView.image];

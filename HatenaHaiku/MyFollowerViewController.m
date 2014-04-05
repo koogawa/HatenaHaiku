@@ -35,7 +35,7 @@
     
     self.title = @"ファン";
     
-    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
     [self fetchFriends];

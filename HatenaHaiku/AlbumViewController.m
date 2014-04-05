@@ -48,7 +48,7 @@
     // contentViewにcellのクラスを登録
     [self.collectionView registerClass:[AlbumCollectionCell class] forCellWithReuseIdentifier:@"MY_CELL"];
 
-    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
     [self fetchAlbum];
@@ -79,7 +79,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
 
-    [[HaikuManager sharedManager] fetchAlbumWithPage:self.page];
+    [_haikuManager fetchAlbumWithPage:self.page];
 }
 
 #pragma mark - Override method

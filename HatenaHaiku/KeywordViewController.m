@@ -29,7 +29,7 @@
     
     self.title = [self.keyword stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    _haikuManager = [HaikuManager sharedManager];
+    _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
     [self fetchTimeline];
@@ -67,7 +67,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
     
-    [[HaikuManager sharedManager] fetchKeywordTimelineWithKeyword:self.keyword page:self.page];
+    [_haikuManager fetchKeywordTimelineWithKeyword:self.keyword page:self.page];
 }
 
 
