@@ -288,6 +288,7 @@
 }
 
 // 何か入力される度に呼ばれる
+/*
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     LOG(@"searchString = %@", searchString);
@@ -303,7 +304,7 @@
     
     return NO;
 }
-
+*/
 
 #pragma mark - UIAlertView delegate
 
