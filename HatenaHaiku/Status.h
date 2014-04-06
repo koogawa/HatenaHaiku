@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+// TODO: このデータモデルはまだ使えてない
+
 @interface Status : NSObject
 
 @property (nonatomic, readonly) NSNumber    *statusId;          // 投稿ID
