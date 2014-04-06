@@ -443,9 +443,9 @@
 
 #pragma mark - UIAlertView delegate
 
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	LOG(@"buttonIndex = %d", buttonIndex);
+	LOG(@"buttonIndex = %ld", buttonIndex);
     
     switch (alertView.tag)
     {
