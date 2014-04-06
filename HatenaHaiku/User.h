@@ -10,14 +10,14 @@
 
 @interface User : NSObject
 
-@property (nonatomic, readonly) NSNumber    *userId;            // はてなID
+@property (nonatomic, readonly) NSString    *userId;            // はてなID
 @property (nonatomic, readonly) NSString    *name;              // ニックネーム
 @property (nonatomic, readonly) NSURL       *profileImageURL;   // プロフィール画像のURL
 @property (nonatomic, readonly) NSNumber    *followersCount;    // ファンの数
 
 - (instancetype)initWithJSONDictionary:(NSDictionary *)json;
 
-- (instancetype)initWithUserId:(NSNumber *)userId
+- (instancetype)initWithUserId:(NSString *)userId
                           name:(NSString *)name
                profileImageURL:(NSURL *)profileImageURL
                 followersCount:(NSNumber *)followersCount;

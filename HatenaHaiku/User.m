@@ -13,9 +13,9 @@
 - (instancetype)initWithJSONDictionary:(NSDictionary *)json
 {
     // はてなID
-    NSNumber *userId;
-    NSNumber *userId_ = json[@"id"];
-    if ([userId_ isKindOfClass:[NSNumber class]]) {
+    NSString *userId;
+    NSString *userId_ = json[@"id"];
+    if ([userId_ isKindOfClass:[NSString class]]) {
         userId = userId_;
     }
 
@@ -28,16 +28,16 @@
 
     // プロフィール画像のURL
     NSURL *profileImageURL;
-    NSURL *profileImageURL_ = json[@"profile_image_url"];
-    if ([profileImageURL_ isKindOfClass:[NSURL class]]) {
-        profileImageURL = profileImageURL_;
+    NSString *profileImageUrlString = json[@"profile_image_url"];
+    if ([profileImageUrlString isKindOfClass:[NSString class]]) {
+        profileImageURL = [NSURL URLWithString:profileImageUrlString];
     }
 
     // ファンの数
     NSNumber *followersCount;
-    NSNumber *followersCount_ = json[@"followers_count"];
-    if ([followersCount_ isKindOfClass:[NSNumber class]]) {
-        followersCount = followersCount_;
+    NSString *followersCountString = json[@"followers_count"];
+    if ([followersCountString isKindOfClass:[NSString class]]) {
+        followersCount = [NSNumber numberWithInt:[followersCountString intValue]];
     }
 
     return [self initWithUserId:userId
@@ -46,7 +46,7 @@
                  followersCount:followersCount];
 }
 
-- (instancetype)initWithUserId:(NSNumber *)userId
+- (instancetype)initWithUserId:(NSString *)userId
                           name:(NSString *)name
                profileImageURL:(NSURL *)profileImageURL
                 followersCount:(NSNumber *)followersCount
@@ -60,6 +60,17 @@
     }
 
     return self;
+}
+
+- (NSString *)description
+{
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
+    [description appendFormat:@"self.userId=%@", self.userId];
+    [description appendFormat:@", self.name=%@", self.name];
+    [description appendFormat:@", self.profileImageURL=%@", self.profileImageURL];
+    [description appendFormat:@", self.followersCount=%@", self.followersCount];
+    [description appendString:@">"];
+    return description;
 }
 
 @end

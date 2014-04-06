@@ -17,6 +17,7 @@
 #import "PostViewController.h"
 #import "AppDelegate.h"
 #import "AuthManager.h"
+#import "User.h"
 #import "OAConsumer.h"
 #import "OADataFetcher.h"
 #import "OAMutableURLRequest.h"
@@ -26,6 +27,10 @@
 @end
 
 @implementation MyPageViewController
+{
+    User *_user;
+    HaikuManager *_haikuManager;
+}
 
 #define POST_ALERT_TAG      101
 #define LOGOUT_ALERT_TAG    102
@@ -103,14 +108,13 @@
     // プロフィール画像
     AsyncImageView *profileView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10, 10, 64, 64)];
     [headerView addSubview:profileView];
-    NSURL *imageUrl = [NSURL URLWithString:userInfo_[@"profile_image_url"]];
-    [profileView loadImageUrl:imageUrl];
+    [profileView loadImageUrl:_user.profileImageURL];
     
     // 表示名
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 10, 320 - 94, 28)];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.font = [UIFont boldSystemFontOfSize:20];
-    nameLabel.text = [NSString stringWithFormat:@"%@のはてなハイク", userInfo_[@"name"]];
+    nameLabel.text = [NSString stringWithFormat:@"%@のはてなハイク", _user.name];
     nameLabel.adjustsFontSizeToFitWidth = YES;
     [headerView addSubview:nameLabel];
     
@@ -118,14 +122,14 @@
     UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 38, 320 - 94, 18)];
     idLabel.backgroundColor = [UIColor clearColor];
     idLabel.font = [UIFont systemFontOfSize:14];
-    idLabel.text = [NSString stringWithFormat:@"id:%@", userInfo_[@"id"]];
+    idLabel.text = [NSString stringWithFormat:@"id:%@", _user.userId];
     [headerView addSubview:idLabel];
     
     // fans
     UILabel *fanLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 56, 320 - 94, 18)];
     fanLabel.backgroundColor = [UIColor clearColor];
     fanLabel.font = [UIFont systemFontOfSize:14];
-    fanLabel.text = [NSString stringWithFormat:@"%@ fans", userInfo_[@"followers_count"]];
+    fanLabel.text = [NSString stringWithFormat:@"%@ fans", _user.followersCount];
     [headerView addSubview:fanLabel];
     
     self.tableView.tableHeaderView = headerView;
@@ -229,8 +233,9 @@
         return;
     }
 
-    userInfo_ = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    
+    NSDictionary *userInfo = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    _user = [[User alloc] initWithJSONDictionary:userInfo];
+
     [self makeHeaderView];
 }
 

@@ -10,9 +10,5 @@
 #import "HaikuManager.h"
 
 @interface MyPageViewController : UITableViewController <HaikuManagerDelegate>
-{
-    NSDictionary *userInfo_;
-    HaikuManager *_haikuManager;
-}
 
 @end
