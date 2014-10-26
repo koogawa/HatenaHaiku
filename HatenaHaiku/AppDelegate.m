@@ -32,17 +32,17 @@
     UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
     navigationController1.view.tag = UITabNameEntry;
 
-    // キーワード
-    HotKeywordViewController *viewController2 = [[HotKeywordViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
-    navigationController2.view.tag = UITabNameKeyword;
-
     // アルバム
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    AlbumViewController *viewController3 = [[AlbumViewController alloc] initWithCollectionViewLayout:flowLayout];
+    AlbumViewController *viewController2 = [[AlbumViewController alloc] initWithCollectionViewLayout:flowLayout];
+    UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
+    navigationController2.view.tag = UITabNameAlbum;
+
+    // キーワード
+    HotKeywordViewController *viewController3 = [[HotKeywordViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
-    navigationController3.view.tag = UITabNameAlbum;
+    navigationController3.view.tag = UITabNameKeyword;
 
     // マイページ
     MyPageViewController *viewController4 = [[MyPageViewController alloc] initWithStyle:UITableViewStyleGrouped];
