@@ -211,9 +211,9 @@
     [SVProgressHUD show];
     
     [_haikuManager updateStatusWithKeyword:self.keywordField.text
-                                                   status:self.bodyView.text
-                                                inReplyTo:self.replyToField.text
-                                                    image:self.attachedImageView.image];
+                                    status:self.bodyView.text
+                                 inReplyTo:(self.option)[@"in_reply_to_status_id"]
+                                     image:self.attachedImageView.image];
 }
 
 
