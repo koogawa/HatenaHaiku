@@ -64,6 +64,9 @@
 		2164A44916BCB4B400BFA710 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 2164A44816BCB4B400BFA710 /* lisence.html */; };
 		216B6C4317E002AA004D6D63 /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B6C4217E002AA004D6D63 /* icon-60@2x.png */; };
 		2175AB4216CA893800C7C630 /* AlbumCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */; };
+		217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217F591419FD010B005BA5A8 /* LaunchScreen.xib */; };
+		217F591819FD04DB005BA5A8 /* icon-launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F591619FD04DB005BA5A8 /* icon-launch.png */; };
+		217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F591719FD04DB005BA5A8 /* icon-launch@2x.png */; };
 		2182A73718E7D95800473C9B /* KGWUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2182A73618E7D95800473C9B /* KGWUtil.m */; };
 		2183E56A16646D95003C35E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56916646D95003C35E0 /* UIKit.framework */; };
 		2183E56C16646D95003C35E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56B16646D95003C35E0 /* Foundation.framework */; };
@@ -189,6 +192,9 @@
 		216B6C4217E002AA004D6D63 /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
 		2175AB4016CA893800C7C630 /* AlbumCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumCollectionCell.h; sourceTree = "<group>"; };
 		2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumCollectionCell.m; sourceTree = "<group>"; };
+		217F591419FD010B005BA5A8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		217F591619FD04DB005BA5A8 /* icon-launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch.png"; path = "image/icon-launch.png"; sourceTree = "<group>"; };
+		217F591719FD04DB005BA5A8 /* icon-launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch@2x.png"; path = "image/icon-launch@2x.png"; sourceTree = "<group>"; };
 		2182A73518E7D95800473C9B /* KGWUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGWUtil.h; path = Lib/KGWUtil.h; sourceTree = "<group>"; };
 		2182A73618E7D95800473C9B /* KGWUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGWUtil.m; path = Lib/KGWUtil.m; sourceTree = "<group>"; };
 		2183E56516646D95003C35E0 /* HatenaHaiku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HatenaHaiku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -405,6 +411,7 @@
 				2183E57B16646D95003C35E0 /* Default.png */,
 				2183E57D16646D95003C35E0 /* Default@2x.png */,
 				2183E57F16646D95003C35E0 /* Default-568h@2x.png */,
+				217F591419FD010B005BA5A8 /* LaunchScreen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -485,6 +492,8 @@
 				214ED9F01672FF1D0032AB74 /* album@2x.png */,
 				2150D5A916C2998E00F67D7B /* gear.png */,
 				2150D5AA16C2998E00F67D7B /* gear@2x.png */,
+				217F591619FD04DB005BA5A8 /* icon-launch.png */,
+				217F591719FD04DB005BA5A8 /* icon-launch@2x.png */,
 				214ED9EF1672FF1D0032AB74 /* keyword.png */,
 				214ED9EE1672FF1D0032AB74 /* keyword@2x.png */,
 				2150D59F16C14E8500F67D7B /* map.png */,
@@ -562,6 +571,7 @@
 			files = (
 				2183E57416646D95003C35E0 /* InfoPlist.strings in Resources */,
 				2183E57C16646D95003C35E0 /* Default.png in Resources */,
+				217F591819FD04DB005BA5A8 /* icon-launch.png in Resources */,
 				2183E57E16646D95003C35E0 /* Default@2x.png in Resources */,
 				2183E58016646D95003C35E0 /* Default-568h@2x.png in Resources */,
 				2183E5A81664E583003C35E0 /* none.gif in Resources */,
@@ -584,8 +594,10 @@
 				2150D5A216C14E8500F67D7B /* map@2x.png in Resources */,
 				2150D5A516C158E200F67D7B /* pin.png in Resources */,
 				2150D5A616C158E200F67D7B /* pin@2x.png in Resources */,
+				217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */,
 				216B6C4317E002AA004D6D63 /* icon-60@2x.png in Resources */,
 				2150D5AB16C2998E00F67D7B /* gear.png in Resources */,
+				217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */,
 				2150D5AC16C2998E00F67D7B /* gear@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,7 +700,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -711,7 +723,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -728,7 +740,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
 				INFOPLIST_FILE = "HatenaHaiku/HatenaHaiku-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -743,7 +755,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
 				INFOPLIST_FILE = "HatenaHaiku/HatenaHaiku-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
