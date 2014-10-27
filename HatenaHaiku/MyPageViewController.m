@@ -102,16 +102,17 @@
 - (void)makeHeaderView
 {
     LOG_CURRENT_METHOD;
-    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 74)];
+
+    CGFloat width = self.view.frame.size.width;
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 84)];
     
     // プロフィール画像
-    AsyncImageView *profileView = [[AsyncImageView alloc] initWithFrame:CGRectMake(10, 10, 64, 64)];
+    AsyncImageView *profileView = [[AsyncImageView alloc] initWithFrame:CGRectMake(20, 20, 64, 64)];
     [headerView addSubview:profileView];
     [profileView loadImageUrl:_user.profileImageURL];
     
     // 表示名
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 10, 320 - 94, 28)];
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 20, width - 104, 28)];
     nameLabel.backgroundColor = [UIColor clearColor];
     nameLabel.font = [UIFont boldSystemFontOfSize:20];
     nameLabel.text = [NSString stringWithFormat:@"%@のはてなハイク", _user.name];
@@ -119,14 +120,14 @@
     [headerView addSubview:nameLabel];
     
     // はてなID
-    UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 38, 320 - 94, 18)];
+    UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 48, width - 94, 18)];
     idLabel.backgroundColor = [UIColor clearColor];
     idLabel.font = [UIFont systemFontOfSize:14];
     idLabel.text = [NSString stringWithFormat:@"id:%@", _user.userId];
     [headerView addSubview:idLabel];
     
     // fans
-    UILabel *fanLabel = [[UILabel alloc] initWithFrame:CGRectMake(84, 56, 320 - 94, 18)];
+    UILabel *fanLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 66, width - 94, 18)];
     fanLabel.backgroundColor = [UIColor clearColor];
     fanLabel.font = [UIFont systemFontOfSize:14];
     fanLabel.text = [NSString stringWithFormat:@"%@ fans", _user.followersCount];
