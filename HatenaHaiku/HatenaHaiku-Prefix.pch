@@ -19,7 +19,7 @@
 
 typedef enum {
 	UITabNameEntry = 0,
-	UITabNameAlbum,
+    UITabNameAlbum,
 	UITabNameKeyword,
 	UITabNameMyPage
 } UITabName;

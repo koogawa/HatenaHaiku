@@ -27,31 +27,34 @@
     NSDictionary *appDefaults = @{@"CONFIG_FETCH_COUNT": @"10"};
     [defaults registerDefaults:appDefaults];
     
-    // Override point for customization after application launch.
+    // 最新エントリー
     RecentViewController *viewController1 = [[RecentViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
     navigationController1.view.tag = UITabNameEntry;
-    
+
+    // アルバム
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    AlbumViewController *viewController22 = [[AlbumViewController alloc] initWithCollectionViewLayout:flowLayout];
-    UINavigationController *navigationController22 = [[UINavigationController alloc] initWithRootViewController:viewController22];
-    navigationController22.view.tag = UITabNameAlbum;
-    
-    HotKeywordViewController *viewController2 = [[HotKeywordViewController alloc] initWithStyle:UITableViewStylePlain];
+    AlbumViewController *viewController2 = [[AlbumViewController alloc] initWithCollectionViewLayout:flowLayout];
     UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
-    navigationController2.view.tag = UITabNameKeyword;
-    
-    MyPageViewController *viewController3 = [[MyPageViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    navigationController2.view.tag = UITabNameAlbum;
+
+    // キーワード
+    HotKeywordViewController *viewController3 = [[HotKeywordViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
-    navigationController3.view.tag = UITabNameMyPage;
+    navigationController3.view.tag = UITabNameKeyword;
+
+    // マイページ
+    MyPageViewController *viewController4 = [[MyPageViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
+    navigationController4.view.tag = UITabNameMyPage;
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.delegate = self;
     if ([KGWUtil isOverThisVersion:@"7.0"]) {
         self.tabBarController.tabBar.tintColor = THEME_COLOR;
     }
-    self.tabBarController.viewControllers = @[navigationController1, navigationController22, navigationController2, navigationController3];
+    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController3, navigationController4];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     

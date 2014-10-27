@@ -48,12 +48,12 @@
 	if ([[NSFileManager defaultManager] fileExistsAtPath:tempPath])
     {
 		NSData *data = [NSData dataWithContentsOfFile:tempPath];
-        [self showImageWithAnimation:[UIImage imageWithData:data]];
+        [self showImage:[UIImage imageWithData:data] animated:NO];
 		return;
 	}
 	
 	UIImage *image = (self.defaultImage != nil) ? self.defaultImage : [UIImage imageNamed:@"none.gif"];
-    [self showImageWithAnimation:image];
+    [self showImage:image animated:NO];
 
     if (self.indicatorVisible)
     {
@@ -68,9 +68,14 @@
 	conn_ = [[NSURLConnection alloc] initWithRequest:req delegate:self];
 }
 
-- (void)showImageWithAnimation:(UIImage *)image
+- (void)showImage:(UIImage *)image animated:(BOOL)animated
 {
-//    self.contentMode = UIViewContentModeScaleAspectFit;
+    if (animated == NO)
+    {
+        self.image = image;
+        return;
+    }
+
     self.alpha = 0.0;
     self.image = image;
 
@@ -103,7 +108,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	UIImage *image = [UIImage imageWithData:data_];
-    [self showImageWithAnimation:image];
+    [self showImage:image animated:YES];
 	
     if (self.indicatorVisible)
     {
