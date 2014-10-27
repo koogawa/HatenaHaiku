@@ -310,7 +310,7 @@
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	LOG(@"buttonIndex = %d", buttonIndex);
+//	LOG(@"buttonIndex = %d", buttonIndex);
     
     switch (alertView.tag)
     {

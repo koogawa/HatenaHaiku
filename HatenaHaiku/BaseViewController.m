@@ -390,10 +390,13 @@
         html = [html stringByReplacingCharactersInRange:r withString:@""];
     //LOG(@"stripped html = %@", html);
     
-    UIFont *font = [UIFont systemFontOfSize:16];
-    CGSize size = CGSizeMake(251, CGFLOAT_MAX);
-    CGSize textSize = [html sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
-    
+    UIFont *font = [UIFont systemFontOfSize:DEFAULT_FONT_SIZE];
+    CGSize size = CGSizeMake(self.view.frame.size.width - 69.0, CGFLOAT_MAX);
+    CGRect textRect = [html boundingRectWithSize:size
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName:font}
+                                         context:nil];
+
     // <br> の数
     NSArray *portions = [html componentsSeparatedByString:@"<br>"];
     NSUInteger brCount = [portions count] - 1;
@@ -402,7 +405,7 @@
     portions = [html componentsSeparatedByString:@"<p>"];
     NSUInteger pCount = [portions count] - 1;
     
-    CGFloat textHeight = textSize.height + brCount*20 + pCount*20;
+    CGFloat textHeight = textRect.size.height + brCount*20 + pCount*20;
     
     return textHeight * 0.8;
 }
@@ -432,7 +435,7 @@
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	LOG(@"buttonIndex = %d", buttonIndex);
+//	LOG(@"buttonIndex = %d", buttonIndex);
     
     switch (alertView.tag)
     {
@@ -452,8 +455,8 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    LOG(@"buttonIndex %d", buttonIndex);
-    
+//    LOG(@"buttonIndex %d", buttonIndex);
+
 	if (buttonIndex == actionSheet.cancelButtonIndex)
     {
 		LOG(@"pushed Cancel button.");

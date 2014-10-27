@@ -32,6 +32,7 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
+    [SVProgressHUD show];
     [self fetchTimeline];
 }
 
@@ -58,7 +59,6 @@
     LOG_CURRENT_METHOD;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
 
     [_haikuManager fetchUserTimelineWithUrlName:self.userId page:self.page];
 }

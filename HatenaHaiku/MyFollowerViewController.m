@@ -38,6 +38,7 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
+    [SVProgressHUD show];
     [self fetchFriends];
 }
 
@@ -65,7 +66,6 @@
     LOG_CURRENT_METHOD;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
 
     [_haikuManager fetchFollowersWithPage:self.page];
 }
@@ -135,7 +135,6 @@
     }
 
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    LOG(@"statuses %d", [jsonArray count]);
     
     if ([jsonArray count] == 0)
     {

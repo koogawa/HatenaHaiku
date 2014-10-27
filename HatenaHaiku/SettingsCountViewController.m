@@ -65,7 +65,7 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", (indexPath.row + 1) * 10];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (indexPath.row + 1) * 10];
     
     // 現在の設定
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -100,7 +100,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"before %d", indexPath.row);
+//    NSLog(@"before %d", indexPath.row);
 }
 
 @end

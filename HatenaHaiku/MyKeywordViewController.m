@@ -38,6 +38,7 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
+    [SVProgressHUD show];
     [self fetchKeywords];
 }
 
@@ -65,7 +66,6 @@
     LOG_CURRENT_METHOD;
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
 
     [_haikuManager fetchKeywordsWithPage:self.page
                   withoutRelatedKeywords:YES];

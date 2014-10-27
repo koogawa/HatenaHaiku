@@ -45,7 +45,7 @@
 {
     LOG_CURRENT_METHOD;
 
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/public_timeline.json?count=%d&page=%d&body_formats=html_mobile", [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page];
+    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/public_timeline.json?count=%ld&page=%ld&body_formats=html_mobile", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], (long)page];
 	LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
@@ -67,7 +67,7 @@
 {
     LOG_CURRENT_METHOD;
 
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/keyword_timeline.json?count=%d&page=%d&body_formats=html_mobile&word=%@", [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page, keyword];
+    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/keyword_timeline.json?count=%ld&page=%ld&body_formats=html_mobile&word=%@", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], (long)page, keyword];
 	LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
@@ -109,8 +109,8 @@
                                          signatureProvider:nil];
         [request setHTTPMethod:@"GET"];
 
-        OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"count" value:[NSString stringWithFormat:@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"]]];
-        OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%d", page]];
+        OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"count" value:[NSString stringWithFormat:@"%ld", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"]]];
+        OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%ld", (long)page]];
         OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"body_formats" value:@"html_mobile"];
 
         NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, p3, nil];
@@ -118,7 +118,7 @@
         [request setParameters:params];
     }
     else {
-        NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline/%@.json?count=%d&page=%d&body_formats=html_mobile", urlName, [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], page];
+        NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/user_timeline/%@.json?count=%ld&page=%ld&body_formats=html_mobile", urlName, (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], (long)page];
         LOG(@"urlString = %@", urlString);
 
         request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
@@ -158,8 +158,8 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"count" value:[NSString stringWithFormat:@"%d", count]];
-    OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%d", page]];
+    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"count" value:[NSString stringWithFormat:@"%ld", (long)count]];
+    OARequestParameter *p2 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%ld", (long)page]];
     OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"body_formats" value:@"html_mobile"];
 
     NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, p3, nil];
@@ -178,7 +178,7 @@
 {
     LOG_CURRENT_METHOD;
 
-    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/album.json?count=40&page=%d&body_formats=api", page];
+    NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/album.json?count=40&page=%ld&body_formats=api", (long)page];
 	LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
@@ -281,7 +281,7 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%d", page]];
+    OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"page" value:[NSString stringWithFormat:@"%ld", (long)page]];
 
     NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, nil];
 
@@ -318,7 +318,7 @@
     [request setHTTPMethod:@"GET"];
 
     OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"page"
-                                                                value:[NSString stringWithFormat:@"%d", page]];
+                                                                value:[NSString stringWithFormat:@"%ld", (long)page]];
 
     NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, nil];
 
@@ -353,7 +353,7 @@
     [request setHTTPMethod:@"GET"];
 
     OARequestParameter *p1 = [[OARequestParameter alloc] initWithName:@"page"
-                                                                value:[NSString stringWithFormat:@"%d", page]];
+                                                                value:[NSString stringWithFormat:@"%ld", (long)page]];
 
     NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, nil];
 

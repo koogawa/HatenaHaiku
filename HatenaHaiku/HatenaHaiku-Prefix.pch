@@ -38,6 +38,8 @@ typedef enum {
 
 #define MAX_IMAGE_SIZE          800.0f
 
+#define DEFAULT_FONT_SIZE       16.0f
+
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0f \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0f \

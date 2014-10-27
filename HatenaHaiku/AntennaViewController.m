@@ -37,6 +37,7 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
+    [SVProgressHUD show];
     [self fetchTimeline];
 }
 
@@ -63,7 +64,6 @@
     LOG_CURRENT_METHOD;
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
 
     NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"];
 

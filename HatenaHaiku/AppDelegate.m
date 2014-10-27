@@ -63,9 +63,9 @@
 	NSInteger removed = [defaults integerForKey:CACHE_REMOVED_KEY];
 	NSString *tmpDir = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/icon"];
     
-	LOG(@"now:%d", now);
-	LOG(@"removed:%d", removed);
-	
+//	LOG(@"now:%d", now);
+//	LOG(@"removed:%d", removed);
+
 	// 初回時の処理
 	if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
     {
@@ -205,7 +205,7 @@
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	LOG(@"buttonIndex = %d", buttonIndex);
+//	LOG(@"buttonIndex = %d", buttonIndex);
     
     switch (alertView.tag)
     {

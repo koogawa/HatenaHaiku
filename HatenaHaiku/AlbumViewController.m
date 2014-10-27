@@ -42,7 +42,6 @@
     [self.collectionView addSubview:self.refreshControl];
     
     // 背景を設定
-    self.collectionView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
     // contentViewにcellのクラスを登録
@@ -51,6 +50,7 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
+    [SVProgressHUD show];
     [self fetchAlbum];
 }
 
@@ -77,7 +77,6 @@
     LOG_CURRENT_METHOD;
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
 
     [_haikuManager fetchAlbumWithPage:self.page];
 }

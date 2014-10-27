@@ -255,7 +255,7 @@
 					cell.textLabel.text = @"一度に取得する投稿件数";
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                     NSInteger count = [defaults integerForKey:@"CONFIG_FETCH_COUNT"];
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", count];
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)count];
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 					return cell;
 					break;
@@ -419,7 +419,7 @@
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	LOG(@"buttonIndex = %d", buttonIndex);
+//	LOG(@"buttonIndex = %d", buttonIndex);
     
     switch (alertView.tag)
     {
