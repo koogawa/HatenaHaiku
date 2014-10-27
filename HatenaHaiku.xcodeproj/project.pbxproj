@@ -197,6 +197,7 @@
 		217F591619FD04DB005BA5A8 /* icon-launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch.png"; path = "image/icon-launch.png"; sourceTree = "<group>"; };
 		217F591719FD04DB005BA5A8 /* icon-launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch@2x.png"; path = "image/icon-launch@2x.png"; sourceTree = "<group>"; };
 		217F591A19FDF0F0005BA5A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		217F591C19FE62C3005BA5A8 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
 		2182A73518E7D95800473C9B /* KGWUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGWUtil.h; path = Lib/KGWUtil.h; sourceTree = "<group>"; };
 		2182A73618E7D95800473C9B /* KGWUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGWUtil.m; path = Lib/KGWUtil.m; sourceTree = "<group>"; };
 		2183E56516646D95003C35E0 /* HatenaHaiku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HatenaHaiku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,6 +278,7 @@
 		214ED9E31670EA610032AB74 /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
+				217F591C19FE62C3005BA5A8 /* SVProgressHUD-Prefix.pch */,
 				214ED9E41670EA610032AB74 /* SVProgressHUD.bundle */,
 				214ED9E51670EA610032AB74 /* SVProgressHUD.h */,
 				214ED9E61670EA610032AB74 /* SVProgressHUD.m */,
