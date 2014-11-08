@@ -534,6 +534,16 @@
 
 #pragma mark - CLLocationManager delegate
 
+// CLLocationManager オブジェクトにデリゲートオブジェクトを設定すると初回に呼ばれる
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (![KGWUtil isOverThisVersion:@"8.0"]) return;
+
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+}
+
 // 位置が更新されたら呼ばれる
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
