@@ -65,7 +65,7 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (indexPath.row + 1) * 10];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)((indexPath.row + 1) * 10)];
     
     // 現在の設定
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
