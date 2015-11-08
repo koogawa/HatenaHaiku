@@ -12,6 +12,10 @@
 #import "OADataFetcher.h"
 #import "OAMutableURLRequest.h"
 
+@interface HaikuManager ()
+@property (nonatomic, strong) OADataFetcher *fetcher;
+@end
+
 @implementation HaikuManager
 
 // FIXME: delegateパターンの場合、シングルトンはダメ
@@ -37,6 +41,10 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [self.fetcher cancel];
+}
 
 #pragma mark - Public method
 
@@ -46,7 +54,7 @@
     LOG_CURRENT_METHOD;
 
     NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/public_timeline.json?count=%ld&page=%ld&body_formats=html_mobile", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], (long)page];
-	LOG(@"urlString = %@", urlString);
+    LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
                                                                    consumer:nil
@@ -55,11 +63,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchPublicTimelineWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchPublicTimelineWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchPublicTimelineWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchPublicTimelineWithError:)];
 }
 
 // キーワードのエントリーを取得
@@ -68,7 +76,7 @@
     LOG_CURRENT_METHOD;
 
     NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/keyword_timeline.json?count=%ld&page=%ld&body_formats=html_mobile&word=%@", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"CONFIG_FETCH_COUNT"], (long)page, keyword];
-	LOG(@"urlString = %@", urlString);
+    LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
                                                                    consumer:nil
@@ -77,11 +85,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchKeywordTimelineWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchKeywordTimelineWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchKeywordTimelineWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchKeywordTimelineWithError:)];
 }
 
 // ユーザのエントリーを取得
@@ -114,7 +122,7 @@
         OARequestParameter *p3 = [[OARequestParameter alloc] initWithName:@"body_formats" value:@"html_mobile"];
 
         NSMutableArray *params = [NSMutableArray arrayWithObjects:p1, p2, p3, nil];
-        
+
         [request setParameters:params];
     }
     else {
@@ -129,11 +137,11 @@
         [request setHTTPMethod:@"GET"];
     }
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchUserTimelineWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchUserTimelineWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchUserTimelineWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchUserTimelineWithError:)];
 }
 
 // 自分のアンテナを取得
@@ -166,11 +174,11 @@
 
     [request setParameters:params];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchFriendsTimelineWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchFriendsTimelineWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchFriendsTimelineWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchFriendsTimelineWithError:)];
 }
 
 // アルバムページを取得
@@ -179,7 +187,7 @@
     LOG_CURRENT_METHOD;
 
     NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/album.json?count=40&page=%ld&body_formats=api", (long)page];
-	LOG(@"urlString = %@", urlString);
+    LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
                                                                    consumer:nil
@@ -188,11 +196,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchAlbumWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchAlbumWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchAlbumWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchAlbumWithError:)];
 }
 
 // ホットキーワードリストを取得
@@ -201,7 +209,7 @@
     LOG_CURRENT_METHOD;
 
     NSString *urlString = @"http://h.hatena.ne.jp/api/keywords/hot.json?without_related_keywords=1";
-	LOG(@"urlString = %@", urlString);
+    LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
                                                                    consumer:nil
@@ -210,11 +218,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchHotKeywordsWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchHotkeywordsWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchHotKeywordsWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchHotkeywordsWithError:)];
 }
 
 // キーワードを検索
@@ -223,7 +231,7 @@
     LOG_CURRENT_METHOD;
 
     NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/keywords/list.json?word=%@&without_related_keywords=1", [keyword encodedURLParameterString]];
-	LOG(@"urlString = %@", urlString);
+    LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
                                                                    consumer:nil
@@ -232,11 +240,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didSearchKeywordsWithData:)
-                  didFailSelector:@selector(ticket:didFailToSearchKeywordsWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didSearchKeywordsWithData:)
+                       didFailSelector:@selector(ticket:didFailToSearchKeywordsWithError:)];
 }
 
 // 投稿詳細を取得
@@ -245,7 +253,7 @@
     LOG_CURRENT_METHOD;
 
     NSString *urlString = [NSString stringWithFormat:@"http://h.hatena.ne.jp/api/statuses/show/%@.json?body_formats=html_mobile", eid];
-	LOG(@"urlString = %@", urlString);
+    LOG(@"urlString = %@", urlString);
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
                                                                    consumer:nil
@@ -254,11 +262,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchStatusDetailWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchStatusDetailWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchStatusDetailWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchStatusDetailWithError:)];
 }
 
 // お気に入りユーザ一覧を取得
@@ -290,11 +298,11 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchFriendsWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchFriendsWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchFriendsWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchFriendsWithError:)];
 }
 
 // ファン一覧を取得
@@ -324,11 +332,11 @@
 
     [request setParameters:params];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchFollowersWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchFollowersWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchFollowersWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchFollowersWithError:)];
 }
 
 // お気に入りキーワード一覧を取得
@@ -367,11 +375,11 @@
 
     [request setParameters:params];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchKeywordsWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchKeywordsWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchKeywordsWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchKeywordsWithError:)];
 }
 
 // ユーザ情報を取得
@@ -394,11 +402,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"GET"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didFetchFriendshipsWithData:)
-                  didFailSelector:@selector(ticket:didFailToFetchFriendshipsWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didFetchFriendshipsWithData:)
+                       didFailSelector:@selector(ticket:didFailToFetchFriendshipsWithError:)];
 }
 
 // 新たに投稿する
@@ -452,11 +460,11 @@
         [request attachFileWithName:@"file" filename:@"image.jpg" contentType:@"image/jpeg" data:imageData];
     }
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didUpdateStatusWithData:)
-                  didFailSelector:@selector(ticket:didFailToUpdateStatusWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didUpdateStatusWithData:)
+                       didFailSelector:@selector(ticket:didFailToUpdateStatusWithError:)];
 }
 
 // スターを付ける
@@ -481,11 +489,11 @@
                                                           signatureProvider:nil];
     [request setHTTPMethod:@"POST"];
 
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(ticket:didCreateFavoritesWithData:)
-                  didFailSelector:@selector(ticket:didFailToCreateFavoritesWithError:)];
+    self.fetcher = [[OADataFetcher alloc] init];
+    [self.fetcher fetchDataWithRequest:request
+                              delegate:self
+                     didFinishSelector:@selector(ticket:didCreateFavoritesWithData:)
+                       didFailSelector:@selector(ticket:didFailToCreateFavoritesWithError:)];
 }
 
 
@@ -756,7 +764,7 @@
 {
     LOG_CURRENT_METHOD;
     LOG(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-
+    
     if ([self.delegate respondsToSelector:@selector(haikuManager:didCreateFavoritesWithData:error:)]) {
         [self.delegate haikuManager:self didCreateFavoritesWithData:data error:nil];
     }
@@ -765,7 +773,7 @@
 {
     LOG_CURRENT_METHOD;
     LOG(@"error = %@", error);
-
+    
     if ([self.delegate respondsToSelector:@selector(haikuManager:didCreateFavoritesWithData:error:)]) {
         [self.delegate haikuManager:self didCreateFavoritesWithData:nil error:error];
     }
