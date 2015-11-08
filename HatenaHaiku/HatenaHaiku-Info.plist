@@ -28,6 +28,11 @@
 	<string>10.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>現在地を投稿する機能を使用するときにのみ位置情報を使用します</string>
 	<key>UILaunchStoryboardName</key>
