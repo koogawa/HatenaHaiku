@@ -68,18 +68,17 @@
     // 画面戻ってきた時にWebViewがハイライトされてしまうのを防ぐ
     [self.tableView reloadData];
 }
-/*
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     LOG_CURRENT_METHOD;
     
     [super viewWillDisappear:animated];
     
-//    _haikuManager = nil;
-//    [SVProgressHUD dismiss];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [SVProgressHUD dismiss];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
-*/
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
