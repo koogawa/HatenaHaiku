@@ -75,9 +75,6 @@
 		2183E57416646D95003C35E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2183E57216646D95003C35E0 /* InfoPlist.strings */; };
 		2183E57616646D95003C35E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2183E57516646D95003C35E0 /* main.m */; };
 		2183E57A16646D95003C35E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2183E57916646D95003C35E0 /* AppDelegate.m */; };
-		2183E57C16646D95003C35E0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2183E57B16646D95003C35E0 /* Default.png */; };
-		2183E57E16646D95003C35E0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2183E57D16646D95003C35E0 /* Default@2x.png */; };
-		2183E58016646D95003C35E0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2183E57F16646D95003C35E0 /* Default-568h@2x.png */; };
 		2183E59C16646E8F003C35E0 /* RecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2183E59B16646E8F003C35E0 /* RecentViewController.m */; };
 		2183E5A31664DC63003C35E0 /* StatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2183E5A21664DC63003C35E0 /* StatusTableViewCell.m */; };
 		2183E5A61664DD5F003C35E0 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2183E5A41664DD5F003C35E0 /* AsyncImageView.m */; };
@@ -211,9 +208,6 @@
 		2183E57716646D95003C35E0 /* HatenaHaiku-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HatenaHaiku-Prefix.pch"; sourceTree = "<group>"; };
 		2183E57816646D95003C35E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2183E57916646D95003C35E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2183E57B16646D95003C35E0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		2183E57D16646D95003C35E0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		2183E57F16646D95003C35E0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2183E59A16646E8F003C35E0 /* RecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = RecentViewController.h; path = Controller/RecentViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2183E59B16646E8F003C35E0 /* RecentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentViewController.m; path = Controller/RecentViewController.m; sourceTree = "<group>"; };
 		2183E5A11664DC63003C35E0 /* StatusTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusTableViewCell.h; path = View/StatusTableViewCell.h; sourceTree = "<group>"; };
@@ -395,6 +389,7 @@
 				2183E57816646D95003C35E0 /* AppDelegate.h */,
 				2183E57916646D95003C35E0 /* AppDelegate.m */,
 				217F591A19FDF0F0005BA5A8 /* Images.xcassets */,
+				217F591419FD010B005BA5A8 /* LaunchScreen.xib */,
 				2183E57016646D95003C35E0 /* Supporting Files */,
 			);
 			path = HatenaHaiku;
@@ -412,10 +407,6 @@
 				218F84E6166D114D0098B54D /* icon.png */,
 				218F84E8166D115C0098B54D /* icon@2x.png */,
 				216B6C4217E002AA004D6D63 /* icon-60@2x.png */,
-				2183E57B16646D95003C35E0 /* Default.png */,
-				2183E57D16646D95003C35E0 /* Default@2x.png */,
-				2183E57F16646D95003C35E0 /* Default-568h@2x.png */,
-				217F591419FD010B005BA5A8 /* LaunchScreen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -577,10 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2183E57416646D95003C35E0 /* InfoPlist.strings in Resources */,
-				2183E57C16646D95003C35E0 /* Default.png in Resources */,
 				217F591819FD04DB005BA5A8 /* icon-launch.png in Resources */,
-				2183E57E16646D95003C35E0 /* Default@2x.png in Resources */,
-				2183E58016646D95003C35E0 /* Default-568h@2x.png in Resources */,
 				217F591B19FDF0F0005BA5A8 /* Images.xcassets in Resources */,
 				2183E5A81664E583003C35E0 /* none.gif in Resources */,
 				218F84E4166CF3540098B54D /* reply_to.gif in Resources */,
@@ -742,7 +730,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kosuke Ogawa (6XKXLBZW2J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
@@ -759,7 +746,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kosuke Ogawa (4SA8237VUA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
