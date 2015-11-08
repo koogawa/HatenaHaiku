@@ -35,9 +35,9 @@
 #define POST_ALERT_TAG      101
 #define LOGOUT_ALERT_TAG    102
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
         self.title = @"マイページ";
