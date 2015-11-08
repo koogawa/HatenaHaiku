@@ -226,7 +226,6 @@
 		219E794516F613BF008CE262 /* MyKeywordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MyKeywordViewController.m; path = Controller/MyKeywordViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		21B27C7E187041A000174703 /* HaikuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HaikuManager.h; path = Model/HaikuManager.h; sourceTree = "<group>"; };
 		21B27C7F187041A000174703 /* HaikuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HaikuManager.m; path = Model/HaikuManager.m; sourceTree = "<group>"; };
-		21D0427616F583D00019C0E8 /* MyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MyFriendViewController.h; path = Controller/MyFriendViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		21D0427716F583D00019C0E8 /* MyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MyFriendViewController.m; path = Controller/MyFriendViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		21D0427916F5A8040019C0E8 /* MyFollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MyFollowerViewController.h; path = Controller/MyFollowerViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		21D0427A16F5A8050019C0E8 /* MyFollowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MyFollowerViewController.m; path = Controller/MyFollowerViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -461,7 +460,6 @@
 				216EA2921BEEE21F00D2FFEB /* LoginViewController.h */,
 				214EDA5A16744B640032AB74 /* LoginViewController.m */,
 				2183E5A51664DD5F003C35E0 /* MyFriendViewController.h */,
-				21D0427616F583D00019C0E8 /* MyFriendViewController.h */,
 				21D0427716F583D00019C0E8 /* MyFriendViewController.m */,
 				219E794416F613BF008CE262 /* MyKeywordViewController.h */,
 				219E794516F613BF008CE262 /* MyKeywordViewController.m */,
