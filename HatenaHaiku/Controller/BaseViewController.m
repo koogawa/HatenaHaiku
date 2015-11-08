@@ -53,9 +53,9 @@
     [refreshControl addTarget:self action:@selector(refreshOccured:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
-//    longPressRecognizer.allowableMovement = 15;
-//    longPressRecognizer.minimumPressDuration = 0.6f;
+    UILongPressGestureRecognizer *longPressRecognizer =
+    [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                  action:@selector(longPressAction:)];
     [self.tableView addGestureRecognizer:longPressRecognizer];
 }
 
@@ -69,13 +69,15 @@
     [self.tableView reloadData];
 }
 /*
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     LOG_CURRENT_METHOD;
     
-    [super viewDidAppear:animated];
+    [super viewWillDisappear:animated];
     
-    [self.tableView reloadData];
+//    _haikuManager = nil;
+//    [SVProgressHUD dismiss];
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 */
 - (void)didReceiveMemoryWarning
@@ -213,16 +215,6 @@
     }
     
     // スター
-//    NSInteger star = [[statusDic objectForKey:@"favorited"] intValue];
-//    NSString *starHtml = (star > 0) ? @"<br>" : @"";
-//    for (int i = 0; i < star; i++)
-//    {
-//        if (i > 0 && i % 15 == 0)
-//        {
-//            starHtml = [starHtml stringByAppendingString:@"<br>"];
-//        }
-//        starHtml = [starHtml stringByAppendingString:@"★"];
-//    }
     NSString *link = statusDic[@"link"];
     NSString *starHtml = [NSString stringWithFormat:@"<img src='http://s.st-hatena.com/entry.count.image?uri=%@'>", link];
 
