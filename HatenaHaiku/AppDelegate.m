@@ -62,9 +62,6 @@
 	NSInteger now = time(nil);
 	NSInteger removed = [defaults integerForKey:CACHE_REMOVED_KEY];
 	NSString *tmpDir = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/icon"];
-    
-//	LOG(@"now:%d", now);
-//	LOG(@"removed:%d", removed);
 
 	// 初回時の処理
 	if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
