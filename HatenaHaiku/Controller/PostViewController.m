@@ -132,6 +132,8 @@
 - (void)cameraButtonAction
 {
     LOG_CURRENT_METHOD;
+
+    [self.bodyView resignFirstResponder];
     
     UIActionSheet *sheet = [[UIActionSheet alloc] init];
 	sheet.delegate = self;
@@ -539,8 +541,6 @@
 // CLLocationManager オブジェクトにデリゲートオブジェクトを設定すると初回に呼ばれる
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    if (![KGWUtil isOverThisVersion:@"8.0"]) return;
-
     if (status == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
     }
