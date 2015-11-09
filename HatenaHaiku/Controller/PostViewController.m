@@ -31,6 +31,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.title = @"Haiku";
+        self.tabBarItem.image = [UIImage imageNamed:@"compose.png"];
     }
     return self;
 }
