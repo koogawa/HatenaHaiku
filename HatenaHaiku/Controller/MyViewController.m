@@ -36,7 +36,8 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
-   [self fetchTimeline];
+    [SVProgressHUD show];
+    [self fetchTimeline];
 }
 
 - (void)didReceiveMemoryWarning

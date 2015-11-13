@@ -63,6 +63,8 @@
 		2164A41716B9643700BFA710 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2164A41616B9643700BFA710 /* MyViewController.m */; };
 		2164A44916BCB4B400BFA710 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 2164A44816BCB4B400BFA710 /* lisence.html */; };
 		216B6C4317E002AA004D6D63 /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B6C4217E002AA004D6D63 /* icon-60@2x.png */; };
+		216EA2951BF0C4F200D2FFEB /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 216EA2931BF0C4F200D2FFEB /* compose.png */; };
+		216EA2961BF0C4F200D2FFEB /* compose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216EA2941BF0C4F200D2FFEB /* compose@2x.png */; };
 		2175AB4216CA893800C7C630 /* AlbumCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */; };
 		217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217F591419FD010B005BA5A8 /* LaunchScreen.xib */; };
 		217F591819FD04DB005BA5A8 /* icon-launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F591619FD04DB005BA5A8 /* icon-launch.png */; };
@@ -189,6 +191,8 @@
 		2164A44816BCB4B400BFA710 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = lisence.html; path = html/lisence.html; sourceTree = "<group>"; };
 		216B6C4217E002AA004D6D63 /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-60@2x.png"; path = "../icon-60@2x.png"; sourceTree = "<group>"; };
 		216EA2921BEEE21F00D2FFEB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Controller/LoginViewController.h; sourceTree = "<group>"; };
+		216EA2931BF0C4F200D2FFEB /* compose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = compose.png; path = image/compose.png; sourceTree = "<group>"; };
+		216EA2941BF0C4F200D2FFEB /* compose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compose@2x.png"; path = "image/compose@2x.png"; sourceTree = "<group>"; };
 		2175AB4016CA893800C7C630 /* AlbumCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumCollectionCell.h; path = View/AlbumCollectionCell.h; sourceTree = "<group>"; };
 		2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumCollectionCell.m; path = View/AlbumCollectionCell.m; sourceTree = "<group>"; };
 		217F591419FD010B005BA5A8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -486,6 +490,8 @@
 			children = (
 				214ED9F11672FF1D0032AB74 /* album.png */,
 				214ED9F01672FF1D0032AB74 /* album@2x.png */,
+				216EA2931BF0C4F200D2FFEB /* compose.png */,
+				216EA2941BF0C4F200D2FFEB /* compose@2x.png */,
 				2150D5A916C2998E00F67D7B /* gear.png */,
 				2150D5AA16C2998E00F67D7B /* gear@2x.png */,
 				217F591619FD04DB005BA5A8 /* icon-launch.png */,
@@ -586,9 +592,11 @@
 				2164A44916BCB4B400BFA710 /* lisence.html in Resources */,
 				2150D5A116C14E8500F67D7B /* map.png in Resources */,
 				2150D5A216C14E8500F67D7B /* map@2x.png in Resources */,
+				216EA2951BF0C4F200D2FFEB /* compose.png in Resources */,
 				2150D5A516C158E200F67D7B /* pin.png in Resources */,
 				2150D5A616C158E200F67D7B /* pin@2x.png in Resources */,
 				217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */,
+				216EA2961BF0C4F200D2FFEB /* compose@2x.png in Resources */,
 				216B6C4317E002AA004D6D63 /* icon-60@2x.png in Resources */,
 				2150D5AB16C2998E00F67D7B /* gear.png in Resources */,
 				217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */,
