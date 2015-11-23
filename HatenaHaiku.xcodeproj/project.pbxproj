@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		210E724316CA080C0016C9ED /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210E724216CA080C0016C9ED /* AlbumViewController.m */; };
+		211C492B1C03256D00D27667 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211C492A1C03256D00D27667 /* SafariServices.framework */; };
 		213B400118E8EA7E0086A186 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B400018E8EA7E0086A186 /* Status.m */; };
 		213B400A18F0EC750086A186 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B400918F0EC750086A186 /* User.m */; };
 		214ED9D6166EF7220032AB74 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214ED9D5166EF7220032AB74 /* BaseViewController.m */; };
@@ -97,6 +98,7 @@
 /* Begin PBXFileReference section */
 		210E724116CA080C0016C9ED /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumViewController.h; path = Controller/AlbumViewController.h; sourceTree = "<group>"; };
 		210E724216CA080C0016C9ED /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = AlbumViewController.m; path = Controller/AlbumViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		211C492A1C03256D00D27667 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		213B3FFF18E8EA7E0086A186 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Status.h; path = Model/Status.h; sourceTree = "<group>"; };
 		213B400018E8EA7E0086A186 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Status.m; path = Model/Status.m; sourceTree = "<group>"; };
 		213B400818F0EC750086A186 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211C492B1C03256D00D27667 /* SafariServices.framework in Frameworks */,
 				2150D5A816C209D600F67D7B /* CoreLocation.framework in Frameworks */,
 				214ED9EA1670EB3E0032AB74 /* QuartzCore.framework in Frameworks */,
 				2183E56A16646D95003C35E0 /* UIKit.framework in Frameworks */,
@@ -373,6 +376,7 @@
 		2183E56816646D95003C35E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				211C492A1C03256D00D27667 /* SafariServices.framework */,
 				2150D5A716C209D600F67D7B /* CoreLocation.framework */,
 				2183E56916646D95003C35E0 /* UIKit.framework */,
 				2183E56B16646D95003C35E0 /* Foundation.framework */,
@@ -736,6 +740,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kosuke Ogawa (6XKXLBZW2J)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
@@ -752,6 +757,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kosuke Ogawa (4SA8237VUA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
