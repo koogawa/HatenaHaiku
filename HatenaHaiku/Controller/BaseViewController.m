@@ -505,10 +505,8 @@
     }
     else {
         // アプリ内ブラウザで開く
-        WebViewController *viewController = [[WebViewController alloc] initWithURL:url];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-        navigationController.toolbar.tintColor = THEME_COLOR;
-        [self presentViewController:navigationController animated:YES completion:nil];
+        SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+        [self presentViewController:safariViewController animated:YES completion:nil];
     }
 }
 
