@@ -174,7 +174,6 @@
     urlString = [urlString componentsSeparatedByString:@"\n"][0];
     
     [cell.albumImageView loadImageUrl:[NSURL URLWithString:urlString]];
-//    [cell.albumImageView setFrame:CGRectMake(3, 3, cell.frame.size.width - 6, cell.frame.size.height - 6)];
     return cell;
 }
 
@@ -184,7 +183,8 @@
 // セルのサイズを画像ごとに調整
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(79, 79);
+    CGFloat width = (self.collectionView.frame.size.width - 8.0) / 4;
+    return CGSizeMake(width, width);
 }
 
 // 横の画像との最小スペース
@@ -203,7 +203,6 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(2, 2, 2, 2);
-//    return UIEdgeInsetsMake(15.0f, 15.0f, 15.0f, 15.0f);
 }
 
 #pragma mark - UICollectionViewDelegate
