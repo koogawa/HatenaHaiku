@@ -21,7 +21,8 @@ typedef enum {
 	UITabNameEntry = 0,
     UITabNameAlbum,
 	UITabNameKeyword,
-	UITabNameMyPage
+	UITabNameMyPage,
+    UITabNamePost
 } UITabName;
 
 #define CACHE_RETENTION_DAY     30

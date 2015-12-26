@@ -101,7 +101,7 @@
 		NSString *path = [[NSBundle mainBundle] pathForResource:self.path ofType:nil];
 		if (path) {
 			NSData *data = [NSData dataWithContentsOfFile:path];
-			[self.webView loadData:data MIMEType:@"text/html" textEncodingName:nil baseURL:nil];
+			[self.webView loadData:data MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[NSURL new]];
 		} else {
 			LOG(@"file not found.");
 		}

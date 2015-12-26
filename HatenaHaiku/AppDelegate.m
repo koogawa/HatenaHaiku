@@ -12,11 +12,12 @@
 #import "HotKeywordViewController.h"
 #import "MyPageViewController.h"
 #import "LoginViewController.h"
+#import "PostViewController.h"
 #import "AuthManager.h"
 
 @implementation AppDelegate
 
-#define MYPAGE_ALERT_TAG      101
+#define ALERT_LOGIN_TAG      101
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -39,6 +40,11 @@
     UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
     navigationController2.view.tag = UITabNameAlbum;
 
+    // 投稿
+    PostViewController *postViewController = [PostViewController new];
+    UINavigationController *navigationController5 = [[UINavigationController alloc] initWithRootViewController:postViewController];
+    navigationController5.view.tag = UITabNamePost;
+
     // キーワード
     HotKeywordViewController *viewController3 = [[HotKeywordViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
@@ -51,10 +57,8 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.delegate = self;
-    if ([KGWUtil isOverThisVersion:@"7.0"]) {
-        self.tabBarController.tabBar.tintColor = THEME_COLOR;
-    }
-    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController3, navigationController4];
+    self.tabBarController.tabBar.tintColor = THEME_COLOR;
+    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController5, navigationController3, navigationController4];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
@@ -62,9 +66,6 @@
 	NSInteger now = time(nil);
 	NSInteger removed = [defaults integerForKey:CACHE_REMOVED_KEY];
 	NSString *tmpDir = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/icon"];
-    
-//	LOG(@"now:%d", now);
-//	LOG(@"removed:%d", removed);
 
 	// 初回時の処理
 	if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
@@ -164,42 +165,35 @@
 
 #pragma mark - UITabBarControllerDelegate
 
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-}
-*/
-/*
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     LOG_CURRENT_METHOD;
     
-    if (viewController.view.tag == UITabNameMyPage)
+    if (viewController.view.tag == UITabNamePost)
     {
-        if (![[AuthManager sharedManager] isAuthenticated])
+        if ([[AuthManager sharedManager] isAuthenticated])
         {
+            PostViewController *viewController = [[PostViewController alloc] initWithStyle:UITableViewStylePlain];
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+            navigationController.toolbar.tintColor = THEME_COLOR;
+            [self.tabBarController presentViewController:navigationController animated:YES completion:nil];
+        }
+        else {
             UIAlertView *alert =
             [[UIAlertView alloc] initWithTitle:nil
-                                       message:@"ログインが確認できませんでした。ログインしてから再度お試しください。"
+                                       message:NO_LOGIN_MESSAGE
                                       delegate:self
                              cancelButtonTitle:@"キャンセル"
                              otherButtonTitles:@"ログイン", nil];
-            alert.tag = MYPAGE_ALERT_TAG;
+            alert.tag = ALERT_LOGIN_TAG;
             [alert show];
-            return NO;
         }
+
+        return NO;
     }
     
     return YES;
 }
-*/
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
-{
-}
-*/
 
 #pragma mark - UIAlertView delegate
 
@@ -209,7 +203,7 @@
     
     switch (alertView.tag)
     {
-        case MYPAGE_ALERT_TAG:
+        case ALERT_LOGIN_TAG:
         {
             if (buttonIndex == 1)
             {
