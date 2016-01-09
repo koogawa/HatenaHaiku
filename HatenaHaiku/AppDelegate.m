@@ -21,8 +21,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     // 初期値を設定
     NSUserDefaults *defaults  = [NSUserDefaults standardUserDefaults];
     NSDictionary *appDefaults = @{@"CONFIG_FETCH_COUNT": @"10"};
@@ -59,9 +57,7 @@
     self.tabBarController.delegate = self;
     self.tabBarController.tabBar.tintColor = THEME_COLOR;
     self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController5, navigationController3, navigationController4];
-    self.window.rootViewController = self.tabBarController;
-    [self.window makeKeyAndVisible];
-    
+
     // キャッシュディレクトリ（注意：~/tmp以下はバックアップされないのでたまに消える）
 	NSInteger now = time(nil);
 	NSInteger removed = [defaults integerForKey:CACHE_REMOVED_KEY];

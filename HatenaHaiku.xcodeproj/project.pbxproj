@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		210E724316CA080C0016C9ED /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 210E724216CA080C0016C9ED /* AlbumViewController.m */; };
+		2112DB871C40C150004E1534 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2112DB861C40C150004E1534 /* Storyboard.storyboard */; };
 		211C492B1C03256D00D27667 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211C492A1C03256D00D27667 /* SafariServices.framework */; };
 		213B400118E8EA7E0086A186 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B400018E8EA7E0086A186 /* Status.m */; };
 		213B400A18F0EC750086A186 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B400918F0EC750086A186 /* User.m */; };
@@ -98,6 +99,7 @@
 /* Begin PBXFileReference section */
 		210E724116CA080C0016C9ED /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumViewController.h; path = Controller/AlbumViewController.h; sourceTree = "<group>"; };
 		210E724216CA080C0016C9ED /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = AlbumViewController.m; path = Controller/AlbumViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2112DB861C40C150004E1534 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		211C492A1C03256D00D27667 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		213B3FFF18E8EA7E0086A186 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Status.h; path = Model/Status.h; sourceTree = "<group>"; };
 		213B400018E8EA7E0086A186 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Status.m; path = Model/Status.m; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				2183E57916646D95003C35E0 /* AppDelegate.m */,
 				217F591A19FDF0F0005BA5A8 /* Images.xcassets */,
 				217F591419FD010B005BA5A8 /* LaunchScreen.xib */,
+				2112DB861C40C150004E1534 /* Storyboard.storyboard */,
 				2183E57016646D95003C35E0 /* Supporting Files */,
 			);
 			path = HatenaHaiku;
@@ -601,6 +604,7 @@
 				2150D5A616C158E200F67D7B /* pin@2x.png in Resources */,
 				217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */,
 				216EA2961BF0C4F200D2FFEB /* compose@2x.png in Resources */,
+				2112DB871C40C150004E1534 /* Storyboard.storyboard in Resources */,
 				216B6C4317E002AA004D6D63 /* icon-60@2x.png in Resources */,
 				2150D5AB16C2998E00F67D7B /* gear.png in Resources */,
 				217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */,
