@@ -22,10 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // 初期値を設定
-    NSUserDefaults *defaults  = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = @{@"CONFIG_FETCH_COUNT": @"10"};
-    [defaults registerDefaults:appDefaults];
-    
+    [self registerDefaults];
+
     // 最新エントリー
     RecentViewController *viewController1 = [[RecentViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
@@ -92,6 +90,13 @@
 
 
 #pragma mark - Private method
+
+- (void)registerDefaults
+{
+    NSUserDefaults *defaults  = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = @{@"CONFIG_FETCH_COUNT": @"10"};
+    [defaults registerDefaults:appDefaults];
+}
 
 - (void)clearCacheDirectory
 {
