@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="491" y="-75"/>
         </scene>
-        <!--Root View Controller-->
+        <!--キーワード-->
         <scene sceneID="Ev3-VO-Vlf">
             <objects>
-                <tableViewController id="699-8X-Jzh" sceneMemberID="viewController">
+                <tableViewController id="699-8X-Jzh" customClass="HotKeywordViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="viJ-5k-4cv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,17 +46,17 @@
                             <outlet property="delegate" destination="699-8X-Jzh" id="jxU-ZN-2fN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="NeC-ne-lGX"/>
+                    <navigationItem key="navigationItem" title="キーワード" id="NeC-ne-lGX"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7z2-23-V14" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1311" y="592"/>
         </scene>
-        <!--Item-->
+        <!--キーワード-->
         <scene sceneID="ghP-a3-Sds">
             <objects>
                 <navigationController id="Qxr-Bi-5hv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="tRK-Wj-dvv"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="キーワード" image="keyword.png" id="tRK-Wj-dvv"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OWD-8t-4sE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -136,7 +136,7 @@
         <scene sceneID="MTH-ku-usF">
             <objects>
                 <navigationController id="jNC-MJ-YBm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="アルバム" image="album.png" id="iZz-7Z-X9U"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="アルバム" image="album.png" id="iZz-7Z-X9U"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VcP-8g-iPZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -243,6 +243,7 @@
     <resources>
         <image name="album.png" width="26" height="26"/>
         <image name="compose.png" width="23" height="18"/>
+        <image name="keyword.png" width="18" height="26"/>
         <image name="recent.png" width="24" height="24"/>
     </resources>
 </document>
