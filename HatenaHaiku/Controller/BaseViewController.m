@@ -25,16 +25,31 @@
 
 @implementation BaseViewController
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+        [self commonInit];
+    }
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
-        self.page = 1;
-        self.statuses = [[NSMutableArray alloc] init];
+        [self commonInit];
     }
 
     return self;
+}
+
+- (void)commonInit
+{
+    self.page = 1;
+    self.statuses = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidLoad
