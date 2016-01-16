@@ -53,65 +53,12 @@
     UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     navigationController4.view.tag = UITabNameMyPage;
     
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.delegate = self;
-    self.tabBarController.tabBar.tintColor = THEME_COLOR;
-    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController5, navigationController3, navigationController4];
+//    self.tabBarController = [[UITabBarController alloc] init];
+//    self.tabBarController.delegate = self;
+//    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController5, navigationController3, navigationController4];
 
-    // キャッシュディレクトリ（注意：~/tmp以下はバックアップされないのでたまに消える）
-	NSInteger now = time(nil);
-	NSInteger removed = [defaults integerForKey:CACHE_REMOVED_KEY];
-	NSString *tmpDir = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/icon"];
-
-	// 初回時の処理
-	if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
-    {
-		NSError *error = nil;
-		removed = now;
-		[defaults setInteger:removed forKey:CACHE_REMOVED_KEY];
-        
-		// キャッシュディレクトリ作成
-		if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir]) {
-			[[NSFileManager defaultManager] createDirectoryAtPath:tmpDir
-									  withIntermediateDirectories:YES
-													   attributes:nil
-															error:&error];
-		}
-		LOG(@"Cache Directory created! error = %@", error);
-	}
-    
-	LOG(@"diff:%f", (now - removed) / 86400.0f);
-    
-	// 前回のキャッシュ削除から30日経過していたら再作成
-	if ((now - removed) / 86400.0f > CACHE_RETENTION_DAY )
-    {
-		NSError *error = nil;
-        
-		if ([[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
-        {
-			[[NSFileManager defaultManager] removeItemAtPath:tmpDir
-													   error:&error];
-			LOG(@"Cache deleted! error = %@", error);
-            
-			if (!error)
-            {
-				// 最終削除日の保存
-				removed = time(nil);
-				[defaults setInteger:removed forKey:CACHE_REMOVED_KEY];
-				[defaults synchronize];
-                
-				// キャッシュディレクトリ再作成
-				if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
-                {
-					[[NSFileManager defaultManager] createDirectoryAtPath:tmpDir
-											  withIntermediateDirectories:YES
-															   attributes:nil
-																	error:&error];
-					LOG(@"Cache Directory recreated! error = %@", error);
-				}
-			}
-		}
-	}
+    // キャッシュディレクトリ削除（SDWebImageとか使ったほうが良さそう）
+    [self clearCacheDirectory];
 
     return YES;
 }
@@ -143,7 +90,67 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
 #pragma mark - Private method
+
+- (void)clearCacheDirectory
+{
+    // キャッシュディレクトリ（注意：~/tmp以下はバックアップされないのでたまに消える）
+    NSInteger now = time(nil);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger removed = [defaults integerForKey:CACHE_REMOVED_KEY];
+    NSString *tmpDir = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp/icon"];
+
+    // 初回時の処理
+    if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
+    {
+        NSError *error = nil;
+        removed = now;
+        [defaults setInteger:removed forKey:CACHE_REMOVED_KEY];
+
+        // キャッシュディレクトリ作成
+        if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:tmpDir
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:&error];
+        }
+        LOG(@"Cache Directory created! error = %@", error);
+    }
+
+    LOG(@"diff:%f", (now - removed) / 86400.0f);
+
+    // 前回のキャッシュ削除から30日経過していたら再作成
+    if ((now - removed) / 86400.0f > CACHE_RETENTION_DAY )
+    {
+        NSError *error = nil;
+
+        if ([[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:tmpDir
+                                                       error:&error];
+            LOG(@"Cache deleted! error = %@", error);
+
+            if (!error)
+            {
+                // 最終削除日の保存
+                removed = time(nil);
+                [defaults setInteger:removed forKey:CACHE_REMOVED_KEY];
+                [defaults synchronize];
+
+                // キャッシュディレクトリ再作成
+                if (![[NSFileManager defaultManager] fileExistsAtPath:tmpDir])
+                {
+                    [[NSFileManager defaultManager] createDirectoryAtPath:tmpDir
+                                              withIntermediateDirectories:YES
+                                                               attributes:nil
+                                                                    error:&error];
+                    LOG(@"Cache Directory recreated! error = %@", error);
+                }
+            }
+        }
+    }
+}
 
 - (void)showLoginView
 {
@@ -158,6 +165,7 @@
     }
     [parentViewController presentViewController:navigationController animated:YES completion:nil];
 }
+
 
 #pragma mark - UITabBarControllerDelegate
 
@@ -190,6 +198,7 @@
     
     return YES;
 }
+
 
 #pragma mark - UIAlertView delegate
 
