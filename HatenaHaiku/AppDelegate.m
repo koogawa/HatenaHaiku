@@ -23,7 +23,7 @@
 {
     // 初期値を設定
     [self registerDefaults];
-
+/*
     // 最新エントリー
     RecentViewController *viewController1 = [[RecentViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
@@ -50,7 +50,7 @@
     MyPageViewController *viewController4 = [[MyPageViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
     navigationController4.view.tag = UITabNameMyPage;
-    
+    */
 //    self.tabBarController = [[UITabBarController alloc] init];
 //    self.tabBarController.delegate = self;
 //    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController5, navigationController3, navigationController4];

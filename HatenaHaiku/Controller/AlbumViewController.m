@@ -18,16 +18,15 @@
 
 #define MORE_FOOTER_HEIGHT          52.0f
 
-- (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithCollectionViewLayout:layout];
+    self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
-        self.title = @"アルバム";
-        self.tabBarItem.image = [UIImage imageNamed:@"album.png"];
         self.page = 1;
         self.statuses = [[NSMutableArray alloc] init];
     }
+
     return self;
 }
 
