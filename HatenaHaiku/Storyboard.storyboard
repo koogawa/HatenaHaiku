@@ -69,17 +69,17 @@
             </objects>
             <point key="canvasLocation" x="491" y="592"/>
         </scene>
-        <!--Root View Controller-->
+        <!--マイページ-->
         <scene sceneID="S9P-j7-Mg5">
             <objects>
-                <tableViewController id="TvD-z3-O0g" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bh4-Ay-eFw">
+                <tableViewController id="TvD-z3-O0g" customClass="MyPageViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Bh4-Ay-eFw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uJk-5f-ZsD">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uJk-5f-ZsD" id="OpS-5D-JcI">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -92,17 +92,17 @@
                             <outlet property="delegate" destination="TvD-z3-O0g" id="iyc-Gp-ByW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="jyY-oL-Jd2"/>
+                    <navigationItem key="navigationItem" title="マイページ" id="jyY-oL-Jd2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNI-G2-sv5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1311" y="1260"/>
         </scene>
-        <!--Item-->
+        <!--マイページ-->
         <scene sceneID="JrX-N6-oUS">
             <objects>
                 <navigationController id="5fK-dc-NLY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="KGa-VX-tz8"/>
+                    <tabBarItem key="tabBarItem" title="マイページ" image="mypage.png" id="KGa-VX-tz8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hxa-Qs-YfE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -244,6 +244,7 @@
         <image name="album.png" width="26" height="26"/>
         <image name="compose.png" width="23" height="18"/>
         <image name="keyword.png" width="18" height="26"/>
+        <image name="mypage.png" width="22" height="22"/>
         <image name="recent.png" width="24" height="24"/>
     </resources>
 </document>
