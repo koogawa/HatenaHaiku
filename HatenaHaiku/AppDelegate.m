@@ -23,37 +23,6 @@
 {
     // 初期値を設定
     [self registerDefaults];
-/*
-    // 最新エントリー
-    RecentViewController *viewController1 = [[RecentViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:viewController1];
-    navigationController1.view.tag = UITabNameEntry;
-
-    // アルバム
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    AlbumViewController *viewController2 = [[AlbumViewController alloc] initWithCollectionViewLayout:flowLayout];
-    UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:viewController2];
-    navigationController2.view.tag = UITabNameAlbum;
-
-    // 投稿
-    PostViewController *postViewController = [PostViewController new];
-    UINavigationController *navigationController5 = [[UINavigationController alloc] initWithRootViewController:postViewController];
-    navigationController5.view.tag = UITabNamePost;
-
-    // キーワード
-    HotKeywordViewController *viewController3 = [[HotKeywordViewController alloc] initWithStyle:UITableViewStylePlain];
-    UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:viewController3];
-    navigationController3.view.tag = UITabNameKeyword;
-
-    // マイページ
-    MyPageViewController *viewController4 = [[MyPageViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:viewController4];
-    navigationController4.view.tag = UITabNameMyPage;
-    */
-//    self.tabBarController = [[UITabBarController alloc] init];
-//    self.tabBarController.delegate = self;
-//    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController5, navigationController3, navigationController4];
 
     // キャッシュディレクトリ削除（SDWebImageとか使ったほうが良さそう）
     [self clearCacheDirectory];
@@ -164,7 +133,7 @@
     navigationController.toolbar.tintColor = THEME_COLOR;
     
     // 一番上の階層に表示されているビューコントローラを探す
-    UIViewController *parentViewController = self.tabBarController;
+    UIViewController *parentViewController = self.window.rootViewController;
     while (parentViewController.presentedViewController != nil) {
         parentViewController = parentViewController.presentedViewController;
     }
@@ -185,7 +154,9 @@
             PostViewController *viewController = [[PostViewController alloc] initWithStyle:UITableViewStylePlain];
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
             navigationController.toolbar.tintColor = THEME_COLOR;
-            [self.tabBarController presentViewController:navigationController animated:YES completion:nil];
+            [self.window.rootViewController presentViewController:navigationController
+                                                         animated:YES
+                                                       completion:nil];
         }
         else {
             UIAlertView *alert =
