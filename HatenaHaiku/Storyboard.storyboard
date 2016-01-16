@@ -7,7 +7,7 @@
         <!--Haiku-->
         <scene sceneID="bmg-i4-2XS">
             <objects>
-                <viewController id="rhZ-tV-bxp" sceneMemberID="viewController">
+                <viewController id="rhZ-tV-bxp" customClass="PostViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FDU-OQ-kyb"/>
                         <viewControllerLayoutGuide type="bottom" id="taC-XQ-2hq"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Haiku" image="compose.png" id="AZF-Qb-EDc"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Haiku" image="compose.png" id="AZF-Qb-EDc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQB-Ut-AKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
