@@ -25,21 +25,22 @@
 
 @implementation BaseViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
         self.page = 1;
         self.statuses = [[NSMutableArray alloc] init];
     }
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.navigationController.navigationBar.tintColor = THEME_COLOR;
     
 	// 投稿ボタン配置

@@ -12,12 +12,13 @@
 
 @implementation MoreLoadTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:decoder];
     if (self) {
         self.moreLoadEnabled = YES;
     }
+
     return self;
 }
 
@@ -71,12 +72,6 @@
 - (void)stopMoreLoading
 {
     self.isLoading = NO;
-    
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDuration:0.3];
-//    self.tableView.contentInset = UIEdgeInsetsZero;
-//    [UIView commitAnimations];
     
     self.moreFooterView.hidden = YES;
     [self.moreSpinner stopAnimating];

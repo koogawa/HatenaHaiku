@@ -7,6 +7,7 @@
         <!--Item 2-->
         <scene sceneID="bmg-i4-2XS">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gQB-Ut-AKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="rhZ-tV-bxp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FDU-OQ-kyb"/>
@@ -19,13 +20,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="AZF-Qb-EDc"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gQB-Ut-AKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="489" y="255"/>
         </scene>
         <!--Recent View Controller-->
         <scene sceneID="04j-v6-Euv">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="66z-F5-0u5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="UMp-tO-VqZ" customClass="RecentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FYL-ll-w6w"/>
@@ -38,26 +39,54 @@
                     </view>
                     <navigationItem key="navigationItem" id="JPA-6i-h1L"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="66z-F5-0u5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1309" y="-406"/>
         </scene>
-        <!--Item-->
+        <!--最新エントリー-->
         <scene sceneID="gSG-D0-GwI">
             <objects>
                 <navigationController id="Aca-vg-PRn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="N0a-NR-399"/>
+                    <tabBarItem key="tabBarItem" title="最新エントリー" image="recent.png" id="N0a-NR-399"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b1N-S5-31g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="UMp-tO-VqZ" kind="relationship" relationship="rootViewController" id="jo6-zg-T5Z"/>
+                        <segue destination="lpO-HA-6lG" kind="relationship" relationship="rootViewController" id="3Qm-XX-UWi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r93-g5-Zqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="489" y="-1067"/>
+        </scene>
+        <!--最新エントリー-->
+        <scene sceneID="lIC-oq-UBt">
+            <objects>
+                <tableViewController id="lpO-HA-6lG" customClass="RecentViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OeT-Sb-oPP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hOh-J3-iBD">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hOh-J3-iBD" id="rqz-Mu-spa">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lpO-HA-6lG" id="T3q-no-I6p"/>
+                            <outlet property="delegate" destination="lpO-HA-6lG" id="EGD-M5-Xhc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="最新エントリー" id="KRO-c9-Z74"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gtf-XS-vBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1309" y="-1067"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="22v-B8-q2U">
@@ -86,10 +115,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.77254901960784317" green="0.50980392156862742" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="tSJ-A5-Pk9" kind="relationship" relationship="viewControllers" id="3of-rJ-5wV"/>
-                        <segue destination="rhZ-tV-bxp" kind="relationship" relationship="viewControllers" id="uAH-O4-ksp"/>
                         <segue destination="Aca-vg-PRn" kind="relationship" relationship="viewControllers" id="svE-in-4R3"/>
                     </connections>
                 </tabBarController>
@@ -98,4 +130,7 @@
             <point key="canvasLocation" x="-331" y="-75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="recent.png" width="24" height="24"/>
+    </resources>
 </document>

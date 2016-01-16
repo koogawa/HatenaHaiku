@@ -14,23 +14,21 @@
 
 @implementation RecentViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
         self.heightDic = [[NSMutableDictionary alloc] init];
-        self.tabBarItem.image = [UIImage imageNamed:@"recent.png"];
     }
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"最新エントリー";
-    
+
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
