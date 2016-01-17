@@ -27,6 +27,9 @@
     // キャッシュディレクトリ削除（SDWebImageとか使ったほうが良さそう）
     [self clearCacheDirectory];
 
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    tabBarController.delegate = self;
+
     return YES;
 }
 
@@ -147,7 +150,7 @@
 {
     LOG_CURRENT_METHOD;
     
-    if (viewController.view.tag == UITabNamePost)
+    if ([viewController isKindOfClass:[PostViewController class]])
     {
         if ([[AuthManager sharedManager] isAuthenticated])
         {

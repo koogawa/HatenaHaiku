@@ -17,14 +17,6 @@
     #import "NSString+URLEncoding.h"
 #endif
 
-typedef enum {
-	UITabNameEntry = 0,
-    UITabNameAlbum,
-	UITabNameKeyword,
-	UITabNameMyPage,
-    UITabNamePost
-} UITabName;
-
 #define CACHE_RETENTION_DAY     30
 #define CACHE_REMOVED_KEY       @"CACHE_REMOVED"
 
