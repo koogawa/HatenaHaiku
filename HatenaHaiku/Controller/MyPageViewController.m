@@ -35,14 +35,13 @@
 #define POST_ALERT_TAG      101
 #define LOGOUT_ALERT_TAG    102
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
-        self.title = @"マイページ";
-        self.tabBarItem.image = [UIImage imageNamed:@"mypage.png"];
     }
+
     return self;
 }
 
