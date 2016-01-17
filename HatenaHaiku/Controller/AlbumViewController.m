@@ -44,7 +44,7 @@
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
     // contentViewにcellのクラスを登録
-    [self.collectionView registerClass:[AlbumCollectionCell class] forCellWithReuseIdentifier:@"MY_CELL"];
+    [self.collectionView registerClass:[AlbumCollectionCell class] forCellWithReuseIdentifier:@"Cell"];
 
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
@@ -166,7 +166,7 @@
 // コレクションビューのセルを生成
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    AlbumCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
+    AlbumCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
     NSString *urlString = (self.statuses)[indexPath.item][@"text"];
     urlString = [[urlString componentsSeparatedByString:@"="] lastObject];
