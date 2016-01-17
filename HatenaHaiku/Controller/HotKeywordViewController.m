@@ -18,15 +18,14 @@
 
 @implementation HotKeywordViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
-        self.title = @"キーワード";
-        self.tabBarItem.image = [UIImage imageNamed:@"keyword.png"];
         self.keywords = [[NSMutableArray alloc] init];
     }
+
     return self;
 }
 
