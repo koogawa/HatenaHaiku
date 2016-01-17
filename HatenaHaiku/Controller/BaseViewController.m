@@ -419,7 +419,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // セクションごとに動きが異なる
     detailViewController.statusId = (indexPath.section == 0) ? (self.statuses)[indexPath.row][@"id"] : (self.replies)[indexPath.row][@"id"];
