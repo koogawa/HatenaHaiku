@@ -12,6 +12,16 @@
 
 @implementation MoreLoadTableViewController
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+        self.moreLoadEnabled = YES;
+    }
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self = [super initWithCoder:decoder];
