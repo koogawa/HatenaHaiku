@@ -113,14 +113,18 @@
         
         if ([jsonArray count] == 0)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"データがありません"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+            UIAlertController *alertController =
+            [UIAlertController alertControllerWithTitle:ERROR_TITLE
+                                                message:NO_DATA_MESSAGE
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:nil]];
+            [self presentViewController:alertController
+                               animated:YES
+                             completion:nil];
         }
-        
+
         // 結果取得
         if (self.page == 1)
         {
@@ -138,12 +142,16 @@
         [self.collectionView reloadData];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
-                                                        message:@"取得できませんでした"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Close"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:ERROR_TITLE
+                                            message:FETCH_ERROR_MESSAGE
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
 }

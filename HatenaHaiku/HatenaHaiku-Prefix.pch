@@ -22,7 +22,16 @@
 
 #define APP_SOURCE              @"はてなハイクアプリ for iPhone"
 
+#define ERROR_TITLE             @"エラー"
 #define NO_LOGIN_MESSAGE        @"ログインが確認できませんでした。ログインしてから再度お試しください。"
+#define NO_DATA_MESSAGE         @"データがありません。"
+#define FETCH_ERROR_MESSAGE     @"取得できませんでした。"
+
+#define OK_BUTTON_TITLE         @"OK"
+#define YES_BUTTON_TITLE        @"はい"
+#define NO_BUTTON_TITLE         @"いいえ"
+#define CANCEL_BUTTON_TITLE     @"キャンセル"
+#define LOGIN_BUTTON_TITLE      @"ログイン"
 
 #define STATUS_BAR_HEIGHT       20.0f
 #define NAVI_VAR_HEIGHT         44.0f

@@ -247,13 +247,6 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [SVProgressHUD showErrorWithStatus:@"認証の途中でエラーが発生しました"];
-//    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
-//                                                    message:@"認証の途中でエラーが発生しました"
-//                                                   delegate:nil
-//                                          cancelButtonTitle:nil
-//                                          otherButtonTitles:@"OK", nil];
-//    [alert show];
 }
 
 #pragma mark - UIWebView delegate

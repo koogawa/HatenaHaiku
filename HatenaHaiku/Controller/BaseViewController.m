@@ -119,13 +119,22 @@
         [self presentViewController:navigationController animated:YES completion:nil];
     }
     else {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                                          }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
     }
 }
 
@@ -165,13 +174,22 @@
     
     if (![[AuthManager sharedManager] isAuthenticated])
     {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                    }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
     
@@ -187,13 +205,22 @@
     
     if (![[AuthManager sharedManager] isAuthenticated])
     {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                    }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
 
@@ -438,25 +465,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %d", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case 0:
-        {
-            if (buttonIndex == 1)
-            {
-                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                [appDelegate showLoginView];
-            }
-            break;
-        }
-    }
-}
 
 #pragma mark - UIActionSheet delegate
 

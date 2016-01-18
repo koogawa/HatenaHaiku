@@ -17,8 +17,6 @@
 
 @implementation AppDelegate
 
-#define ALERT_LOGIN_TAG      101
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // 初期値を設定
@@ -129,6 +127,7 @@
     }
 }
 
+// TODO: AuthManager あたりにまとめたいなぁ
 - (void)showLoginView
 {
     LoginViewController *viewController = [[LoginViewController alloc] init];
@@ -162,43 +161,27 @@
                                                        completion:nil];
         }
         else {
-            UIAlertView *alert =
-            [[UIAlertView alloc] initWithTitle:nil
-                                       message:NO_LOGIN_MESSAGE
-                                      delegate:self
-                             cancelButtonTitle:@"キャンセル"
-                             otherButtonTitles:@"ログイン", nil];
-            alert.tag = ALERT_LOGIN_TAG;
-            [alert show];
+            UIAlertController *alertController =
+            [UIAlertController alertControllerWithTitle:nil
+                                                message:NO_LOGIN_MESSAGE
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:nil]];
+            [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action) {
+                                                                  [self showLoginView];
+            }]];
+            [self.window.rootViewController presentViewController:alertController
+                                                         animated:YES
+                                                       completion:nil];
         }
 
         return NO;
     }
     
     return YES;
-}
-
-
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %d", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case ALERT_LOGIN_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                [self showLoginView];
-            }
-            break;
-        }
-            
-        default:
-            break;
-    }
 }
 
 @end

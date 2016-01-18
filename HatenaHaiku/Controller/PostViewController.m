@@ -22,10 +22,6 @@
     HaikuManager *_haikuManager;
 }
 
-#define CANCEL_ALERT_TAG    101
-#define POST_ALERT_TAG      102
-#define PIN_ALERT_TAG       103
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -96,15 +92,22 @@
         [self dismissViewControllerAnimated:YES completion:nil];
         return;
     }
-    
-    UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:nil
-                               message:@"入力された内容は保存されません。\nよろしいですか？"
-                              delegate:self
-                     cancelButtonTitle:@"いいえ"
-                     otherButtonTitles:@"はい", nil];
-    alert.tag = CANCEL_ALERT_TAG;
-    [alert show];
+
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"入力された内容は保存されません。\nよろしいですか？"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_BUTTON_TITLE
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_BUTTON_TITLE
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                      }]];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)pinButtonAction
@@ -118,15 +121,23 @@
         [self.locationManager startUpdatingLocation];
         return;
     }
-    
-    UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:nil
-                               message:@"本文に位置情報を挿入します。\nよろしいですか？"
-                              delegate:self
-                     cancelButtonTitle:@"いいえ"
-                     otherButtonTitles:@"はい", nil];
-    [alert setTag:PIN_ALERT_TAG];
-    [alert show];
+
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"本文に位置情報を挿入します。\nよろしいですか？"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_BUTTON_TITLE
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_BUTTON_TITLE
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          // 現在地取得
+                                                          [self.locationManager startUpdatingLocation];
+                                                      }]];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)cameraButtonAction
@@ -174,15 +185,22 @@
         [self post];
         return;
     }
-    
-    UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:nil
-                               message:@"この内容で投稿します。\nよろしいですか？"
-                              delegate:self
-                     cancelButtonTitle:@"いいえ"
-                     otherButtonTitles:@"はい", nil];
-    alert.tag = POST_ALERT_TAG;
-    [alert show];
+
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"この内容で投稿します。\nよろしいですか？"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_BUTTON_TITLE
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_BUTTON_TITLE
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [self post];
+                                                      }]];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)removeAttachedImage
@@ -495,46 +513,6 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %d", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case CANCEL_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            break;
-        }
-            
-        case POST_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                [self post];
-            }
-            break;
-        }
-            
-        case PIN_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                // 現在地取得
-                [self.locationManager startUpdatingLocation];
-            }
-            break;
-        }
-            
-        default:
-            break;
-    }
-}
 
 #pragma mark - CLLocationManager delegate
 

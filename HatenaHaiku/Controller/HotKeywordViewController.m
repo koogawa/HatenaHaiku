@@ -91,13 +91,22 @@
         [self presentViewController:navigationController animated:YES completion:nil];
     }
     else {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                    }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
     }
 }
 
@@ -154,12 +163,16 @@
         [self.tableView reloadData];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
-                                                        message:@"取得できませんでした"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Close"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:ERROR_TITLE
+                                            message:FETCH_ERROR_MESSAGE
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
 }
@@ -187,12 +200,16 @@
         [self.searchDisplayController.searchResultsTableView reloadData];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
-                                                        message:@"取得できませんでした"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Close"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:ERROR_TITLE
+                                            message:FETCH_ERROR_MESSAGE
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
 }
@@ -304,25 +321,5 @@
     return NO;
 }
 */
-
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %d", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case 0:
-        {
-            if (buttonIndex == 1)
-            {
-                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                [appDelegate showLoginView];
-            }
-            break;
-        }
-    }
-}
 
 @end
