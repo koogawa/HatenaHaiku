@@ -146,26 +146,41 @@
 
     [self.bodyView resignFirstResponder];
     
-    UIActionSheet *sheet = [[UIActionSheet alloc] init];
-	sheet.delegate = self;
-    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+
     if (self.attachedImageView.image == nil)
     {
-        [sheet addButtonWithTitle:@"写真を撮る"];
-        [sheet addButtonWithTitle:@"ライブラリから選択する"];
-        [sheet addButtonWithTitle:@"キャンセル"];
-        
-        sheet.cancelButtonIndex = 2;
+        [alertController addAction:[UIAlertAction actionWithTitle:@"写真を撮る"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self showImagePickerControllerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"ライブラリから選択する"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self showImagePickerControllerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
     }
     else {
-        [sheet addButtonWithTitle:@"写真を取り消す"];
-        [sheet addButtonWithTitle:@"キャンセル"];
-        
-        sheet.destructiveButtonIndex = 0;
-        sheet.cancelButtonIndex = 1;
+        [alertController addAction:[UIAlertAction actionWithTitle:@"写真を取り消す"
+                                                            style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self removeAttachedImage];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
     }
     
-    [sheet showInView:self.view];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)sendButtonAction
@@ -201,6 +216,22 @@
     [self presentViewController:alertController
                        animated:YES
                      completion:nil];
+}
+
+- (void)showImagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    // 使用可能かどうかチェックする
+    if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        return;
+    }
+
+    // イメージピッカーを作る
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = sourceType;
+    imagePicker.delegate = self;
+
+    // イメージピッカーを表示する
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (void)removeAttachedImage
@@ -448,71 +479,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-//    [textField resignFirstResponder];
     return YES;
 }
-
-#pragma mark - UIActionSheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//    LOG(@"buttonIndex %d", buttonIndex);
-    
-    // ソースタイプを決定する
-    UIImagePickerControllerSourceType sourceType = 0;
-    
-    if (self.attachedImageView.image == nil)
-    {
-        switch (buttonIndex)
-        {
-            case 0:
-            {
-                sourceType = UIImagePickerControllerSourceTypeCamera;
-                break;
-            }
-            case 1:
-            {
-                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                break;
-            }
-            case 2:
-            {
-                return;
-                break;
-            }
-        }
-    }
-    else {
-        switch (buttonIndex)
-        {
-            case 0:
-            {
-                [self removeAttachedImage];
-                return;
-                break;
-            }
-            case 1:
-            {
-                return;
-                break;
-            }
-        }
-    }
-    
-    // 使用可能かどうかチェックする
-    if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
-        return;
-    }
-    
-    // イメージピッカーを作る
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = sourceType;
-    imagePicker.delegate = self;
-    
-    // イメージピッカーを表示する
-    [self presentViewController:imagePicker animated:YES completion:nil];
-}
-
 
 #pragma mark - CLLocationManager delegate
 
