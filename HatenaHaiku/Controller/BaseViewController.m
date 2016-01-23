@@ -154,16 +154,26 @@
         // タップされたセルの情報を記憶
         self.selectedStatusDic = (indexPath.section == 0) ? (self.statuses)[indexPath.row] : (self.replies)[indexPath.row];
 
-        UIActionSheet *sheet = [[UIActionSheet alloc] init];
-        sheet.delegate = self;
-        
-        [sheet addButtonWithTitle:@"スターをつける"];
-        [sheet addButtonWithTitle:@"返信"];
-        [sheet addButtonWithTitle:@"キャンセル"];
-        
-        sheet.cancelButtonIndex = 2;
-        
-        [sheet showInView:[self.view window]];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:nil
+                                            message:nil
+                                     preferredStyle:UIAlertControllerStyleActionSheet];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"スターをつける"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self addStarToStatusId:(self.selectedStatusDic)[@"id"]];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"返信"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self reply];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
     }
 }
 
@@ -462,40 +472,6 @@
     LOG_CURRENT_METHOD;
     
     // WebView がおかしくなることがあるので再描画
-    [self.tableView reloadData];
-}
-
-
-#pragma mark - UIActionSheet delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//    LOG(@"buttonIndex %d", buttonIndex);
-
-	if (buttonIndex == actionSheet.cancelButtonIndex)
-    {
-		LOG(@"pushed Cancel button.");
-	}
-    
-    switch (buttonIndex)
-    {
-        case 0: // Add star
-        {
-            [self addStarToStatusId:(self.selectedStatusDic)[@"id"]];
-            break;
-        }
-            
-        case 1: // Reply
-        {
-            [self reply];
-            break;
-        }
-            
-        default:
-            break;
-    }
-    
-    // WebViewが選択されたままなので再読み込み
     [self.tableView reloadData];
 }
 
