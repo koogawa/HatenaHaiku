@@ -403,8 +403,6 @@
                 case 1:
                 {
                     MyViewController *viewController = [[MyViewController alloc] initWithStyle:UITableViewStylePlain];
-//                    viewController.userId = [[AuthManager sharedManager] urlName];
-//                    viewController.userName = [[AuthManager sharedManager] displayName];
                     [self.navigationController pushViewController:viewController animated:YES];
                     break;
                 }

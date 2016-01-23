@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    self.title = [self.keyword stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    self.title = [self.keyword stringByRemovingPercentEncoding];
 
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;

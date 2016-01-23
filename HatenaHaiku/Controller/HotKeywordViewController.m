@@ -260,7 +260,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KeywordViewController *viewController = [[KeywordViewController alloc] initWithStyle:UITableViewStylePlain];
-    viewController.keyword = [(self.keywords)[indexPath.row][@"word"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    viewController.keyword = [(self.keywords)[indexPath.row][@"word"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
 ;
     [self.navigationController pushViewController:viewController animated:YES];
 }
