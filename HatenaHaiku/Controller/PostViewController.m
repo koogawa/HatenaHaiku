@@ -69,11 +69,6 @@
 
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
-
-    self.locationManager = [[CLLocationManager alloc] init];
-    [self.locationManager setDelegate:self];
-    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,12 +108,17 @@
 - (void)pinButtonAction
 {
     LOG_CURRENT_METHOD;
-    
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager setDelegate:self];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+
     // ダイアログを表示しない設定ならすぐさま実行
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CONFIG_DIALOG_LOCATION"])
     {
         // 現在地取得
-        [self.locationManager startUpdatingLocation];
+        [self.locationManager requestLocation];
         return;
     }
 
@@ -133,7 +133,7 @@
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
                                                           // 現在地取得
-                                                          [self.locationManager startUpdatingLocation];
+                                                          [self.locationManager requestLocation];
                                                       }]];
     [self presentViewController:alertController
                        animated:YES
@@ -492,14 +492,17 @@
     }
 }
 
-// 位置が更新されたら呼ばれる
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-		   fromLocation:(CLLocation *)oldLocation
+// 位置が更新されたら一度だけ呼ばれる
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     LOG_CURRENT_METHOD;
-    
-    [self.locationManager stopUpdatingLocation];
+
+    if (locations.count == 0) {
+        [SVProgressHUD showErrorWithStatus:@"位置情報を取得できませんでした"];
+        return;
+    }
+
+    CLLocation *newLocation = locations[0];
     
     // map記法を生成
     NSString *mapString = [NSString stringWithFormat:@"map:%f:%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude];
