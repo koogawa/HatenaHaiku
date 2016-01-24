@@ -506,6 +506,7 @@
     else {
         // アプリ内ブラウザで開く
         SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+        safariViewController.view.tintColor = THEME_COLOR;
         [self presentViewController:safariViewController animated:YES completion:nil];
     }
 }
