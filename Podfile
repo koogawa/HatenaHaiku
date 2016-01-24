@@ -1,1 +1,1 @@
-pod 'SVProgressHUD'
+pod 'SVProgressHUD', :head
