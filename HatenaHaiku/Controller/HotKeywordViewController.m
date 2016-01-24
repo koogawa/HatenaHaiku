@@ -261,7 +261,6 @@
 {
     KeywordViewController *viewController = [[KeywordViewController alloc] initWithStyle:UITableViewStylePlain];
     viewController.keyword = [(self.keywords)[indexPath.row][@"word"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
-;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
