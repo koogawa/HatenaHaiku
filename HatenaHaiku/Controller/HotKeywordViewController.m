@@ -13,7 +13,7 @@
 #import "AuthManager.h"
 
 @interface HotKeywordViewController ()
-
+@property (strong, nonatomic) UISearchController *searchController;
 @end
 
 @implementation HotKeywordViewController
@@ -33,6 +33,9 @@
 {
     [super viewDidLoad];
 
+    // YESにしないと検索結果から遷移しても検索バーが残ってしまう
+    self.definesPresentationContext = YES;
+    
     self.navigationController.navigationBar.tintColor = THEME_COLOR;
     
     // 投稿ボタン配置
@@ -48,18 +51,18 @@
     attributes[NSForegroundColorAttributeName] = [UIColor whiteColor];
     [refreshControl addTarget:self action:@selector(refreshOccured:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
-    
-    UISearchBar *searchBar = [[UISearchBar alloc] init];
-    searchBar.delegate = self;
-    searchBar.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, 0);
-    searchBar.tintColor = THEME_COLOR;
-    [searchBar sizeToFit];
-    self.tableView.tableHeaderView = searchBar;
 
-    self.searchDisplay = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
-    self.searchDisplay.delegate = self;
-    self.searchDisplay.searchResultsDataSource = self;
-    self.searchDisplay.searchResultsDelegate = self;
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    searchController.delegate = self;
+    searchController.searchResultsUpdater = self;
+    searchController.hidesNavigationBarDuringPresentation = NO;
+    searchController.dimsBackgroundDuringPresentation = NO;
+    searchController.searchBar.searchBarStyle = UISearchBarStyleProminent;
+    searchController.searchBar.delegate = self;
+    searchController.searchBar.tintColor = THEME_COLOR;
+    [searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = searchController.searchBar;
+    self.searchController = searchController;
 
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
@@ -113,8 +116,13 @@
 - (void)refreshOccured:(id)sender
 {
     LOG_CURRENT_METHOD;
-    
-    [self fetchHotKeywords];
+
+    if (self.searchController.active) {
+        [self searchKeywordsWithKeyword:self.searchController.searchBar.text];
+    }
+    else {
+        [self fetchHotKeywords];
+    }
 }
 
 // ホットキーワード一覧を取得
@@ -132,7 +140,11 @@
 - (void)searchKeywordsWithKeyword:(NSString *)keyword
 {
     LOG_CURRENT_METHOD;
-    
+
+    if (!keyword.length) {
+        return;
+    }
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [SVProgressHUD show];
     
@@ -197,7 +209,7 @@
         [self.keywords removeAllObjects];
         self.keywords = [NSMutableArray arrayWithArray:jsonArray];
         
-        [self.searchDisplayController.searchResultsTableView reloadData];
+        [self.tableView reloadData];
     }
     else {
         UIAlertController *alertController =
@@ -265,15 +277,20 @@
 }
 
 
+#pragma mark - UISearchResultsUpdating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    // UISearchController に何かするたびに呼ばれるっぽい
+}
+
 #pragma mark - UISearchBar delegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     LOG_CURRENT_METHOD;
     LOG(@"searchString = %@", searchBar.text);
-    
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    
+
     if (![searchBar.text length]) {
         return;
     }
@@ -282,10 +299,10 @@
     [self searchKeywordsWithKeyword:searchBar.text];
 }
 
-#pragma mark - UISearchDisplayController Delegate
+#pragma mark - UISearchController Delegate
 
-// 検索モード開始時（検索バーがタップされたとき）に呼ばれる
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+// 検索モード開始時（検索バーにフォーカスが当たった時）に呼ばれる
+- (void)willPresentSearchController:(UISearchController *)searchController
 {
     LOG_CURRENT_METHOD;
     
@@ -294,31 +311,14 @@
 }
 
 // 検索モード完了時（キャンセルボタンが押されたとき）に呼ばれる
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+- (void)willDismissSearchController:(UISearchController *)searchController
 {
     LOG_CURRENT_METHOD;
     
     // 非検索モードのリストを復帰
     self.keywords = [NSMutableArray arrayWithArray:self.tmpKeywords];
-}
 
-// 何か入力される度に呼ばれる
-/*
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    LOG(@"searchString = %@", searchString);
-    
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    
-    if (![searchString length]) {
-        return NO;
-    }
-    
-    // 2秒後に検索
-    [self performSelector:@selector(searchKeywordsWithKeyword:) withObject:searchString afterDelay:2.0];
-    
-    return NO;
+    [self.tableView reloadData];
 }
-*/
 
 @end
