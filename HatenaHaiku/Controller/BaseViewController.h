@@ -13,7 +13,7 @@
 @import SafariServices;
 
 // TODO:BaseViewControllerとMoreLoadTableViewControllerを統合して BaseTableViewController
-@interface BaseViewController : MoreLoadTableViewController <UIActionSheetDelegate, StatusTableViewCellDelegate, HaikuManagerDelegate>
+@interface BaseViewController : MoreLoadTableViewController <StatusTableViewCellDelegate, HaikuManagerDelegate>
 {
     HaikuManager *_haikuManager;
 }

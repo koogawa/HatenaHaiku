@@ -30,16 +30,32 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.page = 1;
-        self.statuses = [[NSMutableArray alloc] init];
+        [self commonInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        // Custom initialization
+        [self commonInit];
+    }
+
+    return self;
+}
+
+- (void)commonInit
+{
+    self.page = 1;
+    self.statuses = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.navigationController.navigationBar.tintColor = THEME_COLOR;
     
 	// 投稿ボタン配置
@@ -103,13 +119,22 @@
         [self presentViewController:navigationController animated:YES completion:nil];
     }
     else {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                                          }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
     }
 }
 
@@ -129,16 +154,26 @@
         // タップされたセルの情報を記憶
         self.selectedStatusDic = (indexPath.section == 0) ? (self.statuses)[indexPath.row] : (self.replies)[indexPath.row];
 
-        UIActionSheet *sheet = [[UIActionSheet alloc] init];
-        sheet.delegate = self;
-        
-        [sheet addButtonWithTitle:@"スターをつける"];
-        [sheet addButtonWithTitle:@"返信"];
-        [sheet addButtonWithTitle:@"キャンセル"];
-        
-        sheet.cancelButtonIndex = 2;
-        
-        [sheet showInView:[self.view window]];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:nil
+                                            message:nil
+                                     preferredStyle:UIAlertControllerStyleActionSheet];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"スターをつける"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self addStarToStatusId:(self.selectedStatusDic)[@"id"]];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"返信"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self reply];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
     }
 }
 
@@ -149,13 +184,22 @@
     
     if (![[AuthManager sharedManager] isAuthenticated])
     {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                    }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
     
@@ -171,13 +215,22 @@
     
     if (![[AuthManager sharedManager] isAuthenticated])
     {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                    }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
 
@@ -422,59 +475,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %d", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case 0:
-        {
-            if (buttonIndex == 1)
-            {
-                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                [appDelegate showLoginView];
-            }
-            break;
-        }
-    }
-}
-
-#pragma mark - UIActionSheet delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//    LOG(@"buttonIndex %d", buttonIndex);
-
-	if (buttonIndex == actionSheet.cancelButtonIndex)
-    {
-		LOG(@"pushed Cancel button.");
-	}
-    
-    switch (buttonIndex)
-    {
-        case 0: // Add star
-        {
-            [self addStarToStatusId:(self.selectedStatusDic)[@"id"]];
-            break;
-        }
-            
-        case 1: // Reply
-        {
-            [self reply];
-            break;
-        }
-            
-        default:
-            break;
-    }
-    
-    // WebViewが選択されたままなので再読み込み
-    [self.tableView reloadData];
-}
-
 #pragma mark - StatusTableViewCellDelegate
 
 -(void)statusViewCell:(StatusTableViewCell *)cell linkDidTap:(NSURL *)url
@@ -506,6 +506,7 @@
     else {
         // アプリ内ブラウザで開く
         SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+        safariViewController.view.tintColor = THEME_COLOR;
         [self presentViewController:safariViewController animated:YES completion:nil];
     }
 }

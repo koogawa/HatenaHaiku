@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "HaikuManager.h"
 
-@interface PostViewController : UITableViewController <UITextFieldDelegate, UIActionSheetDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, HaikuManagerDelegate>
+@interface PostViewController : UITableViewController <UITextFieldDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, HaikuManagerDelegate>
 
 @property (nonatomic, retain) NSDictionary  *option;
 @property (nonatomic, retain) UITextField   *keywordField;

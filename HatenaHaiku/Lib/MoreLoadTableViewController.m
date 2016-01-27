@@ -16,8 +16,19 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        // Custom initialization
         self.moreLoadEnabled = YES;
     }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self) {
+        self.moreLoadEnabled = YES;
+    }
+
     return self;
 }
 
@@ -71,12 +82,6 @@
 - (void)stopMoreLoading
 {
     self.isLoading = NO;
-    
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDuration:0.3];
-//    self.tableView.contentInset = UIEdgeInsetsZero;
-//    [UIView commitAnimations];
     
     self.moreFooterView.hidden = YES;
     [self.moreSpinner stopAnimating];

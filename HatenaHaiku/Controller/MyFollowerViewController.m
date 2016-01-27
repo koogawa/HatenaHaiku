@@ -138,14 +138,18 @@
     
     if ([jsonArray count] == 0)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"これ以上データがありません"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:ERROR_TITLE
+                                            message:NO_DATA_MESSAGE
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
     }
-    
+
     // 結果取得
     if (self.page == 1)
     {
