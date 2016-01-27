@@ -22,10 +22,6 @@
     HaikuManager *_haikuManager;
 }
 
-#define CANCEL_ALERT_TAG    101
-#define POST_ALERT_TAG      102
-#define PIN_ALERT_TAG       103
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -73,11 +69,6 @@
 
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
-
-    self.locationManager = [[CLLocationManager alloc] init];
-    [self.locationManager setDelegate:self];
-    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,37 +87,57 @@
         [self dismissViewControllerAnimated:YES completion:nil];
         return;
     }
-    
-    UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:nil
-                               message:@"入力された内容は保存されません。\nよろしいですか？"
-                              delegate:self
-                     cancelButtonTitle:@"いいえ"
-                     otherButtonTitles:@"はい", nil];
-    alert.tag = CANCEL_ALERT_TAG;
-    [alert show];
+
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"入力された内容は保存されません。\nよろしいですか？"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_BUTTON_TITLE
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_BUTTON_TITLE
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                      }]];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)pinButtonAction
 {
     LOG_CURRENT_METHOD;
-    
+
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager setDelegate:self];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+
     // ダイアログを表示しない設定ならすぐさま実行
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"CONFIG_DIALOG_LOCATION"])
     {
         // 現在地取得
-        [self.locationManager startUpdatingLocation];
+        [self.locationManager requestLocation];
         return;
     }
-    
-    UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:nil
-                               message:@"本文に位置情報を挿入します。\nよろしいですか？"
-                              delegate:self
-                     cancelButtonTitle:@"いいえ"
-                     otherButtonTitles:@"はい", nil];
-    [alert setTag:PIN_ALERT_TAG];
-    [alert show];
+
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"本文に位置情報を挿入します。\nよろしいですか？"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_BUTTON_TITLE
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_BUTTON_TITLE
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          // 現在地取得
+                                                          [self.locationManager requestLocation];
+                                                      }]];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)cameraButtonAction
@@ -135,26 +146,41 @@
 
     [self.bodyView resignFirstResponder];
     
-    UIActionSheet *sheet = [[UIActionSheet alloc] init];
-	sheet.delegate = self;
-    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+
     if (self.attachedImageView.image == nil)
     {
-        [sheet addButtonWithTitle:@"写真を撮る"];
-        [sheet addButtonWithTitle:@"ライブラリから選択する"];
-        [sheet addButtonWithTitle:@"キャンセル"];
-        
-        sheet.cancelButtonIndex = 2;
+        [alertController addAction:[UIAlertAction actionWithTitle:@"写真を撮る"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self showImagePickerControllerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"ライブラリから選択する"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self showImagePickerControllerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
     }
     else {
-        [sheet addButtonWithTitle:@"写真を取り消す"];
-        [sheet addButtonWithTitle:@"キャンセル"];
-        
-        sheet.destructiveButtonIndex = 0;
-        sheet.cancelButtonIndex = 1;
+        [alertController addAction:[UIAlertAction actionWithTitle:@"写真を取り消す"
+                                                            style:UIAlertActionStyleDestructive
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self removeAttachedImage];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
     }
     
-    [sheet showInView:self.view];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 - (void)sendButtonAction
@@ -174,15 +200,38 @@
         [self post];
         return;
     }
-    
-    UIAlertView *alert =
-    [[UIAlertView alloc] initWithTitle:nil
-                               message:@"この内容で投稿します。\nよろしいですか？"
-                              delegate:self
-                     cancelButtonTitle:@"いいえ"
-                     otherButtonTitles:@"はい", nil];
-    alert.tag = POST_ALERT_TAG;
-    [alert show];
+
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:@"この内容で投稿します。\nよろしいですか？"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_BUTTON_TITLE
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_BUTTON_TITLE
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [self post];
+                                                      }]];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
+}
+
+- (void)showImagePickerControllerWithSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    // 使用可能かどうかチェックする
+    if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        return;
+    }
+
+    // イメージピッカーを作る
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = sourceType;
+    imagePicker.delegate = self;
+
+    // イメージピッカーを表示する
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (void)removeAttachedImage
@@ -430,110 +479,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-//    [textField resignFirstResponder];
     return YES;
-}
-
-#pragma mark - UIActionSheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//    LOG(@"buttonIndex %d", buttonIndex);
-    
-    // ソースタイプを決定する
-    UIImagePickerControllerSourceType sourceType = 0;
-    
-    if (self.attachedImageView.image == nil)
-    {
-        switch (buttonIndex)
-        {
-            case 0:
-            {
-                sourceType = UIImagePickerControllerSourceTypeCamera;
-                break;
-            }
-            case 1:
-            {
-                sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                break;
-            }
-            case 2:
-            {
-                return;
-                break;
-            }
-        }
-    }
-    else {
-        switch (buttonIndex)
-        {
-            case 0:
-            {
-                [self removeAttachedImage];
-                return;
-                break;
-            }
-            case 1:
-            {
-                return;
-                break;
-            }
-        }
-    }
-    
-    // 使用可能かどうかチェックする
-    if (![UIImagePickerController isSourceTypeAvailable:sourceType]) {
-        return;
-    }
-    
-    // イメージピッカーを作る
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = sourceType;
-    imagePicker.delegate = self;
-    
-    // イメージピッカーを表示する
-    [self presentViewController:imagePicker animated:YES completion:nil];
-}
-
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %d", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case CANCEL_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            break;
-        }
-            
-        case POST_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                [self post];
-            }
-            break;
-        }
-            
-        case PIN_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                // 現在地取得
-                [self.locationManager startUpdatingLocation];
-            }
-            break;
-        }
-            
-        default:
-            break;
-    }
 }
 
 #pragma mark - CLLocationManager delegate
@@ -546,14 +492,17 @@
     }
 }
 
-// 位置が更新されたら呼ばれる
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-		   fromLocation:(CLLocation *)oldLocation
+// 位置が更新されたら一度だけ呼ばれる
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     LOG_CURRENT_METHOD;
-    
-    [self.locationManager stopUpdatingLocation];
+
+    if (locations.count == 0) {
+        [SVProgressHUD showErrorWithStatus:@"位置情報を取得できませんでした"];
+        return;
+    }
+
+    CLLocation *newLocation = locations[0];
     
     // map記法を生成
     NSString *mapString = [NSString stringWithFormat:@"map:%f:%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude];

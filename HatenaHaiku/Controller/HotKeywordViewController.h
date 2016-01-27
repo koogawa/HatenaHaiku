@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "HaikuManager.h"
 
-@interface HotKeywordViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, HaikuManagerDelegate>
+@interface HotKeywordViewController : UITableViewController <UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate, HaikuManagerDelegate>
 {
     HaikuManager *_haikuManager;
 }
 
-@property (nonatomic, retain) UISearchDisplayController *searchDisplay;
-@property (nonatomic, retain) NSMutableArray            *keywords;
-@property (nonatomic, retain) NSMutableArray            *tmpKeywords;
+@property (nonatomic, retain) NSMutableArray    *keywords;
+@property (nonatomic, retain) NSMutableArray    *tmpKeywords;
 
 @end

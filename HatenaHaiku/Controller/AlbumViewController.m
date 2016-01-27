@@ -18,16 +18,15 @@
 
 #define MORE_FOOTER_HEIGHT          52.0f
 
-- (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithCollectionViewLayout:layout];
+    self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
-        self.title = @"アルバム";
-        self.tabBarItem.image = [UIImage imageNamed:@"album.png"];
         self.page = 1;
         self.statuses = [[NSMutableArray alloc] init];
     }
+
     return self;
 }
 
@@ -45,7 +44,7 @@
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
     // contentViewにcellのクラスを登録
-    [self.collectionView registerClass:[AlbumCollectionCell class] forCellWithReuseIdentifier:@"MY_CELL"];
+    [self.collectionView registerClass:[AlbumCollectionCell class] forCellWithReuseIdentifier:@"Cell"];
 
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
@@ -114,14 +113,18 @@
         
         if ([jsonArray count] == 0)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"データがありません"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+            UIAlertController *alertController =
+            [UIAlertController alertControllerWithTitle:ERROR_TITLE
+                                                message:NO_DATA_MESSAGE
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:nil]];
+            [self presentViewController:alertController
+                               animated:YES
+                             completion:nil];
         }
-        
+
         // 結果取得
         if (self.page == 1)
         {
@@ -139,12 +142,16 @@
         [self.collectionView reloadData];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
-                                                        message:@"取得できませんでした"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Close"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alertController =
+        [UIAlertController alertControllerWithTitle:ERROR_TITLE
+                                            message:FETCH_ERROR_MESSAGE
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
 }
@@ -167,7 +174,7 @@
 // コレクションビューのセルを生成
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    AlbumCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
+    AlbumCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
     NSString *urlString = (self.statuses)[indexPath.item][@"text"];
     urlString = [[urlString componentsSeparatedByString:@"="] lastObject];

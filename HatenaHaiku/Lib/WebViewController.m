@@ -201,49 +201,40 @@
 
 - (void)actionButtonAction
 {
-	UIActionSheet* sheet = [[UIActionSheet alloc] init];
-	sheet.delegate = self;
-	[sheet addButtonWithTitle:@"Safari で開く"];
-	[sheet addButtonWithTitle:@"キャンセル"];
-	sheet.cancelButtonIndex = 1;
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-		// for iPhone
-		[sheet showInView:[self.view window]];
-	} else {
-		// for iPad
-		[sheet showInView:self.view];
-	}
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message:nil
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Safari で開く"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [[UIApplication sharedApplication] openURL:self.url];
+                                                      }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
 }
 
 
 #pragma mark -
 #pragma mark UIWebView delegate
 
-- (void)webViewDidStartLoad:(UIWebView*)webView {
-	[self updateControlEnabled];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView*)webView {
-	[self updateControlEnabled];
-}
-
-- (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
-	[self updateControlEnabled];
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheet delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)webViewDidStartLoad:(UIWebView *)webView
 {
-	if (buttonIndex == actionSheet.cancelButtonIndex)
-    {
-		LOG(@"pushed Cancel button.");
-	}
-    else {
-		[[UIApplication sharedApplication] openURL:self.url];
-	}
+	[self updateControlEnabled];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+	[self updateControlEnabled];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+	[self updateControlEnabled];
 }
 
 @end

@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate>
+@interface WebViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, retain) UIWebView			*webView;
 @property (nonatomic, retain) UIBarButtonItem	*reloadButton;
