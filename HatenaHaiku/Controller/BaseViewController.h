@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MoreLoadTableViewController.h"
-#import "WebViewController.h"
 #import "StatusTableViewCell.h"
 #import "HaikuManager.h"
+@import SafariServices;
 
 // TODO:BaseViewControllerとMoreLoadTableViewControllerを統合して BaseTableViewController
-@interface BaseViewController : MoreLoadTableViewController <UIActionSheetDelegate, StatusTableViewCellDelegate, HaikuManagerDelegate>
+@interface BaseViewController : MoreLoadTableViewController <StatusTableViewCellDelegate, HaikuManagerDelegate>
 {
     HaikuManager *_haikuManager;
 }

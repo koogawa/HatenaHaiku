@@ -32,17 +32,13 @@
     HaikuManager *_haikuManager;
 }
 
-#define POST_ALERT_TAG      101
-#define LOGOUT_ALERT_TAG    102
-
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    self = [super initWithStyle:style];
+    self = [super initWithCoder:decoder];
     if (self) {
         // Custom initialization
-        self.title = @"マイページ";
-        self.tabBarItem.image = [UIImage imageNamed:@"mypage.png"];
     }
+
     return self;
 }
 
@@ -176,14 +172,22 @@
         [self presentViewController:navigationController animated:YES completion:nil];
     }
     else {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        alert.tag = POST_ALERT_TAG;
-        [alert show];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                    }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
     }
 }
 
@@ -364,15 +368,22 @@
 {
     if (![[AuthManager sharedManager] isAuthenticated])
     {
-        UIAlertView *alert =
-        [[UIAlertView alloc] initWithTitle:nil
-                                   message:NO_LOGIN_MESSAGE
-                                  delegate:self
-                         cancelButtonTitle:@"キャンセル"
-                         otherButtonTitles:@"ログイン", nil];
-        alert.tag = POST_ALERT_TAG;
-        [alert show];
-        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:NO_LOGIN_MESSAGE
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:LOGIN_BUTTON_TITLE
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action)
+                                    {
+                                        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                                        [appDelegate showLoginView];
+                                    }]];
+        [self presentViewController:alertController
+                           animated:YES
+                         completion:nil];
         return;
     }
 
@@ -392,8 +403,6 @@
                 case 1:
                 {
                     MyViewController *viewController = [[MyViewController alloc] initWithStyle:UITableViewStylePlain];
-//                    viewController.userId = [[AuthManager sharedManager] urlName];
-//                    viewController.userName = [[AuthManager sharedManager] displayName];
                     [self.navigationController pushViewController:viewController animated:YES];
                     break;
                 }
@@ -434,29 +443,6 @@
                     break;
             }
             
-            break;
-        }
-            
-        default:
-            break;
-    }
-}
-
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %ld", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case POST_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                [appDelegate showLoginView];
-            }
             break;
         }
             

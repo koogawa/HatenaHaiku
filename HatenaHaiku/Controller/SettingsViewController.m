@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "SettingsCountViewController.h"
 #import "KeywordViewController.h"
+#import "WebViewController.h"
 #import "AuthManager.h"
 
 @interface SettingsViewController ()
@@ -16,8 +17,6 @@
 @end
 
 @implementation SettingsViewController
-
-#define LOGOUT_ALERT_TAG    101
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,7 +47,7 @@
 	label.font = [UIFont systemFontOfSize:14];
 	label.adjustsFontSizeToFitWidth = YES;
 	label.numberOfLines = 1;
-	label.text = @"(c) 2013 koogawa";
+	label.text = @"(c) 2013 - 2016 @koogawa";
 	[tableFooterView addSubview:label];
     self.tableView.tableFooterView = tableFooterView;
 }
@@ -96,6 +95,24 @@
 	[defaults setBool:sender.on forKey:@"CONFIG_DIALOG_CANCEL"];
     [defaults synchronize];
 }
+
+- (void)logout
+{
+    // 自動で再ログインされてしまうのを防ぐため
+    NSHTTPCookieStorage *cookieStrage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (id obj in [cookieStrage cookies]) {
+        [cookieStrage deleteCookie:obj];
+    }
+
+    // トークン解除
+    [[AuthManager sharedManager] clearAccessToken];
+
+    [SVProgressHUD showSuccessWithStatus:@"ログアウト完了"];
+
+    // ログアウトセルを削除
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - Table view data source
 
@@ -392,14 +409,22 @@
                 case 0:
                 {
                     // ログアウト
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                    message:@"ログアウトしますか？"
-                                                                   delegate:self
-                                                          cancelButtonTitle:@"キャンセル"
-                                                          otherButtonTitles:@"OK", nil];
-                    alert.tag = LOGOUT_ALERT_TAG;
-                    [alert show];
-                    
+                    UIAlertController *alertController =
+                    [UIAlertController alertControllerWithTitle:nil
+                                                        message:@"ログアウトしますか？"
+                                                 preferredStyle:UIAlertControllerStyleAlert];
+                    [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_BUTTON_TITLE
+                                                                        style:UIAlertActionStyleCancel
+                                                                      handler:nil]];
+                    [alertController addAction:[UIAlertAction actionWithTitle:OK_BUTTON_TITLE
+                                                                        style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction *action) {
+                                                                          [self logout];
+                                                                      }]];
+                    [self presentViewController:alertController
+                                       animated:YES
+                                     completion:nil];
+
                     break;
                 }
                     
@@ -407,40 +432,6 @@
                     break;
             }
             
-            break;
-        }
-            
-        default:
-            break;
-    }
-}
-
-#pragma mark - UIAlertView delegate
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//	LOG(@"buttonIndex = %d", buttonIndex);
-    
-    switch (alertView.tag)
-    {
-        case LOGOUT_ALERT_TAG:
-        {
-            if (buttonIndex == 1)
-            {
-                // 自動で再ログインされてしまうのを防ぐため
-                NSHTTPCookieStorage *cookieStrage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-                for (id obj in [cookieStrage cookies]) {
-                    [cookieStrage deleteCookie:obj];
-                }
-                
-                // トークン解除
-                [[AuthManager sharedManager] clearAccessToken];
-                
-                [SVProgressHUD showSuccessWithStatus:@"ログアウト完了"];
-                
-                // ログアウトセルを削除
-                [self.tableView reloadData];
-            }
             break;
         }
             

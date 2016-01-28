@@ -225,13 +225,13 @@
     {
         NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         self.accessToken = [self.accessToken initWithHTTPResponseBody:responseBody];
-        LOG(@"access_token %@, secret %@, url_name %@, display_name %@", self.accessToken.key, self.accessToken.secret, self.accessToken.urlName, [self.accessToken.displayName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+        LOG(@"access_token %@, secret %@, url_name %@, display_name %@", self.accessToken.key, self.accessToken.secret, self.accessToken.urlName, [self.accessToken.displayName stringByRemovingPercentEncoding]);
         
         // 取得できた値を保存
         [[AuthManager sharedManager] setAccessToken:self.accessToken.key];
         [[AuthManager sharedManager] setAccessTokenSecret:self.accessToken.secret];
         [[AuthManager sharedManager] setUrlName:self.accessToken.urlName];
-        [[AuthManager sharedManager] setDisplayName:[self.accessToken.displayName stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [[AuthManager sharedManager] setDisplayName:[self.accessToken.displayName stringByRemovingPercentEncoding]];
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -247,13 +247,6 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [SVProgressHUD showErrorWithStatus:@"認証の途中でエラーが発生しました"];
-//    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー"
-//                                                    message:@"認証の途中でエラーが発生しました"
-//                                                   delegate:nil
-//                                          cancelButtonTitle:nil
-//                                          otherButtonTitles:@"OK", nil];
-//    [alert show];
 }
 
 #pragma mark - UIWebView delegate
