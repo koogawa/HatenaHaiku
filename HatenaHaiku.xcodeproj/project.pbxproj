@@ -60,6 +60,7 @@
 		2150D5AC16C2998E00F67D7B /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2150D5AA16C2998E00F67D7B /* gear@2x.png */; };
 		2150D5AF16C29EE900F67D7B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2150D5AE16C29EE900F67D7B /* SettingsViewController.m */; };
 		2150D5B216C39D0700F67D7B /* SettingsCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2150D5B116C39D0700F67D7B /* SettingsCountViewController.m */; };
+		216200661C5CC2760077AD8A /* HatenaHaikuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 216200651C5CC2760077AD8A /* HatenaHaikuTests.m */; };
 		2164A41716B9643700BFA710 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2164A41616B9643700BFA710 /* MyViewController.m */; };
 		2164A44916BCB4B400BFA710 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 2164A44816BCB4B400BFA710 /* lisence.html */; };
 		216EA2951BF0C4F200D2FFEB /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 216EA2931BF0C4F200D2FFEB /* compose.png */; };
@@ -91,6 +92,16 @@
 		21EFC12B167BB90F0012EB34 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EFC129167BB90F0012EB34 /* star.png */; };
 		337B542C3FAAAEFFB1D4F591 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8629BCF5D78FB6D9064544 /* libPods.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		216200681C5CC2760077AD8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2183E55C16646D95003C35E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2183E56416646D95003C35E0;
+			remoteInfo = HatenaHaiku;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0E4C4E00F7FA646FEDA66538 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +195,9 @@
 		2150D5AE16C29EE900F67D7B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Controller/SettingsViewController.m; sourceTree = "<group>"; };
 		2150D5B016C39D0600F67D7B /* SettingsCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsCountViewController.h; path = Controller/SettingsCountViewController.h; sourceTree = "<group>"; };
 		2150D5B116C39D0700F67D7B /* SettingsCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsCountViewController.m; path = Controller/SettingsCountViewController.m; sourceTree = "<group>"; };
+		216200631C5CC2760077AD8A /* HatenaHaikuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HatenaHaikuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		216200651C5CC2760077AD8A /* HatenaHaikuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HatenaHaikuTests.m; sourceTree = "<group>"; };
+		216200671C5CC2760077AD8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2164A41516B9643700BFA710 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MyViewController.h; path = Controller/MyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2164A41616B9643700BFA710 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MyViewController.m; path = Controller/MyViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2164A44816BCB4B400BFA710 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = lisence.html; path = html/lisence.html; sourceTree = "<group>"; };
@@ -235,6 +249,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		216200601C5CC2760077AD8A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2183E56216646D95003C35E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -330,6 +351,15 @@
 			path = Crypto;
 			sourceTree = "<group>";
 		};
+		216200641C5CC2760077AD8A /* HatenaHaikuTests */ = {
+			isa = PBXGroup;
+			children = (
+				216200651C5CC2760077AD8A /* HatenaHaikuTests.m */,
+				216200671C5CC2760077AD8A /* Info.plist */,
+			);
+			path = HatenaHaikuTests;
+			sourceTree = "<group>";
+		};
 		2164A44716BCB49D00BFA710 /* html */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				2183E56F16646D95003C35E0 /* HatenaHaiku */,
+				216200641C5CC2760077AD8A /* HatenaHaikuTests */,
 				2183E56816646D95003C35E0 /* Frameworks */,
 				2183E56616646D95003C35E0 /* Products */,
 				7FF4330A499447B55477DAD3 /* Pods */,
@@ -352,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				2183E56516646D95003C35E0 /* HatenaHaiku.app */,
+				216200631C5CC2760077AD8A /* HatenaHaikuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -512,6 +544,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		216200621C5CC2760077AD8A /* HatenaHaikuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2162006C1C5CC2760077AD8A /* Build configuration list for PBXNativeTarget "HatenaHaikuTests" */;
+			buildPhases = (
+				2162005F1C5CC2760077AD8A /* Sources */,
+				216200601C5CC2760077AD8A /* Frameworks */,
+				216200611C5CC2760077AD8A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				216200691C5CC2760077AD8A /* PBXTargetDependency */,
+			);
+			name = HatenaHaikuTests;
+			productName = HatenaHaikuTests;
+			productReference = 216200631C5CC2760077AD8A /* HatenaHaikuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2183E56416646D95003C35E0 /* HatenaHaiku */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2183E59716646D96003C35E0 /* Build configuration list for PBXNativeTarget "HatenaHaiku" */;
@@ -540,6 +590,10 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Kosuke Ogawa";
 				TargetAttributes = {
+					216200621C5CC2760077AD8A = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 2183E56416646D95003C35E0;
+					};
 					2183E56416646D95003C35E0 = {
 						DevelopmentTeam = 4SA8237VUA;
 					};
@@ -559,11 +613,19 @@
 			projectRoot = "";
 			targets = (
 				2183E56416646D95003C35E0 /* HatenaHaiku */,
+				216200621C5CC2760077AD8A /* HatenaHaikuTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		216200611C5CC2760077AD8A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2183E56316646D95003C35E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,6 +696,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2162005F1C5CC2760077AD8A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				216200661C5CC2760077AD8A /* HatenaHaikuTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2183E56116646D95003C35E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -692,6 +762,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		216200691C5CC2760077AD8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2183E56416646D95003C35E0 /* HatenaHaiku */;
+			targetProxy = 216200681C5CC2760077AD8A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		2183E57216646D95003C35E0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -705,6 +783,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2162006A1C5CC2760077AD8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = HatenaHaikuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koogawa.HatenaHaikuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HatenaHaiku.app/HatenaHaiku";
+			};
+			name = Debug;
+		};
+		2162006B1C5CC2760077AD8A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = HatenaHaikuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koogawa.HatenaHaikuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HatenaHaiku.app/HatenaHaiku";
+			};
+			name = Release;
+		};
 		2183E59516646D96003C35E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -797,6 +939,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2162006C1C5CC2760077AD8A /* Build configuration list for PBXNativeTarget "HatenaHaikuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2162006A1C5CC2760077AD8A /* Debug */,
+				2162006B1C5CC2760077AD8A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		2183E55F16646D95003C35E0 /* Build configuration list for PBXProject "HatenaHaiku" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
