@@ -88,7 +88,7 @@
 		21D0427B16F5A8060019C0E8 /* MyFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0427A16F5A8050019C0E8 /* MyFollowerViewController.m */; };
 		21EFC12A167BB90F0012EB34 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EFC128167BB90F0012EB34 /* star@2x.png */; };
 		21EFC12B167BB90F0012EB34 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EFC129167BB90F0012EB34 /* star.png */; };
-		337B542C3FAAAEFFB1D4F591 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8629BCF5D78FB6D9064544 /* libPods.a */; };
+		EDA22E709E83FCF7B41316E1 /* libPods-HatenaHaiku.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B427B5AEA5CDBB11D0FDFDC /* libPods-HatenaHaiku.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +102,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E4C4E00F7FA646FEDA66538 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		210E724116CA080C0016C9ED /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumViewController.h; path = Controller/AlbumViewController.h; sourceTree = "<group>"; };
 		210E724216CA080C0016C9ED /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = AlbumViewController.m; path = Controller/AlbumViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2112DB861C40C150004E1534 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -240,8 +239,9 @@
 		21EBC65916A29769000F0C97 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21EFC128167BB90F0012EB34 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "image/star@2x.png"; sourceTree = "<group>"; };
 		21EFC129167BB90F0012EB34 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = image/star.png; sourceTree = "<group>"; };
-		5D4A2C30389FDC9DCABBE4E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		AB8629BCF5D78FB6D9064544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		445DA673865407C729F0EA9F /* Pods-HatenaHaiku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HatenaHaiku.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku.debug.xcconfig"; sourceTree = "<group>"; };
+		6B427B5AEA5CDBB11D0FDFDC /* libPods-HatenaHaiku.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HatenaHaiku.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0315EC26D14890BC049F72D /* Pods-HatenaHaiku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HatenaHaiku.release.xcconfig"; path = "Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,7 +262,7 @@
 				2183E56A16646D95003C35E0 /* UIKit.framework in Frameworks */,
 				2183E56C16646D95003C35E0 /* Foundation.framework in Frameworks */,
 				2183E56E16646D95003C35E0 /* CoreGraphics.framework in Frameworks */,
-				337B542C3FAAAEFFB1D4F591 /* libPods.a in Frameworks */,
+				EDA22E709E83FCF7B41316E1 /* libPods-HatenaHaiku.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +371,7 @@
 				216200641C5CC2760077AD8A /* HatenaHaikuTests */,
 				2183E56816646D95003C35E0 /* Frameworks */,
 				2183E56616646D95003C35E0 /* Products */,
-				7FF4330A499447B55477DAD3 /* Pods */,
+				80BD6F645E9E6BC5F63779E1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -393,7 +393,7 @@
 				2183E56B16646D95003C35E0 /* Foundation.framework */,
 				214ED9E91670EB3E0032AB74 /* QuartzCore.framework */,
 				2183E56D16646D95003C35E0 /* CoreGraphics.framework */,
-				AB8629BCF5D78FB6D9064544 /* libPods.a */,
+				6B427B5AEA5CDBB11D0FDFDC /* libPods-HatenaHaiku.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -526,11 +526,11 @@
 			name = image;
 			sourceTree = "<group>";
 		};
-		7FF4330A499447B55477DAD3 /* Pods */ = {
+		80BD6F645E9E6BC5F63779E1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5D4A2C30389FDC9DCABBE4E6 /* Pods.debug.xcconfig */,
-				0E4C4E00F7FA646FEDA66538 /* Pods.release.xcconfig */,
+				445DA673865407C729F0EA9F /* Pods-HatenaHaiku.debug.xcconfig */,
+				F0315EC26D14890BC049F72D /* Pods-HatenaHaiku.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -560,11 +560,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2183E59716646D96003C35E0 /* Build configuration list for PBXNativeTarget "HatenaHaiku" */;
 			buildPhases = (
-				8CB028C6010F6349C5670795 /* Check Pods Manifest.lock */,
+				A85F7245B495E8A9541A2559 /* [CP] Check Pods Manifest.lock */,
 				2183E56116646D95003C35E0 /* Sources */,
 				2183E56216646D95003C35E0 /* Frameworks */,
 				2183E56316646D95003C35E0 /* Resources */,
-				E84A116C856F044EA855EE41 /* Copy Pods Resources */,
+				C7926B80FD549814DF05A351 /* [CP] Embed Pods Frameworks */,
+				E7089CAC76EBD4E3D77D8A71 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -655,34 +656,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8CB028C6010F6349C5670795 /* Check Pods Manifest.lock */ = {
+		A85F7245B495E8A9541A2559 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E84A116C856F044EA855EE41 /* Copy Pods Resources */ = {
+		C7926B80FD549814DF05A351 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7089CAC76EBD4E3D77D8A71 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -920,7 +936,7 @@
 		};
 		2183E59816646D96003C35E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D4A2C30389FDC9DCABBE4E6 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 445DA673865407C729F0EA9F /* Pods-HatenaHaiku.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -940,7 +956,7 @@
 		};
 		2183E59916646D96003C35E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E4C4E00F7FA646FEDA66538 /* Pods.release.xcconfig */;
+			baseConfigurationReference = F0315EC26D14890BC049F72D /* Pods-HatenaHaiku.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
