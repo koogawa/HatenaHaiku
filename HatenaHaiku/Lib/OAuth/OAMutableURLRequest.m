@@ -45,7 +45,7 @@
 signatureProvider:(id<OASignatureProviding, NSObject>)aProvider {
     [super initWithURL:aUrl
            cachePolicy:NSURLRequestReloadIgnoringCacheData
-       timeoutInterval:10.0];
+       timeoutInterval:30.0];
     
     consumer = [aConsumer retain];
     
