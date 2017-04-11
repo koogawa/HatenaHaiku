@@ -39,6 +39,7 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshOccured:) forControlEvents:UIControlEventValueChanged];
     [self.collectionView addSubview:self.refreshControl];
+    [self.collectionView setAlwaysBounceVertical:YES];
     
     // 背景を設定
     self.collectionView.backgroundColor = [UIColor whiteColor];
