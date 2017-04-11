@@ -25,7 +25,9 @@
     // キャッシュディレクトリ削除（SDWebImageとか使ったほうが良さそう）
     [self clearCacheDirectory];
 
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:UIColorFromRGB(0xeeeeee)];
+    [SVProgressHUD setForegroundColor:THEME_COLOR];
 
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     tabBarController.delegate = self;
