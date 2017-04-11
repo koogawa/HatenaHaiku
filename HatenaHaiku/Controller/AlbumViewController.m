@@ -50,8 +50,7 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
-    [SVProgressHUD show];
-    [self fetchAlbum];
+    [self performSelector:@selector(fetchAlbumAtFirst) withObject:nil afterDelay:0.1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +67,13 @@
     
     self.page = 1;
     
+    [self fetchAlbum];
+}
+
+// 初回のみ呼ぶ
+- (void)fetchAlbumAtFirst
+{
+    [SVProgressHUD show];
     [self fetchAlbum];
 }
 

@@ -67,7 +67,7 @@
     _haikuManager = [[HaikuManager alloc] init];
     _haikuManager.delegate = self;
 
-    [self fetchHotKeywords];
+    [self performSelector:@selector(fetchHotKeywordsAtFirst) withObject:nil afterDelay:0.1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,13 +125,20 @@
     }
 }
 
+- (void)fetchHotKeywordsAtFirst
+{
+    LOG_CURRENT_METHOD;
+
+    [SVProgressHUD show];
+    [self fetchHotKeywords];
+}
+
 // ホットキーワード一覧を取得
 - (void)fetchHotKeywords
 {
     LOG_CURRENT_METHOD;
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [SVProgressHUD show];
 
     [_haikuManager fetchHotKeywords];
 }
