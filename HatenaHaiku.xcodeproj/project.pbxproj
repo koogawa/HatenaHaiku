@@ -66,10 +66,10 @@
 		216EA2951BF0C4F200D2FFEB /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 216EA2931BF0C4F200D2FFEB /* compose.png */; };
 		216EA2961BF0C4F200D2FFEB /* compose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216EA2941BF0C4F200D2FFEB /* compose@2x.png */; };
 		2175AB4216CA893800C7C630 /* AlbumCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */; };
-		217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217F591419FD010B005BA5A8 /* LaunchScreen.xib */; };
 		217F591819FD04DB005BA5A8 /* icon-launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F591619FD04DB005BA5A8 /* icon-launch.png */; };
 		217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F591719FD04DB005BA5A8 /* icon-launch@2x.png */; };
 		217F591B19FDF0F0005BA5A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 217F591A19FDF0F0005BA5A8 /* Images.xcassets */; };
+		21824CC41E9CA9D300A1E066 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21824CC31E9CA9D300A1E066 /* LaunchScreen.storyboard */; };
 		2182A73718E7D95800473C9B /* KGWUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2182A73618E7D95800473C9B /* KGWUtil.m */; };
 		2183E56A16646D95003C35E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56916646D95003C35E0 /* UIKit.framework */; };
 		2183E56C16646D95003C35E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56B16646D95003C35E0 /* Foundation.framework */; };
@@ -206,10 +206,10 @@
 		216EA2941BF0C4F200D2FFEB /* compose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compose@2x.png"; path = "image/compose@2x.png"; sourceTree = "<group>"; };
 		2175AB4016CA893800C7C630 /* AlbumCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumCollectionCell.h; path = View/AlbumCollectionCell.h; sourceTree = "<group>"; };
 		2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumCollectionCell.m; path = View/AlbumCollectionCell.m; sourceTree = "<group>"; };
-		217F591419FD010B005BA5A8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		217F591619FD04DB005BA5A8 /* icon-launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch.png"; path = "image/icon-launch.png"; sourceTree = "<group>"; };
 		217F591719FD04DB005BA5A8 /* icon-launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch@2x.png"; path = "image/icon-launch@2x.png"; sourceTree = "<group>"; };
 		217F591A19FDF0F0005BA5A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		21824CC31E9CA9D300A1E066 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2182A73518E7D95800473C9B /* KGWUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGWUtil.h; path = Lib/KGWUtil.h; sourceTree = "<group>"; };
 		2182A73618E7D95800473C9B /* KGWUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGWUtil.m; path = Lib/KGWUtil.m; sourceTree = "<group>"; };
 		2183E56516646D95003C35E0 /* HatenaHaiku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HatenaHaiku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,7 +412,6 @@
 				2183E57816646D95003C35E0 /* AppDelegate.h */,
 				2183E57916646D95003C35E0 /* AppDelegate.m */,
 				217F591A19FDF0F0005BA5A8 /* Images.xcassets */,
-				217F591419FD010B005BA5A8 /* LaunchScreen.xib */,
 				2112DB861C40C150004E1534 /* Storyboard.storyboard */,
 				2183E57016646D95003C35E0 /* Supporting Files */,
 			);
@@ -426,6 +425,7 @@
 				2183E5A01664DBA9003C35E0 /* image */,
 				2183E57116646D95003C35E0 /* HatenaHaiku-Info.plist */,
 				2183E57216646D95003C35E0 /* InfoPlist.strings */,
+				21824CC31E9CA9D300A1E066 /* LaunchScreen.storyboard */,
 				2183E57516646D95003C35E0 /* main.m */,
 				2183E57716646D95003C35E0 /* HatenaHaiku-Prefix.pch */,
 			);
@@ -651,10 +651,10 @@
 				216EA2951BF0C4F200D2FFEB /* compose.png in Resources */,
 				2150D5A516C158E200F67D7B /* pin.png in Resources */,
 				2150D5A616C158E200F67D7B /* pin@2x.png in Resources */,
-				217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */,
 				216EA2961BF0C4F200D2FFEB /* compose@2x.png in Resources */,
 				2112DB871C40C150004E1534 /* Storyboard.storyboard in Resources */,
 				2150D5AB16C2998E00F67D7B /* gear.png in Resources */,
+				21824CC41E9CA9D300A1E066 /* LaunchScreen.storyboard in Resources */,
 				217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */,
 				2150D5AC16C2998E00F67D7B /* gear@2x.png in Resources */,
 			);
