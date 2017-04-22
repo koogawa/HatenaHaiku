@@ -47,7 +47,7 @@
 	label.font = [UIFont systemFontOfSize:14];
 	label.adjustsFontSizeToFitWidth = YES;
 	label.numberOfLines = 1;
-	label.text = @"(c) 2013 - 2016 @koogawa";
+	label.text = @"(c) 2013 - 2017 @koogawa";
 	[tableFooterView addSubview:label];
     self.tableView.tableFooterView = tableFooterView;
 }

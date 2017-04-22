@@ -32,8 +32,6 @@
 
 @property (nonatomic, assign) id<HaikuManagerDelegate> delegate;
 
-//+ (HaikuManager *)sharedManager;
-
 // みんなの最新エントリーを取得
 - (void)fetchPublicTimelineWithPage:(NSInteger)page;
 

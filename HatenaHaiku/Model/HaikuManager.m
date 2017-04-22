@@ -18,20 +18,6 @@
 
 @implementation HaikuManager
 
-// FIXME: delegateパターンの場合、シングルトンはダメ
-+ (HaikuManager *)sharedManager
-{
-    static HaikuManager *_instance = nil;
-
-    @synchronized (self) {
-        if (_instance == nil) {
-            _instance = [[self alloc] init];
-        }
-    }
-
-    return _instance;
-}
-
 - (id)init
 {
     self = [super init];

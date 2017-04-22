@@ -183,7 +183,7 @@
         
         // プロフィールアイコン
         cell.imageView.image = [UIImage imageNamed:@"none.gif"]; // dummy
-        AsyncImageView *profileImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        AsyncImageView *profileImageView = [[AsyncImageView alloc] initWithFrame:CGRectMake(16, 0, 44, 44)];
         profileImageView.backgroundColor = [UIColor whiteColor];
         profileImageView.tag = 101;
         [cell.contentView addSubview:profileImageView];

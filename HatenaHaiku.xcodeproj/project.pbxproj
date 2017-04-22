@@ -60,15 +60,14 @@
 		2150D5AC16C2998E00F67D7B /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2150D5AA16C2998E00F67D7B /* gear@2x.png */; };
 		2150D5AF16C29EE900F67D7B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2150D5AE16C29EE900F67D7B /* SettingsViewController.m */; };
 		2150D5B216C39D0700F67D7B /* SettingsCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2150D5B116C39D0700F67D7B /* SettingsCountViewController.m */; };
+		216200661C5CC2760077AD8A /* HatenaHaikuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 216200651C5CC2760077AD8A /* HatenaHaikuTests.m */; };
 		2164A41716B9643700BFA710 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2164A41616B9643700BFA710 /* MyViewController.m */; };
 		2164A44916BCB4B400BFA710 /* lisence.html in Resources */ = {isa = PBXBuildFile; fileRef = 2164A44816BCB4B400BFA710 /* lisence.html */; };
 		216EA2951BF0C4F200D2FFEB /* compose.png in Resources */ = {isa = PBXBuildFile; fileRef = 216EA2931BF0C4F200D2FFEB /* compose.png */; };
 		216EA2961BF0C4F200D2FFEB /* compose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216EA2941BF0C4F200D2FFEB /* compose@2x.png */; };
 		2175AB4216CA893800C7C630 /* AlbumCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */; };
-		217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217F591419FD010B005BA5A8 /* LaunchScreen.xib */; };
-		217F591819FD04DB005BA5A8 /* icon-launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F591619FD04DB005BA5A8 /* icon-launch.png */; };
-		217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 217F591719FD04DB005BA5A8 /* icon-launch@2x.png */; };
 		217F591B19FDF0F0005BA5A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 217F591A19FDF0F0005BA5A8 /* Images.xcassets */; };
+		21824CC41E9CA9D300A1E066 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21824CC31E9CA9D300A1E066 /* LaunchScreen.storyboard */; };
 		2182A73718E7D95800473C9B /* KGWUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2182A73618E7D95800473C9B /* KGWUtil.m */; };
 		2183E56A16646D95003C35E0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56916646D95003C35E0 /* UIKit.framework */; };
 		2183E56C16646D95003C35E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2183E56B16646D95003C35E0 /* Foundation.framework */; };
@@ -89,11 +88,20 @@
 		21D0427B16F5A8060019C0E8 /* MyFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0427A16F5A8050019C0E8 /* MyFollowerViewController.m */; };
 		21EFC12A167BB90F0012EB34 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EFC128167BB90F0012EB34 /* star@2x.png */; };
 		21EFC12B167BB90F0012EB34 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EFC129167BB90F0012EB34 /* star.png */; };
-		337B542C3FAAAEFFB1D4F591 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8629BCF5D78FB6D9064544 /* libPods.a */; };
+		EDA22E709E83FCF7B41316E1 /* libPods-HatenaHaiku.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B427B5AEA5CDBB11D0FDFDC /* libPods-HatenaHaiku.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		216200681C5CC2760077AD8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2183E55C16646D95003C35E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2183E56416646D95003C35E0;
+			remoteInfo = HatenaHaiku;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		0E4C4E00F7FA646FEDA66538 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		210E724116CA080C0016C9ED /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumViewController.h; path = Controller/AlbumViewController.h; sourceTree = "<group>"; };
 		210E724216CA080C0016C9ED /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = AlbumViewController.m; path = Controller/AlbumViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2112DB861C40C150004E1534 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -184,6 +192,9 @@
 		2150D5AE16C29EE900F67D7B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = Controller/SettingsViewController.m; sourceTree = "<group>"; };
 		2150D5B016C39D0600F67D7B /* SettingsCountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsCountViewController.h; path = Controller/SettingsCountViewController.h; sourceTree = "<group>"; };
 		2150D5B116C39D0700F67D7B /* SettingsCountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsCountViewController.m; path = Controller/SettingsCountViewController.m; sourceTree = "<group>"; };
+		216200631C5CC2760077AD8A /* HatenaHaikuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HatenaHaikuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		216200651C5CC2760077AD8A /* HatenaHaikuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HatenaHaikuTests.m; sourceTree = "<group>"; };
+		216200671C5CC2760077AD8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2164A41516B9643700BFA710 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = MyViewController.h; path = Controller/MyViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2164A41616B9643700BFA710 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MyViewController.m; path = Controller/MyViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2164A44816BCB4B400BFA710 /* lisence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = lisence.html; path = html/lisence.html; sourceTree = "<group>"; };
@@ -192,10 +203,8 @@
 		216EA2941BF0C4F200D2FFEB /* compose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compose@2x.png"; path = "image/compose@2x.png"; sourceTree = "<group>"; };
 		2175AB4016CA893800C7C630 /* AlbumCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumCollectionCell.h; path = View/AlbumCollectionCell.h; sourceTree = "<group>"; };
 		2175AB4116CA893800C7C630 /* AlbumCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumCollectionCell.m; path = View/AlbumCollectionCell.m; sourceTree = "<group>"; };
-		217F591419FD010B005BA5A8 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		217F591619FD04DB005BA5A8 /* icon-launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch.png"; path = "image/icon-launch.png"; sourceTree = "<group>"; };
-		217F591719FD04DB005BA5A8 /* icon-launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-launch@2x.png"; path = "image/icon-launch@2x.png"; sourceTree = "<group>"; };
 		217F591A19FDF0F0005BA5A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		21824CC31E9CA9D300A1E066 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2182A73518E7D95800473C9B /* KGWUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KGWUtil.h; path = Lib/KGWUtil.h; sourceTree = "<group>"; };
 		2182A73618E7D95800473C9B /* KGWUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGWUtil.m; path = Lib/KGWUtil.m; sourceTree = "<group>"; };
 		2183E56516646D95003C35E0 /* HatenaHaiku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HatenaHaiku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,11 +239,19 @@
 		21EBC65916A29769000F0C97 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		21EFC128167BB90F0012EB34 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "image/star@2x.png"; sourceTree = "<group>"; };
 		21EFC129167BB90F0012EB34 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = image/star.png; sourceTree = "<group>"; };
-		5D4A2C30389FDC9DCABBE4E6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		AB8629BCF5D78FB6D9064544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		445DA673865407C729F0EA9F /* Pods-HatenaHaiku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HatenaHaiku.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku.debug.xcconfig"; sourceTree = "<group>"; };
+		6B427B5AEA5CDBB11D0FDFDC /* libPods-HatenaHaiku.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HatenaHaiku.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0315EC26D14890BC049F72D /* Pods-HatenaHaiku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HatenaHaiku.release.xcconfig"; path = "Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		216200601C5CC2760077AD8A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2183E56216646D95003C35E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,7 +262,7 @@
 				2183E56A16646D95003C35E0 /* UIKit.framework in Frameworks */,
 				2183E56C16646D95003C35E0 /* Foundation.framework in Frameworks */,
 				2183E56E16646D95003C35E0 /* CoreGraphics.framework in Frameworks */,
-				337B542C3FAAAEFFB1D4F591 /* libPods.a in Frameworks */,
+				EDA22E709E83FCF7B41316E1 /* libPods-HatenaHaiku.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +347,15 @@
 			path = Crypto;
 			sourceTree = "<group>";
 		};
+		216200641C5CC2760077AD8A /* HatenaHaikuTests */ = {
+			isa = PBXGroup;
+			children = (
+				216200651C5CC2760077AD8A /* HatenaHaikuTests.m */,
+				216200671C5CC2760077AD8A /* Info.plist */,
+			);
+			path = HatenaHaikuTests;
+			sourceTree = "<group>";
+		};
 		2164A44716BCB49D00BFA710 /* html */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,9 +368,10 @@
 			isa = PBXGroup;
 			children = (
 				2183E56F16646D95003C35E0 /* HatenaHaiku */,
+				216200641C5CC2760077AD8A /* HatenaHaikuTests */,
 				2183E56816646D95003C35E0 /* Frameworks */,
 				2183E56616646D95003C35E0 /* Products */,
-				7FF4330A499447B55477DAD3 /* Pods */,
+				80BD6F645E9E6BC5F63779E1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -352,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				2183E56516646D95003C35E0 /* HatenaHaiku.app */,
+				216200631C5CC2760077AD8A /* HatenaHaikuTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -365,7 +393,7 @@
 				2183E56B16646D95003C35E0 /* Foundation.framework */,
 				214ED9E91670EB3E0032AB74 /* QuartzCore.framework */,
 				2183E56D16646D95003C35E0 /* CoreGraphics.framework */,
-				AB8629BCF5D78FB6D9064544 /* libPods.a */,
+				6B427B5AEA5CDBB11D0FDFDC /* libPods-HatenaHaiku.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -379,8 +407,6 @@
 				214ED9DC166EFA7D0032AB74 /* Lib */,
 				2183E57816646D95003C35E0 /* AppDelegate.h */,
 				2183E57916646D95003C35E0 /* AppDelegate.m */,
-				217F591A19FDF0F0005BA5A8 /* Images.xcassets */,
-				217F591419FD010B005BA5A8 /* LaunchScreen.xib */,
 				2112DB861C40C150004E1534 /* Storyboard.storyboard */,
 				2183E57016646D95003C35E0 /* Supporting Files */,
 			);
@@ -393,7 +419,9 @@
 				2164A44716BCB49D00BFA710 /* html */,
 				2183E5A01664DBA9003C35E0 /* image */,
 				2183E57116646D95003C35E0 /* HatenaHaiku-Info.plist */,
+				217F591A19FDF0F0005BA5A8 /* Images.xcassets */,
 				2183E57216646D95003C35E0 /* InfoPlist.strings */,
+				21824CC31E9CA9D300A1E066 /* LaunchScreen.storyboard */,
 				2183E57516646D95003C35E0 /* main.m */,
 				2183E57716646D95003C35E0 /* HatenaHaiku-Prefix.pch */,
 			);
@@ -480,8 +508,6 @@
 				216EA2941BF0C4F200D2FFEB /* compose@2x.png */,
 				2150D5A916C2998E00F67D7B /* gear.png */,
 				2150D5AA16C2998E00F67D7B /* gear@2x.png */,
-				217F591619FD04DB005BA5A8 /* icon-launch.png */,
-				217F591719FD04DB005BA5A8 /* icon-launch@2x.png */,
 				214ED9EF1672FF1D0032AB74 /* keyword.png */,
 				214ED9EE1672FF1D0032AB74 /* keyword@2x.png */,
 				2150D59F16C14E8500F67D7B /* map.png */,
@@ -500,11 +526,11 @@
 			name = image;
 			sourceTree = "<group>";
 		};
-		7FF4330A499447B55477DAD3 /* Pods */ = {
+		80BD6F645E9E6BC5F63779E1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5D4A2C30389FDC9DCABBE4E6 /* Pods.debug.xcconfig */,
-				0E4C4E00F7FA646FEDA66538 /* Pods.release.xcconfig */,
+				445DA673865407C729F0EA9F /* Pods-HatenaHaiku.debug.xcconfig */,
+				F0315EC26D14890BC049F72D /* Pods-HatenaHaiku.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -512,15 +538,34 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		216200621C5CC2760077AD8A /* HatenaHaikuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2162006C1C5CC2760077AD8A /* Build configuration list for PBXNativeTarget "HatenaHaikuTests" */;
+			buildPhases = (
+				2162005F1C5CC2760077AD8A /* Sources */,
+				216200601C5CC2760077AD8A /* Frameworks */,
+				216200611C5CC2760077AD8A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				216200691C5CC2760077AD8A /* PBXTargetDependency */,
+			);
+			name = HatenaHaikuTests;
+			productName = HatenaHaikuTests;
+			productReference = 216200631C5CC2760077AD8A /* HatenaHaikuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		2183E56416646D95003C35E0 /* HatenaHaiku */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2183E59716646D96003C35E0 /* Build configuration list for PBXNativeTarget "HatenaHaiku" */;
 			buildPhases = (
-				8CB028C6010F6349C5670795 /* Check Pods Manifest.lock */,
+				A85F7245B495E8A9541A2559 /* [CP] Check Pods Manifest.lock */,
 				2183E56116646D95003C35E0 /* Sources */,
 				2183E56216646D95003C35E0 /* Frameworks */,
 				2183E56316646D95003C35E0 /* Resources */,
-				E84A116C856F044EA855EE41 /* Copy Pods Resources */,
+				C7926B80FD549814DF05A351 /* [CP] Embed Pods Frameworks */,
+				E7089CAC76EBD4E3D77D8A71 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -537,9 +582,13 @@
 		2183E55C16646D95003C35E0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Kosuke Ogawa";
 				TargetAttributes = {
+					216200621C5CC2760077AD8A = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 2183E56416646D95003C35E0;
+					};
 					2183E56416646D95003C35E0 = {
 						DevelopmentTeam = 4SA8237VUA;
 					};
@@ -559,17 +608,24 @@
 			projectRoot = "";
 			targets = (
 				2183E56416646D95003C35E0 /* HatenaHaiku */,
+				216200621C5CC2760077AD8A /* HatenaHaikuTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		216200611C5CC2760077AD8A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2183E56316646D95003C35E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2183E57416646D95003C35E0 /* InfoPlist.strings in Resources */,
-				217F591819FD04DB005BA5A8 /* icon-launch.png in Resources */,
 				217F591B19FDF0F0005BA5A8 /* Images.xcassets in Resources */,
 				2183E5A81664E583003C35E0 /* none.gif in Resources */,
 				218F84E4166CF3540098B54D /* reply_to.gif in Resources */,
@@ -589,11 +645,10 @@
 				216EA2951BF0C4F200D2FFEB /* compose.png in Resources */,
 				2150D5A516C158E200F67D7B /* pin.png in Resources */,
 				2150D5A616C158E200F67D7B /* pin@2x.png in Resources */,
-				217F591519FD010B005BA5A8 /* LaunchScreen.xib in Resources */,
 				216EA2961BF0C4F200D2FFEB /* compose@2x.png in Resources */,
 				2112DB871C40C150004E1534 /* Storyboard.storyboard in Resources */,
 				2150D5AB16C2998E00F67D7B /* gear.png in Resources */,
-				217F591919FD04DB005BA5A8 /* icon-launch@2x.png in Resources */,
+				21824CC41E9CA9D300A1E066 /* LaunchScreen.storyboard in Resources */,
 				2150D5AC16C2998E00F67D7B /* gear@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -601,39 +656,62 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8CB028C6010F6349C5670795 /* Check Pods Manifest.lock */ = {
+		A85F7245B495E8A9541A2559 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E84A116C856F044EA855EE41 /* Copy Pods Resources */ = {
+		C7926B80FD549814DF05A351 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7089CAC76EBD4E3D77D8A71 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HatenaHaiku/Pods-HatenaHaiku-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2162005F1C5CC2760077AD8A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				216200661C5CC2760077AD8A /* HatenaHaikuTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2183E56116646D95003C35E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -692,6 +770,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		216200691C5CC2760077AD8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2183E56416646D95003C35E0 /* HatenaHaiku */;
+			targetProxy = 216200681C5CC2760077AD8A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		2183E57216646D95003C35E0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -705,30 +791,107 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2162006A1C5CC2760077AD8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = HatenaHaikuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koogawa.HatenaHaikuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HatenaHaiku.app/HatenaHaiku";
+			};
+			name = Debug;
+		};
+		2162006B1C5CC2760077AD8A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = HatenaHaikuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.koogawa.HatenaHaikuTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HatenaHaiku.app/HatenaHaiku";
+			};
+			name = Release;
+		};
 		2183E59516646D96003C35E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -739,18 +902,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -760,36 +936,40 @@
 		};
 		2183E59816646D96003C35E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D4A2C30389FDC9DCABBE4E6 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 445DA673865407C729F0EA9F /* Pods-HatenaHaiku.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kosuke Ogawa (6XKXLBZW2J)";
+				DEVELOPMENT_TEAM = 4SA8237VUA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
 				INFOPLIST_FILE = "HatenaHaiku/HatenaHaiku-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Myapp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0b714749-7866-458e-afda-a8c2f4a2b74c";
+				PROVISIONING_PROFILE = "12efbaf1-f273-4775-9c08-350c33c7c072";
+				PROVISIONING_PROFILE_SPECIFIER = Development;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		2183E59916646D96003C35E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E4C4E00F7FA646FEDA66538 /* Pods.release.xcconfig */;
+			baseConfigurationReference = F0315EC26D14890BC049F72D /* Pods-HatenaHaiku.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kosuke Ogawa (4SA8237VUA)";
+				DEVELOPMENT_TEAM = 4SA8237VUA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HatenaHaiku/HatenaHaiku-Prefix.pch";
 				INFOPLIST_FILE = "HatenaHaiku/HatenaHaiku-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Myapp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cd41ed95-fb20-445a-9aa4-a086786b8b98";
+				PROVISIONING_PROFILE = "4ba10a52-78ef-4a77-8a97-896855d16b41";
+				PROVISIONING_PROFILE_SPECIFIER = Distribution;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -797,6 +977,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2162006C1C5CC2760077AD8A /* Build configuration list for PBXNativeTarget "HatenaHaikuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2162006A1C5CC2760077AD8A /* Debug */,
+				2162006B1C5CC2760077AD8A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2183E55F16646D95003C35E0 /* Build configuration list for PBXProject "HatenaHaiku" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
